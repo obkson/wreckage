@@ -1,0 +1,32 @@
+### SBT ###
+target/
+project/plugins/project/
+.cache
+
+### Scala ###
+*.class
+*.log
+
+### VIM ###
+tags
+.*.swp
+.*.swo
+
+### OS X ###
+.DS_Store
+
+### ECLIPSE SCALA-IDE ###
+.classpath
+.scala_dependencies
+.project
+.settings
+.cache-main
+.cache-tests
+bin
+
+### INTELLIJ ###
+*.iml
+*.ipr
+*.iws
+.idea
+out
