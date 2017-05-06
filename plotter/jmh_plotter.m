@@ -1,16 +1,20 @@
 clc; close all; clear;
 
-feature = 'RTAccessFields';
-prefix = 'access_f';
+feature = 'RTAccessPolymorphism';
+prefix = 'poly_deg';
+
+
+%feature = 'RTAccessFields';
+%prefix = 'access_f';
 
 pigs = [
     cellstr('scalarecords_0_3__scala_2_11_8');    %bk
-    %cellstr('shapeless232');                     %bl
+    %cellstr('scalarecords_0_4__scala_2_11_8');    %bl
+    %cellstr('shapeless232');                     %gr
 ];
 colors = [
     0 0 0; %black
-    %0 0 1; %blue
-    %0 0 1; %blue
+    0 0 1; %blue
     %0 1 0; %green
     %0 1 1; %cyan
     %1 0 0; %red
@@ -38,7 +42,7 @@ for pigindex = 1:length(pigs)
         rexp = ['(\w+).(\w+).',prefix,'(\d+)'];
         fieldcell = regexp(data.benchmark, rexp ,'tokens');
         params = fieldcell{1};
-        pigname = params{1};
+        pkg = params{1};
         methodname = params{2};
         input = str2num(params{3});
 
