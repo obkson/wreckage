@@ -17,6 +17,7 @@ function run {
 }
 
 # run "scalarecords_0_3__scala_2_11_8"
-run "scala"    "scalarecords_0_4__scala_2_11_8"
-run "scala"    "shapeless_2_3_2__scala_2_11_8"
-run "whiteoak" "whiteoaknative_1_0__whiteoak_2_1"
+#run "scala"    "scalarecords_0_4__scala_2_11_8"
+#run "scala"    "shapeless_2_3_2__scala_2_11_8"
+run "whiteoak" "whiteoaknative__whiteoak_2_1"
+#run "scala"    "caseclass__scala_2_11_8"

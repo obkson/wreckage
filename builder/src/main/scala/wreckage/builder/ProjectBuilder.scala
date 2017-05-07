@@ -1,20 +1,22 @@
 package wreckage.builder
 import benchmarking._
 
-import java.nio.file.{Path, Paths, Files}
+import java.nio.file.{Path, Paths, Files, StandardCopyOption}
 
 abstract class JMHProjectBuilder {
   // Default
-  val groupId = List("benchmarks")
+  val groupId = List("se","obkson","wreckage","benchmarks")
   val name = this.getClass.getSimpleName.split("\\$")(0).toLowerCase
 
   // Abstract
-  val pom: String
-  val dependencies: Seq[Dependency]
-  val sourceFiles: Seq[SourceFile]
+  def pom: String
+  def managedDependencies: Seq[ManagedDependency]
+  def unmanagedDependencies: Seq[UnmanagedDependency]
+  def sourceFiles: Seq[SourceFile]
+  def srcfolder: Seq[String] // e.g. src, main, scala
 
   // Implemented
-  def generate(odPath: Path, localRepo: Option[Path]): Boolean = {
+  def generate(odPath: Path): Boolean = {
     // Validate output directory
     if (!Files.exists(odPath)) {
       Logger.error(s"""${odPath} does not exist""")
@@ -30,9 +32,8 @@ abstract class JMHProjectBuilder {
     Logger.info(s"""creating ${projectroot.normalize}""")
     FileHelper.createDirClean(projectroot)
 
-    // TODO Make language specific!
     // Create Maven Scala folder structure
-    val srcroot = projectroot.resolve(Paths.get("src","main","scala"))
+    val srcroot = projectroot.resolve(Paths.get(".", srcfolder:_*))
     Logger.info(s"""creating ${srcroot.normalize}""")
     Files.createDirectories(srcroot)
 
@@ -45,27 +46,25 @@ abstract class JMHProjectBuilder {
       FileHelper.createFile(srcPath, src.content)
     }
 
-    // Create Maven pom
-    val pomStr = FileHelper.replace(pom, Map("{{localrepo}}"->localRepoXML(localRepo)))
+    // Create local repository
+    val reporoot = projectroot.resolve(Paths.get("repo"))
+    Logger.info(s"""creating ${reporoot.normalize}""")
+    Files.createDirectories(reporoot)
 
+    unmanagedDependencies.foreach{ dep =>
+      val fullPathSeq = dep.groupId ++ List(dep.artifactId, dep.version)
+      val fullPath = reporoot.resolve(Paths.get(".", fullPathSeq:_*))
+      val jarPath = fullPath.resolve(Paths.get(s"${dep.artifactId}-${dep.version}.jar"))
+      Files.createDirectories(fullPath)
+      Files.copy(dep.jarlocation, jarPath, StandardCopyOption.REPLACE_EXISTING)
+      Logger.info(s"""creating ${jarPath.normalize}""")
+    }
+
+    // Create Maven pom
     val pomPath = projectroot.resolve(Paths.get("pom.xml"))
-    FileHelper.createFile(pomPath, pomStr)
+    FileHelper.createFile(pomPath, pom)
 
     true
-  }
-
-  def localRepoXML(localRepo: Option[Path]): String = localRepo match {
-    // TODO is there a way to force the path to be Relative to project bas dir?
-    case Some(path) => s"""
-      <repositories>
-          <repository>
-              <id>project.local</id>
-              <name>project</name>
-              <url>file:\\$$\\{project.basedir}/${path}</url>
-          </repository>
-      </repositories>
-      """
-    case None => ""
   }
 
   def main(args: Array[String]){
@@ -79,12 +78,7 @@ abstract class JMHProjectBuilder {
     val odStr = args(0)
     val odAbsPath = Paths.get(odStr).toAbsolutePath().normalize()
 
-    val localRepo = if (args.length >= 2)
-      Some(Paths.get(args(1)))
-    else
-      None
-
-    generate(odAbsPath, localRepo)
+    generate(odAbsPath)
   }
 
 }
@@ -92,21 +86,24 @@ abstract class JMHProjectBuilder {
 abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
 
   // Keep these abstract
-  val dependencies: Seq[Dependency]
+  val managedDependencies: Seq[ManagedDependency]
+  val unmanagedDependencies: Seq[UnmanagedDependency]
   val sourceFiles: Seq[SourceFile]
+  def srcfolder = List("src","main","scala")
 
   // Scala specific Abstract:
   val scalaVersion: String
 
   // Implemented for Scala:
   lazy val pom = {
+    val deps = managedDependencies ++ unmanagedDependencies
     val pomTmpl = FileHelper.getResourceForClassAsString("/scala-pom.xml", getClass)
     val pomStr = FileHelper.replace(pomTmpl,
       Map("{{name}}"         -> s"JMH Benchmarks for ${this.name}",
           "{{groupId}}"      -> groupId.mkString("."),
           "{{artifactId}}"   -> this.name,
           "{{scalaVersion}}" -> this.scalaVersion,
-          "{{dependencies}}" -> this.dependencies.map(_.toXML).mkString("\n"))
+          "{{dependencies}}" -> deps.map(_.toXML).mkString("\n"))
     )
     pomStr
   }
@@ -115,15 +112,21 @@ abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
 abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
 
   // Keep these abstract
-  val dependencies: Seq[Dependency]
+  val managedDependencies: Seq[ManagedDependency]
+  val unmanagedDependencies: Seq[UnmanagedDependency]
   val sourceFiles: Seq[SourceFile]
+  def srcfolder = List("src","main","whiteoak")
 
   // Implemented for Whiteoak:
   lazy val pom = {
     import java.util.regex.Pattern
-    // TODO implement escaping in replace function
-    // TODO Let this depend on the "sourceFiles" method
-    val sources = "<argument>\\$\\{project.basedir}/src/main/scala/benchmarks/RTAccessFields.wo</argument>"
+
+    // TODO implement escaping in replace function instead
+    val sources = sourceFiles.map{src =>
+      s"<argument>\\$$\\{project.basedir}/${srcfolder.mkString("/")}/${src.pkg.mkString("/")}/${src.name}</argument>"
+    }.mkString("\n")
+
+    val deps = managedDependencies ++ unmanagedDependencies
 
     val pomTmpl = FileHelper.getResourceForClassAsString("/whiteoak-pom.xml", getClass)
     val pomStr = FileHelper.replace(pomTmpl,
@@ -131,7 +134,7 @@ abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
           "{{groupId}}"         -> groupId.mkString("."),
           "{{artifactId}}"      -> this.name,
           "{{whiteoakVersion}}" -> "2.1",
-          "{{dependencies}}"    -> this.dependencies.map(_.toXML).mkString("\n"),
+          "{{dependencies}}"    -> deps.map(_.toXML).mkString("\n"),
           "{{sources}}"         -> sources
       )
     )

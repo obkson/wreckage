@@ -30,3 +30,7 @@ bin
 *.iws
 .idea
 out
+
+### Project Specific
+records/compossible
+whiteoak/whiteoak-2.1.jar

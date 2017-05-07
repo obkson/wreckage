@@ -11,7 +11,8 @@ pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8');    %black
     cellstr('scalarecords_0_4__scala_2_11_8');     %blue
     cellstr('shapeless_2_3_2__scala_2_11_8');      %green
-    cellstr('whiteoaknative_1_0__whiteoak_2_1');   %red
+    cellstr('whiteoaknative__whiteoak_2_1');   %red
+    cellstr('caseclass__scala_2_11_8');            %magenta
 ];
 colors = [
     %0 0 0; %black
@@ -19,7 +20,7 @@ colors = [
     0 1 0; %green
     %0 1 1; %cyan
     1 0 0; %red
-    %1 0 1; %magenta
+    1 0 1; %magenta
     %1 1 0; %yellow
  ];
 

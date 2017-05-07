@@ -22,7 +22,8 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
   // Abstract
   val scalaVersion: String
-  val dependencies: Seq[Dependency]
+  val managedDependencies: Seq[ManagedDependency]
+  val unmanagedDependencies: Seq[UnmanagedDependency]
 
   val pkg = List("benchmarks")
   val features = List(
@@ -37,8 +38,9 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
 object Shapeless_2_3_2__Scala_2_11_8 extends Shapeless {
   val scalaVersion = "2.11.8"
-  val dependencies = List(
-      Dependency("com.chuusai", "shapeless_2.11", "2.3.2")
+  val managedDependencies = List(
+      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.3.2")
     )
+  val unmanagedDependencies = List()
 }
 
