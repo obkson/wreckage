@@ -1,23 +1,24 @@
 clc; close all; clear;
 
-feature = 'RTAccessPolymorphism';
-prefix = 'poly_deg';
+%feature = 'RTAccessPolymorphism';
+%prefix = 'poly_deg';
 
 
-%feature = 'RTAccessFields';
-%prefix = 'access_f';
+feature = 'RTAccessFields';
+prefix = 'access_f';
 
 pigs = [
-    cellstr('scalarecords_0_3__scala_2_11_8');    %bk
-    %cellstr('scalarecords_0_4__scala_2_11_8');    %bl
-    %cellstr('shapeless232');                     %gr
+    %cellstr('scalarecords_0_3__scala_2_11_8');    %black
+    cellstr('scalarecords_0_4__scala_2_11_8');     %blue
+    cellstr('shapeless_2_3_2__scala_2_11_8');      %green
+    cellstr('whiteoaknative_1_0__whiteoak_2_1');   %red
 ];
 colors = [
-    0 0 0; %black
+    %0 0 0; %black
     0 0 1; %blue
-    %0 1 0; %green
+    0 1 0; %green
     %0 1 1; %cyan
-    %1 0 0; %red
+    1 0 0; %red
     %1 0 1; %magenta
     %1 1 0; %yellow
  ];

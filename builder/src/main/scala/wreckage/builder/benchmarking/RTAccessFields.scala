@@ -1,6 +1,11 @@
 package wreckage.builder.benchmarking
 
-object RTAccessFields extends Benchmark {
+
+// Scala Version
+
+trait ScalaRTAccessFields extends ScalaBenchmark {
+  val name = "RTAccessFields"
+
   val inputs: Seq[Int] = List(1,2,4,8,16,32)
 
   def state(recSyntax: RecordSyntax): String = {
@@ -21,4 +26,34 @@ object RTAccessFields extends Benchmark {
   }
 }
 
+case object ScalaRTAccessFields extends ScalaRTAccessFields
 
+
+// Whiteoak Version
+
+trait WhiteoakRTAccessFields extends WhiteoakBenchmark {
+  val name = "RTAccessFields"
+
+  val inputs: Seq[Int] = List(1,2,4,8,16,32)
+
+  def state(recSyntax: RecordSyntax): String = {
+    val fields: Seq[(String, String)] = (1 to inputs.max).map{ idx =>
+      (s"f$idx", s"$idx")
+    }
+    s"""${recSyntax.tpe(fields)} r = ${recSyntax.create(fields)};"""
+  }
+
+  def method(input: Int, recSyntax: RecordSyntax): String = {
+    s"""@Benchmark
+       |public int access_f$input() ${methodBody(input, recSyntax)}
+       |""".stripMargin
+  }
+
+  def methodBody(input: Int, recSyntax: RecordSyntax): String = {
+    s"""{
+       |  return ${recSyntax.access("r", s"f$input")};
+       |}""".stripMargin
+  }
+}
+
+case object WhiteoakRTAccessFields extends WhiteoakRTAccessFields

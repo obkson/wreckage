@@ -29,7 +29,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
 THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>{{groupId}}</groupId>
     <artifactId>{{artifactId}}</artifactId>
@@ -39,9 +40,15 @@ THE POSSIBILITY OF SUCH DAMAGE.
     <name>{{name}}</name>
 
     <!--
-       This is the demo/sample template build script for building Groovy benchmarks with JMH.
+       This is the demo/sample template build script for building Scala benchmarks with JMH.
        Edit as needed. It needs a proper dependency on Scala library to compile.
      -->
+
+    <prerequisites>
+        <maven>3.0.4</maven>
+    </prerequisites>
+
+    {{localrepo}}
 
     <dependencies>
         <dependency>
@@ -56,10 +63,6 @@ THE POSSIBILITY OF SUCH DAMAGE.
         </dependency>
         {{dependencies}}
     </dependencies>
-
-    <prerequisites>
-        <maven>3.0.4</maven>
-    </prerequisites>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

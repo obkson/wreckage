@@ -1,6 +1,8 @@
 package wreckage.builder.benchmarking
 
-case object RTAccessPolymorphism extends Benchmark {
+trait ScalaRTAccessPolymorphism extends ScalaBenchmark {
+  val name = "RTAccessPolymorphism"
+
   val inputs: Seq[Int] = List(1,2,4,8,16,32)
 
   def state(recSyntax: RecordSyntax): String = {
@@ -36,5 +38,4 @@ case object RTAccessPolymorphism extends Benchmark {
   }
 }
 
-
-
+case object ScalaRTAccessPolymorphism extends ScalaRTAccessPolymorphism

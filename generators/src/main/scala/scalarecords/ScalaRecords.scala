@@ -6,10 +6,15 @@ abstract class ScalaRecords extends ScalaJMHProjectBuilder {
 
   // scala-records syntax
   object Syntax extends RecordSyntax {
+
     val imports = List("records._")
+
     def create(fields: Seq[(String, String)]): String = {
       fields.map{ case (k, v) => s""""$k"->$v""" }.mkString("Rec(", ", ",")")
     }
+
+    def tpe(fields: Seq[(String, String)]): String = ??? // TODO!
+
     def access(prefix: String, field: String): String = {
       s"""$prefix.$field"""
     }
@@ -21,8 +26,8 @@ abstract class ScalaRecords extends ScalaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
-    RTAccessFields,
-    RTAccessPolymorphism
+    ScalaRTAccessFields,
+    ScalaRTAccessPolymorphism
   )
 
   // Implemented
