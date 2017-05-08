@@ -64,7 +64,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>${scala.stdLib.version}</version>
+            <version>{{scalaVersion}}</version>
         </dependency>
         {{dependencies}}
     </dependencies>
@@ -81,13 +81,6 @@ THE POSSIBILITY OF SUCH DAMAGE.
             Java source/target to use for compilation.
           -->
         <javac.target>1.8</javac.target>
-
-        <!--
-            Put an approriate Scala stdlib version here.
-            Available versions are listed here:
-               https://mvnrepository.com/artifact/org.scala-lang/scala-library
-        -->
-        <scala.stdLib.version>{{scalaVersion}}</scala.stdLib.version>
 
         <!--
             Put an appropriate Scala Maven plugin version here.

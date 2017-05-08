@@ -86,18 +86,20 @@ abstract class JMHProjectBuilder {
 abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
 
   // Keep these abstract
-  val managedDependencies: Seq[ManagedDependency]
-  val unmanagedDependencies: Seq[UnmanagedDependency]
-  val sourceFiles: Seq[SourceFile]
+  def managedDependencies: Seq[ManagedDependency]
+  def unmanagedDependencies: Seq[UnmanagedDependency]
+  def sourceFiles: Seq[SourceFile]
   def srcfolder = List("src","main","scala")
 
+  def pomPath = "/scala-pom.xml"
+
   // Scala specific Abstract:
-  val scalaVersion: String
+  def scalaVersion: String
 
   // Implemented for Scala:
   lazy val pom = {
     val deps = managedDependencies ++ unmanagedDependencies
-    val pomTmpl = FileHelper.getResourceForClassAsString("/scala-pom.xml", getClass)
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomPath, getClass)
     val pomStr = FileHelper.replace(pomTmpl,
       Map("{{name}}"         -> s"JMH Benchmarks for ${this.name}",
           "{{groupId}}"      -> groupId.mkString("."),
@@ -109,8 +111,54 @@ abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
   }
 }
 
+abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
+
+
+  def dottyBuildVersion: String // e.g. 0.1.1-bin-20170506-385178d-NIGHTLY
+
+  // Keep these abstract
+  def managedDependencies = List(
+    ManagedDependency(List("ch","epfl","lamp"), "dotty-compiler_0.1", dottyBuildVersion),
+    ManagedDependency(List("ch","epfl","lamp"), "dotty-library_0.1", dottyBuildVersion),
+    ManagedDependency(List("ch","epfl","lamp"), "dotty-interfaces", dottyBuildVersion),
+    ManagedDependency(List("org","scala-lang"), "scala-library", "2.11.11"),
+    ManagedDependency(List("org","scala-lang"), "scala-reflect", "2.11.11"),
+    ManagedDependency(List("org","scala-lang","modules"), "scala-asm", "5.1.0-scala-2"),
+    ManagedDependency(List("com","typesafe","sbt"), "sbt-interface", "0.13.15")
+  )
+
+  def unmanagedDependencies = List[UnmanagedDependency]()
+  def sourceFiles: Seq[SourceFile]
+  def srcfolder = List("src","main","scala")
+
+  // Implemented for Whiteoak:
+  lazy val pom = {
+    import java.util.regex.Pattern
+
+    // TODO implement escaping in replace function instead
+    val sources = sourceFiles.map{src =>
+      s"<argument>\\$$\\{project.basedir}/${srcfolder.mkString("/")}/${src.pkg.mkString("/")}/${src.name}</argument>"
+    }.mkString("\n")
+
+    val deps = managedDependencies ++ unmanagedDependencies
+
+    val pomTmpl = FileHelper.getResourceForClassAsString("/dotty-pom.xml", getClass)
+    val pomStr = FileHelper.replace(pomTmpl,
+      Map("{{name}}"            -> s"JMH Benchmarks for ${this.name}",
+          "{{groupId}}"         -> groupId.mkString("."),
+          "{{artifactId}}"      -> this.name,
+          "{{dependencies}}"    -> deps.map(_.toXML).mkString("\n"),
+          "{{sources}}"         -> sources
+      )
+    )
+    pomStr
+  }
+
+}
+
 abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
 
+  // TODO add dependencies here!
   // Keep these abstract
   val managedDependencies: Seq[ManagedDependency]
   val unmanagedDependencies: Seq[UnmanagedDependency]
@@ -133,7 +181,6 @@ abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
       Map("{{name}}"            -> s"JMH Benchmarks for ${this.name}",
           "{{groupId}}"         -> groupId.mkString("."),
           "{{artifactId}}"      -> this.name,
-          "{{whiteoakVersion}}" -> "2.1",
           "{{dependencies}}"    -> deps.map(_.toXML).mkString("\n"),
           "{{sources}}"         -> sources
       )

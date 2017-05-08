@@ -13,6 +13,7 @@ pigs = [
     cellstr('shapeless_2_3_2__scala_2_11_8');      %green
     cellstr('whiteoaknative__whiteoak_2_1');   %red
     cellstr('caseclass__scala_2_11_8');            %magenta
+    cellstr('caseclass__dotty_0_1');            %yellow
 ];
 colors = [
     %0 0 0; %black
@@ -21,7 +22,7 @@ colors = [
     %0 1 1; %cyan
     1 0 0; %red
     1 0 1; %magenta
-    %1 1 0; %yellow
+    1 1 0; %yellow
  ];
 
 figure(); hold on;

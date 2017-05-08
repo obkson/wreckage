@@ -40,7 +40,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
     <name>{{name}}</name>
 
     <!--
-       This is the demo/sample template build script for building Whiteoak benchmarks with JMH.
+       This is the demo/sample template build script for building Dotty benchmarks with JMH.
        Edit as needed.
     -->
 
@@ -75,7 +75,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
         <!--
             Java source/target to use for compilation.
           -->
-        <javac.target>1.6</javac.target>
+        <javac.target>1.8</javac.target>
 
         <!--
             Select a JMH benchmark generator to use. Available options:
@@ -111,7 +111,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${project.basedir}/src/main/whiteoak</source>
+                                <source>${project.basedir}/src/main/scala</source>
                                 <source>${project.basedir}/target/generated-sources/jmh</source>
                             </sources>
                         </configuration>
@@ -139,7 +139,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
                         </configuration>
                     </execution>
                     <!--
-                        2. Compile Whiteoak sources
+                        2. Compile Dotty sources
                       -->
 
                     <execution>
@@ -153,7 +153,9 @@ THE POSSIBILITY OF SUCH DAMAGE.
                             <arguments>
                                 <argument>-classpath</argument>
                                 <classpath/>
-                                <argument>whiteoak.tools.openjdk.compiler.WocMain</argument>
+                                <argument>dotty.tools.dotc.Main</argument>
+                                <argument>-bootclasspath</argument>
+                                <classpath/> <!-- A bit crude, but the easiest way of getting dotty-library_0.1 and scala-library in there! -->
                                 <argument>-d</argument>
                                 <argument>${project.basedir}/target/classes/</argument>
                                 {{sources}}
@@ -251,3 +253,4 @@ THE POSSIBILITY OF SUCH DAMAGE.
         </plugins>
     </build>
 </project>
+
