@@ -113,25 +113,10 @@ abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
 
 abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
 
-
   def dottyBuildVersion: String // e.g. 0.1.1-bin-20170506-385178d-NIGHTLY
 
-  // Keep these abstract
-  def managedDependencies = List(
-    ManagedDependency(List("ch","epfl","lamp"), "dotty-compiler_0.1", dottyBuildVersion),
-    ManagedDependency(List("ch","epfl","lamp"), "dotty-library_0.1", dottyBuildVersion),
-    ManagedDependency(List("ch","epfl","lamp"), "dotty-interfaces", dottyBuildVersion),
-    ManagedDependency(List("org","scala-lang"), "scala-library", "2.11.11"),
-    ManagedDependency(List("org","scala-lang"), "scala-reflect", "2.11.11"),
-    ManagedDependency(List("org","scala-lang","modules"), "scala-asm", "5.1.0-scala-2"),
-    ManagedDependency(List("com","typesafe","sbt"), "sbt-interface", "0.13.15")
-  )
-
-  def unmanagedDependencies = List[UnmanagedDependency]()
-  def sourceFiles: Seq[SourceFile]
   def srcfolder = List("src","main","scala")
 
-  // Implemented for Whiteoak:
   lazy val pom = {
     import java.util.regex.Pattern
 
@@ -153,12 +138,39 @@ abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
     )
     pomStr
   }
+}
 
+abstract class Dotty_0_1__JMHProjectBuilder extends DottyJMHProjectBuilder {
+  def getLatestDottyBuild = {
+    // This is how sbt-dotty plugin does it:
+    val Version = """      <version>(0.1\..*-bin.*)</version>""".r
+    scala.io.Source
+      .fromURL("http://repo1.maven.org/maven2/ch/epfl/lamp/dotty_0.1/maven-metadata.xml")
+      .getLines()
+      .collect { case Version(version) => version }
+      .toSeq
+      .last
+  }
+
+  val dottyBuildVersion = getLatestDottyBuild // e.g. "0.1.1-bin-20170506-385178d-NIGHTLY"
+
+  // Keep these abstract
+  def managedDependencies = List(
+    ManagedDependency(List("ch","epfl","lamp"), "dotty-compiler_0.1", dottyBuildVersion),
+    ManagedDependency(List("ch","epfl","lamp"), "dotty-library_0.1", dottyBuildVersion),
+    ManagedDependency(List("ch","epfl","lamp"), "dotty-interfaces", dottyBuildVersion),
+    ManagedDependency(List("org","scala-lang"), "scala-library", "2.11.11"),
+    ManagedDependency(List("org","scala-lang"), "scala-reflect", "2.11.11"),
+    ManagedDependency(List("org","scala-lang","modules"), "scala-asm", "5.1.0-scala-2"),
+    ManagedDependency(List("com","typesafe","sbt"), "sbt-interface", "0.13.15")
+  )
+
+  def unmanagedDependencies = List[UnmanagedDependency]()
 }
 
 abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
 
-  // TODO add dependencies here!
+  // TODO add dependencies here, like dotty above
   // Keep these abstract
   val managedDependencies: Seq[ManagedDependency]
   val unmanagedDependencies: Seq[UnmanagedDependency]

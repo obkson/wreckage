@@ -8,6 +8,9 @@ if [ -z "$GENDIR" ]; then
   exit 1
 fi
 
+# Must purge cached version of our record jars
+rm -r ~/.m2/repository/se/obkson/wreckage/records
+
 # Shapeless need lots of stack space
 MAVEN_OPTS="-Xss4m"
 
@@ -15,7 +18,8 @@ MAVEN_OPTS="-Xss4m"
 #(cd "$GENDIR/scala/scalarecords_0_4__scala_2_11_8" && MAVEN_OPTS="$MAVEN_OPTS" mvn clean install)
 #(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_11_8" && MAVEN_OPTS="$MAVEN_OPTS" mvn clean install)
 #(cd "$GENDIR/scala/caseclass__scala_2_11_8" && MAVEN_OPTS="$MAVEN_OPTS" mvn clean install)
-(cd "$GENDIR/whiteoak" && vagrant ssh -c "cd /vagrant/whiteoaknative__whiteoak_2_1 && jenv exec mvn clean install")
+#(cd "$GENDIR/whiteoak" && vagrant ssh -c "cd /vagrant/whiteoaknative__whiteoak_2_1 && jenv exec mvn clean install")
 
 #(cd "$GENDIR/dotty/caseclass__dotty_0_1" && MAVEN_OPTS="$MAVEN_OPTS" mvn clean install)
+(cd "$GENDIR/dotty/selreclist__dotty_0_1" && MAVEN_OPTS="$MAVEN_OPTS" mvn clean install)
 

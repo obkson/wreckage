@@ -2,7 +2,7 @@ package dottynative
 
 import java.nio.file.Paths
 import wreckage.builder._, benchmarking._
-object CaseClass__Dotty_0_1 extends Dotty_0_1__JMHProjectBuilder {
+object SelRecList__Dotty_0_1 extends Dotty_0_1__JMHProjectBuilder {
 
   val artifactId = this.name
 
@@ -17,17 +17,19 @@ object CaseClass__Dotty_0_1 extends Dotty_0_1__JMHProjectBuilder {
     val imports = List("dottynative._")
 
     def create(fields: Seq[(String, String)]): String = {
-      // e.g. CaseClass4(f1=1, f2=2, f3=3, f4=4)
-      fields.map{ case (k, v) => s"""$k=$v""" }.mkString(s"${this.tpe(fields)}(", ", ",")")
+      // e.g. Record(("f1"->1, "f2"->2).asInstanceOf[ SelRecList { val f1: Int; val f2: Int } ]
+      fields.map{ case (k, v) => s""""$k"->$v""" }
+        .mkString(s"SelRecList(", ", ",s").asInstanceOf[ ${tpe(fields)} ]")
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
-      // e.g. CaseClass4
-      s"CaseClass${fields.length}"
+      // e.g. SelRecList { val f1: Int; val f2: Int }
+      fields.map{ case (k, v) => s"val $k: Int" }
+        .mkString(s"SelRecList { ","; ", " }")
     }
 
     def access(prefix: String, field: String): String = {
-      // e.g. rec.f4
+      // e.g. rec.f2
       s"""$prefix.$field"""
     }
   }
@@ -40,3 +42,4 @@ object CaseClass__Dotty_0_1 extends Dotty_0_1__JMHProjectBuilder {
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
 
 }
+
