@@ -56,8 +56,14 @@ object FileHelper {
     import java.util.regex.Pattern
 
     map.foldLeft(template){ case (templInProgress: String, (k: String, v: String)) => 
+      val escaped = v.flatMap {
+          case '$' => "\\$"
+          case '{' => "\\{"
+          case '(' => "\\("
+          case c => s"$c"
+      }
       val rexp = Pattern.quote( k ).r
-      rexp.replaceAllIn(templInProgress, v)
+      rexp.replaceAllIn(templInProgress, escaped)
     }
   }
 

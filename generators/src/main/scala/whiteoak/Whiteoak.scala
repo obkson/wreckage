@@ -40,8 +40,9 @@ object WhiteoakNative__Whiteoak_2_1 extends WhiteoakJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
-    WhiteoakRTAccessFields
-    //WhiteoakRTAccessPolymorphism
+    WhiteoakRTCreationFields,
+    WhiteoakRTAccessFields,
+    WhiteoakRTAccessPolymorphism
   )
 
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))

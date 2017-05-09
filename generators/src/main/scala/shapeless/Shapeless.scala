@@ -27,6 +27,7 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
+    ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessPolymorphism
   )

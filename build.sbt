@@ -2,13 +2,13 @@ name := "wreckage"
 
 version := "1.0"
 
-scalaVersion := "2.11.8"
+scalaVersion in ThisBuild := "2.11.8"
 
 lazy val builder = (project in file("builder"))
 
 lazy val records_scalanative = (project in file("records/scalanative"))
-
 lazy val records_dottynative = (project in file("records/dottynative"))
+lazy val records_compossible = (project in file("records/compossible"))
 
 lazy val generators = (project in file("generators")).dependsOn(builder)
 
@@ -16,6 +16,7 @@ lazy val generators = (project in file("generators")).dependsOn(builder)
 (compile in Runtime in generators) := {
   (Keys.`package` in Compile in records_scalanative).value
   (Keys.`package` in Compile in records_dottynative).value
+
   // Note that whiteoak build process is not included here, since it would ssh into vagrant on every build...
   (compile in Runtime in generators).value
 }

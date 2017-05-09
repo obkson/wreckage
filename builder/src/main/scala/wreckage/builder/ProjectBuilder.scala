@@ -177,14 +177,34 @@ abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
   val sourceFiles: Seq[SourceFile]
   def srcfolder = List("src","main","whiteoak")
 
+  def compilationUnits = {
+    sourceFiles.map{src =>
+      s"""
+                    <execution>
+                        <id>Compile ${src.name}</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <classpath/>
+                                <argument>whiteoak.tools.openjdk.compiler.WocMain</argument>
+                                <argument>-d</argument>
+                                <argument>$${project.basedir}/target/classes/</argument>
+                                <argument>$${project.basedir}/${srcfolder.mkString("/")}/${src.pkg.mkString("/")}/${src.name}</argument>"
+                            </arguments>
+                        </configuration>
+                    </execution>
+      """
+    }.mkString("\n")
+  }
+
   // Implemented for Whiteoak:
   lazy val pom = {
     import java.util.regex.Pattern
-
-    // TODO implement escaping in replace function instead
-    val sources = sourceFiles.map{src =>
-      s"<argument>\\$$\\{project.basedir}/${srcfolder.mkString("/")}/${src.pkg.mkString("/")}/${src.name}</argument>"
-    }.mkString("\n")
 
     val deps = managedDependencies ++ unmanagedDependencies
 
@@ -194,7 +214,7 @@ abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
           "{{groupId}}"         -> groupId.mkString("."),
           "{{artifactId}}"      -> this.name,
           "{{dependencies}}"    -> deps.map(_.toXML).mkString("\n"),
-          "{{sources}}"         -> sources
+          "{{compilationUnits}}"-> compilationUnits
       )
     )
     pomStr

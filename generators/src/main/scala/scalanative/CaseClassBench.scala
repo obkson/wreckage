@@ -38,6 +38,7 @@ object CaseClass__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
+    ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessPolymorphism
   )

@@ -70,7 +70,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
         <!--
             JMH version to use with this project.
           -->
-        <jmh.version>1.18</jmh.version>
+        <jmh.version>1.16</jmh.version> <!-- Last version to support Java 1.6 -->
 
         <!--
             Java source/target to use for compilation.
@@ -142,24 +142,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
                         2. Compile Whiteoak sources
                       -->
 
-                    <execution>
-                        <id>Compile Whiteoak</id>
-                        <phase>process-sources</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>java</executable>
-                            <arguments>
-                                <argument>-classpath</argument>
-                                <classpath/>
-                                <argument>whiteoak.tools.openjdk.compiler.WocMain</argument>
-                                <argument>-d</argument>
-                                <argument>${project.basedir}/target/classes/</argument>
-                                {{sources}}
-                            </arguments>
-                        </configuration>
-                    </execution>
+                    {{compilationUnits}}
 
                     <!--
                         3. Invoke JMH generators to produce benchmark code

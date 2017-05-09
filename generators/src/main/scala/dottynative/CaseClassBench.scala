@@ -34,6 +34,7 @@ object CaseClass__Dotty_0_1 extends Dotty_0_1__JMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
+    ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessPolymorphism
   )
