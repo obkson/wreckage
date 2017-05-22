@@ -29,7 +29,7 @@ trait Benchmark extends {
 trait ScalaBenchmark extends Benchmark {
   val template = "/JMHScalaTemplate.scala"
 
-  def imports(recSyntax: RecordSyntax) = recSyntax.imports.mkString("import ", ", ", "")
+  def imports(recSyntax: RecordSyntax) = recSyntax.imports.map{imp => s"import $imp"}.mkString("\n")
 
   def sourceFile(pkg: Seq[String], recSyntax: RecordSyntax): SourceFile = {
     SourceFile(pkg, s"${this.name}.scala", source(pkg, recSyntax))

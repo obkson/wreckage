@@ -28,7 +28,7 @@ function run {
     BENCH=$2
     DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
 
-    CMD="java -jar target/benchmarks.jar -wi 3 -i 3 -t 1 -f 2 $FEATURE -rf json -rff $DATAFILE"
+    CMD="java -jar target/benchmarks.jar -wi 0 -i 20 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
     echo "$CMD"
 
     mkdir -p $DATADIR/$BENCH
@@ -36,10 +36,11 @@ function run {
 }
 
 #run "scala"    "scalarecords_0_3__scala_2_11_8"
-#run "scala"    "scalarecords_0_4__scala_2_11_8"
-#run "scala"    "compossible_0_2__scala_2_11_8"
-#run "scala"    "shapeless_2_3_2__scala_2_11_8"
-#run "scala"    "caseclass__scala_2_11_8"
-run "whiteoak" "whiteoaknative__whiteoak_2_1"
+run "scala"    "scalarecords_0_4__scala_2_11_8"
+run "scala"    "compossible_0_2__scala_2_11_8"
+run "scala"    "shapeless_2_3_2__scala_2_11_8"
+run "scala"    "caseclass__scala_2_11_8"
+run "scala"    "anonrefinements__scala_2_11_8"
+#run "whiteoak" "whiteoaknative__whiteoak_2_1"
 #run "dotty"    "caseclass__dotty_0_1"
 #run "dotty"    "selreclist__dotty_0_1"

@@ -34,3 +34,5 @@ out
 ### Project Specific
 records/compossible
 whiteoak/whiteoak-2.1.jar
+plotter/matlab2tikz
+plotter/*.m~

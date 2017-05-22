@@ -12,23 +12,23 @@ prefix = 'create_f';
 pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8');    %black
     cellstr('scalarecords_0_4__scala_2_11_8');     %blue
-    cellstr('shapeless_2_3_2__scala_2_11_8');      %green
-    cellstr('compossible_0_2__scala_2_11_8');      %cyan
-    cellstr('caseclass__scala_2_11_8');            %red
-    cellstr('caseclass__dotty_0_1');               %magenta
-    cellstr('whiteoaknative__whiteoak_2_1');      %yellow
+    %cellstr('shapeless_2_3_2__scala_2_11_8');      %green
+    %cellstr('compossible_0_2__scala_2_11_8');      %cyan
+    %cellstr('caseclass__scala_2_11_8');            %red
+    %cellstr('caseclass__dotty_0_1');               %magenta
+    %cellstr('whiteoaknative__whiteoak_2_1');       %yellow
     %cellstr('selreclist__dotty_0_1');              %orange
 ];
 colors = [
     %0 0 0; %black
     0 0 1; %blue
-    0 1 0; %green
-    0 1 1; %cyan
-    1 0 0; %red
-    1 0 1; %magenta
-    1 1 0; %yellow
-    1 0.5 0       %orange
-    0.5 0.3 0.1;  % brown
+    %0 1 0; %green
+    %0 1 1; %cyan
+    %1 0 0; %red
+    %1 0 1; %magenta
+    %1 1 0; %yellow
+    %1 0.5 0       %orange
+    %0.5 0.3 0.1;  % brown
     
     
  ];

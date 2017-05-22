@@ -1,32 +1,49 @@
 clc; close all; clear;
 
-%feature = 'RTAccessPolymorphism';
-%prefix = 'poly_deg';
+feature = 'RTAccessPolymorphism';
+prefix = 'poly_deg';
+xlbl = 'Degree of Polymorphism';
+ylbl = 'Access time [ns]';
+scaling = 1;
+ymax = 60;
 
 %feature = 'RTAccessFields';
 %prefix = 'access_f';
+%xlbl = 'Field index';
+%ylbl = 'Access time [ns]';
+%scaling = 1;
+%ymax = 60;
 
-feature = 'RTCreationFields';
-prefix = 'create_f';
+%feature = 'RTCreationFields';
+%prefix = 'create_f';
+%xlbl = 'Number of Fields';
+%ylbl = 'Creation time [ms]';
+%scaling = 0.001;
+%ymax = 9;
 
 pigs = [
-    %cellstr('scalarecords_0_3__scala_2_11_8');    %black
-    %cellstr('scalarecords_0_4__scala_2_11_8');     %blue
-    %cellstr('shapeless_2_3_2__scala_2_11_8');      %green
-    cellstr('compossible_0_2__scala_2_11_8');      %cyan
-    %cellstr('caseclass__scala_2_11_8');            %red
+    %cellstr('scalarecords_0_3__scala_2_11_8');   
+    cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
+    cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
+    cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
+    cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
+    %cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');     
+    
     %cellstr('caseclass__dotty_0_1');               %magenta
     %cellstr('whiteoaknative__whiteoak_2_1');       %yellow
     %cellstr('selreclist__dotty_0_1');              %orange
 ];
+
 colors = [
-    %0 0 0; %black
+    0 0 0; %black
+    1 0 0; %red
+    0 1 0; %green
     0 0 1; %blue
-    %0 1 0; %green
-    %0 1 1; %cyan
-    %1 0 0; %red
-    %1 0 1; %magenta
+    0 1 1; %cyan
+    1 0 1; %magenta
     %1 1 0; %yellow
+    
+
     %1 0.5 0       %orange
     %0.5 0.3 0.1;  % brown
  ];
@@ -34,7 +51,8 @@ colors = [
 k = 10;
 covthresh = 0.02;
 
-figure(1); hold on;
+mpl = figure(); hold on;
+plots = [];
 
 for pigindex = 1:length(pigs)
     pig = pigs{pigindex};
@@ -60,8 +78,9 @@ for pigindex = 1:length(pigs)
         methodname = params{2};
         input = str2num(params{3});
 
-        X = data.primaryMetric.rawData; % each row is an invokation
+        X = data.primaryMetric.rawData .* scaling; % each row is an invokation
         %X = [1 ; 5; 10] * [ 123 1234 14235 123 123 321 213 212 272 212 242 212 222 232 212 212 210];
+
         
         [n,q] = size(X); % n is the number of forks, q is the maximum number of measurements
         wM = movmean(X,k,2,'EndPoints','discard');
@@ -69,7 +88,7 @@ for pigindex = 1:length(pigs)
         wCoV = wS ./ wM;
 
         avgs = [];
-        figure();
+        %figure();
         for findex = 1:n
             xs = X(findex,:);
             covs = wCoV(findex,:);
@@ -79,14 +98,14 @@ for pigindex = 1:length(pigs)
                 fst = length(covs);
             end
             
-            subplot(2,n,findex);
-            plot(1:q, xs);
-            axis([0,q,0,mean(xs)*10]);
-            subplot(2,n,findex+n); hold on;
-            plot(k:q, wCoV(findex,:));
-            plot([0,q],[covthresh, covthresh]);
-            plot([fst+k-1, fst+k-1],[0, max(covs)]);
-            axis([0,q,0,0.2]);
+            %subplot(2,n,findex);
+            %plot(1:q, xs);
+            %axis([0,q,0,mean(xs)*10]);
+            %subplot(2,n,findex+n); hold on;
+            %plot(k:q, wCoV(findex,:));
+            %plot([0,q],[covthresh, covthresh]);
+            %plot([fst+k-1, fst+k-1],[0, max(covs)]);
+            %axis([0,q,0,0.2]);
             avgs = [avgs; wM(findex, fst)];
         end
         %%%%%%%%%%%%%%%%
@@ -115,12 +134,17 @@ for pigindex = 1:length(pigs)
     t = rawtimes(indices,:);
 
     % Plot
-    figure(1);
+    figure(mpl);
     color = colors(pigindex,:);
-    plot_ci(f,[m,m-e,m+e],'PatchColor', color, 'PatchAlpha', 0.1, 'MainLineWidth', 1, 'MainLineStyle', '-', 'MainLineColor', color,'LineWidth', 1, 'LineStyle','--', 'LineColor', 'k');
+    p = plot_ci(f,[m,m-e,m+e],'PatchColor', color, 'PatchAlpha', 0.1, 'MainLineWidth', 1, 'MainLineStyle', '-', 'MainLineColor', color,'LineWidth', 1, 'LineStyle','--', 'LineColor', 'k');
+    plots = [plots p.Plot];
     %plot(f,m,'Color',color)
-    %axis([1 10 0 25]);
-    f_scatter = repelem(f, num_forks);
-    m_scatter = reshape(t', [length(f)*num_forks,1]);
-    scatter(f_scatter, m_scatter,'x', 'LineWidth', 1,'MarkerEdgeColor',color);
+    
+    %f_scatter = repelem(f, num_forks);
+    %m_scatter = reshape(t', [length(f)*num_forks,1]);
+    %scatter(f_scatter, m_scatter,'x', 'LineWidth', 1,'MarkerEdgeColor',color);
 end
+axis([min(inputs) max(inputs) 0 ymax]);
+xlabel(xlbl);
+ylabel(ylbl);
+legend(plots, pigs(:,2), 'Location','northwest');

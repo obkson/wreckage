@@ -3,31 +3,27 @@ package scalanative
 import java.nio.file.Paths
 import wreckage.builder._, benchmarking._
 
-object CaseClass__Scala_2_11_8 extends ScalaJMHProjectBuilder {
+object AnonRefinements__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
   val scalaVersion = "2.11.8"
   val artifactId = this.name
 
-  val unmanagedDependencies = List(
-    UnmanagedDependency(List("se","obkson","wreckage","records"), "scalanative_2.11", "0.1",
-      Paths.get("records/scalanative/target/scala-2.11/scalanative_2.11-0.1.jar").toAbsolutePath())
-  )
+  val unmanagedDependencies = List()
   val managedDependencies = List()
 
   // case class syntax
   object Syntax extends RecordSyntax {
 
-    val imports = List("scalanative._")
+    val imports = List()
 
-    // TODO check byte-code of named arguments!
     def create(fields: Seq[(String, String)]): String = {
-      // e.g. CaseClass4(f1=1, f2=2, f3=3, f4=4)
-      fields.map{ case (k, v) => s"""$k=$v""" }.mkString(s"${this.tpe(fields)}(", ", ",")")
+      // e.g. new {val f1=1; val f2=2; val f3=3; val f4=4;}
+      fields.map{ case (k, v) => s"""val $k=$v""" }.mkString(s"new {", "; ","}")
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
-      // e.g. CaseClass4
-      s"CaseClass${fields.length}"
+      // e.g. new AnyRef{val f1: Int; val f2: Int; val f3: Int; val f4: Int;}
+      fields.map{ case (k, v) => s"""val $k: Int""" }.mkString(s"AnyRef{", "; ","}")
     }
 
     def access(prefix: String, field: String): String = {
