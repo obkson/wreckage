@@ -85,9 +85,12 @@ abstract class JMHProjectBuilder {
 
 abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
 
-  // Keep these abstract
-  def managedDependencies: Seq[ManagedDependency]
-  def unmanagedDependencies: Seq[UnmanagedDependency]
+  def managedDependencies: Seq[ManagedDependency] = List(
+      //ManagedDependency(List("org","scala-lang"),"scala-library",scalaVersion), // already included by pom
+      ManagedDependency(List("org","scala-lang"),"scala-reflect",scalaVersion),
+      ManagedDependency(List("org","scala-lang"),"scala-compiler",scalaVersion)
+    )
+  def unmanagedDependencies: Seq[UnmanagedDependency]= List()
   def sourceFiles: Seq[SourceFile]
   def srcfolder = List("src","main","scala")
 
@@ -140,6 +143,32 @@ abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
   }
 }
 
+abstract class JavaJMHProjectBuilder extends JMHProjectBuilder {
+
+  def managedDependencies: Seq[ManagedDependency] = List()
+  def unmanagedDependencies: Seq[UnmanagedDependency]= List()
+  def sourceFiles: Seq[SourceFile]
+  def srcfolder = List("src","main","java")
+
+  def pomPath = "/java-pom.xml"
+
+  def javaVersion = "1.8" // default
+
+  lazy val pom = {
+    val deps = managedDependencies ++ unmanagedDependencies
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomPath, getClass)
+    val pomStr = FileHelper.replace(pomTmpl,
+      Map("{{name}}"         -> s"JMH Benchmarks for ${this.name}",
+          "{{groupId}}"      -> groupId.mkString("."),
+          "{{artifactId}}"   -> this.name,
+          "{{javaVersion}}"  -> this.javaVersion,
+          "{{dependencies}}" -> deps.map(_.toXML).mkString("\n"))
+    )
+    pomStr
+  }
+}
+
+
 abstract class Dotty_0_1__JMHProjectBuilder extends DottyJMHProjectBuilder {
   def getLatestDottyBuild = {
     // This is how sbt-dotty plugin does it:
@@ -154,7 +183,6 @@ abstract class Dotty_0_1__JMHProjectBuilder extends DottyJMHProjectBuilder {
 
   val dottyBuildVersion = getLatestDottyBuild // e.g. "0.1.1-bin-20170506-385178d-NIGHTLY"
 
-  // Keep these abstract
   def managedDependencies = List(
     ManagedDependency(List("ch","epfl","lamp"), "dotty-compiler_0.1", dottyBuildVersion),
     ManagedDependency(List("ch","epfl","lamp"), "dotty-library_0.1", dottyBuildVersion),
@@ -178,6 +206,8 @@ abstract class WhiteoakJMHProjectBuilder extends JMHProjectBuilder {
   def srcfolder = List("src","main","whiteoak")
 
   def compilationUnits = {
+    // Whiteoak compiler only take one source file at a time
+    // have call it separately for each source
     sourceFiles.map{src =>
       s"""
                     <execution>

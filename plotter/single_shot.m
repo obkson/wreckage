@@ -1,42 +1,23 @@
 clc; close all; clear;
 
-%feature = 'RTAccessPolymorphism';
-%prefix = 'poly_deg';
-%xlbl = 'Degree of Polymorphism';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 60;
-
-feature = 'RTAccessSize';
-prefix = 'access_f';
+feature = 'CTCreationSize';
+prefix = 'compile_s';
 xlbl = 'Record Size';
-ylbl = 'Access time [ns]';
+ylbl = 'Compilation time [s]';
 scaling = 1;
-ymax = 250;
+ymax = 20;
 
-%feature = 'RTAccessFields';
-%prefix = 'access_f';
-%xlbl = 'Field index';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 240;
-
-%feature = 'RTCreationFields';
-%prefix = 'create_f';
-%xlbl = 'Number of Fields';
-%ylbl = 'Creation time [ms]';
-%scaling = 0.001;
-%ymax = 9;
 
 pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8');   
-    cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
-    cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
     cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
     cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
-    %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
-    %cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
-    %cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');     
+    cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
+    cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
+    cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');    
+    %cellstr('shapeless_2_3_0__scala_2_11_8'), cellstr('Shapeless 2.3.0');    
+    %cellstr('shapeless_2_2_5__scala_2_11_8'), cellstr('Shapeless 2.0.0');     
+     
     
     %cellstr('caseclass__dotty_0_1');               %magenta
     %cellstr('whiteoaknative__whiteoak_2_1');       %yellow
@@ -49,7 +30,11 @@ colors = [
     0 1 0; %green
     0 0 1; %blue
     0 1 1; %cyan
-    1 0 1; %magenta
+    %0 0 0; %black
+    %1 0 1; %magenta
+    
+   
+    
     %1 1 0; %yellow
     
 
@@ -57,13 +42,12 @@ colors = [
     %0.5 0.3 0.1;  % brown
  ];
 
-k = 10;
-covthresh = 0.02;
-
-mpl = figure(); hold on;
 plots = [];
+mpl = figure(); %hold on;
 
-for pigindex = 1:length(pigs)
+[num_pigs, ~] = size(pigs);
+
+for pigindex = 1:num_pigs
     pig = pigs{pigindex};
     disp(pig);
     filename = ['../../../data/',pig,'/',feature,'.json'];
@@ -88,39 +72,12 @@ for pigindex = 1:length(pigs)
         input = str2num(params{3});
 
         X = data.primaryMetric.rawData .* scaling; % each row is an invokation
-        %X = [1 ; 5; 10] * [ 123 1234 14235 123 123 321 213 212 272 212 242 212 222 232 212 212 210];
-
         
-        [n,q] = size(X); % n is the number of forks, q is the maximum number of measurements
-        wM = movmean(X,k,2,'EndPoints','discard');
-        wS = movstd(X,k,0,2,'EndPoints','discard');
-        wCoV = wS ./ wM;
+        [n,q] = size(X); % n is the number of forks, q is the number of iterations (should be 1!)
 
-        avgs = [];
-        %figure();
-        for findex = 1:n
-            xs = X(findex,:);
-            covs = wCoV(findex,:);
-            fst = find(covs <= covthresh,1);
-            if (numel(fst) == 0)
-                disp(['STEADY STATE NOT REACHED FOR INPUT ',num2str(input), ', FORK ',num2str(findex)]);
-                fst = length(covs);
-            end
-            
-            %subplot(2,n,findex);
-            %plot(1:q, xs);
-            %axis([0,q,0,mean(xs)*10]);
-            %subplot(2,n,findex+n); hold on;
-            %plot(k:q, wCoV(findex,:));
-            %plot([0,q],[covthresh, covthresh]);
-            %plot([fst+k-1, fst+k-1],[0, max(covs)]);
-            %axis([0,q,0,0.2]);
-            avgs = [avgs; wM(findex, fst)];
-        end
-        %%%%%%%%%%%%%%%%
         num_forks = n;
-        m = mean(avgs);
-        s = std(avgs); % n-1 weighting by default
+        m = mean(X);
+        s = std(X);  % n-1 weighting by default
 
         z = tinv(1-(1-0.99)/2,n-1); %  99% confidence interval if n < 30 use student's t distr
         e = z * s / sqrt(n);
@@ -129,7 +86,8 @@ for pigindex = 1:length(pigs)
         inputs = [inputs; input];
         meantimes = [meantimes; m];
         errors = [errors; e];
-        rawtimes = [rawtimes; avgs'];
+        disp(X);
+        rawtimes = [rawtimes; X'];
         
         % Validate: compare our Error estimate with JMH estimate
         %disp(e);
@@ -143,17 +101,36 @@ for pigindex = 1:length(pigs)
     t = rawtimes(indices,:);
 
     % Plot
-    figure(mpl);
+    figure(mpl); hold on;
     color = colors(pigindex,:);
+    %p = semilogy(f,m); hold on;
+    %plots = [plots p];
     p = plot_ci(f,[m,m-e,m+e],'PatchColor', color, 'PatchAlpha', 0.1, 'MainLineWidth', 1, 'MainLineStyle', '-', 'MainLineColor', color,'LineWidth', 1, 'LineStyle','--', 'LineColor', 'k');
     plots = [plots p.Plot];
-    %plot(f,m,'Color',color)
     
     %f_scatter = repelem(f, num_forks);
     %m_scatter = reshape(t', [length(f)*num_forks,1]);
     %scatter(f_scatter, m_scatter,'x', 'LineWidth', 1,'MarkerEdgeColor',color);
 end
+%fp = f(1:end-2);
+%mp = m(1:end-2);
+
+%Xp = [fp.^2 fp ones(length(fp), 1)];
+%c = Xp \ mp;
+
+%X = [f.^2 f ones(length(f), 1)];
+%p = plot(f, X*c,'k:','LineWidth',2);
+%plots = [plots, p];
+
+%mlog = log(m);
+%X = [f ones(length(f), 1)];
+%c = X \ mlog;
+%X = [f ones(length(f), 1)];
+%p = plot(f, exp(X*c),'k--','LineWidth',2);
+%plots = [plots, p];
+
 axis([min(inputs) max(inputs) 0 ymax]);
 xlabel(xlbl);
 ylabel(ylbl);
+%legend(plots, [pigs(:,2); cellstr('quadratic'); cellstr('exponential')], 'Location','northwest');
 legend(plots, pigs(:,2), 'Location','northwest');

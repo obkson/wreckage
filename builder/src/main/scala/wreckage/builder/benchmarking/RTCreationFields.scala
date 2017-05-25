@@ -3,7 +3,7 @@ package wreckage.builder.benchmarking
 
 // Scala / Dotty Version
 
-trait ScalaRTCreationFields extends ScalaBenchmark {
+trait ScalaRTCreationFields extends ScalaRTBenchmark {
   val name = "RTCreationFields"
 
   val inputs: Seq[Int] = List(1,2,4,8,16,32)
@@ -27,7 +27,7 @@ case object ScalaRTCreationFields extends ScalaRTCreationFields
 
 // Whiteoak Version
 
-trait WhiteoakRTCreationFields extends WhiteoakBenchmark {
+trait WhiteoakRTCreationFields extends WhiteoakRTBenchmark {
   val name = "RTCreationFields"
 
   val inputs: Seq[Int] = List(1,2,4,8,16,32)

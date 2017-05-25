@@ -20,13 +20,11 @@ abstract class ScalaRecords extends ScalaJMHProjectBuilder {
     }
   }
 
-  // Abstract
-  val scalaVersion: String
-  val managedDependencies: Seq[ManagedDependency]
-  val unmanagedDependencies: Seq[UnmanagedDependency]
-
   val pkg = List("benchmarks")
   val features = List(
+    ScalaCTCreationSize,
+    ScalaCTCreationAccessLast,
+    ScalaCTCreationAccessSize,
     ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
@@ -40,16 +38,14 @@ abstract class ScalaRecords extends ScalaJMHProjectBuilder {
 
 object ScalaRecords_0_3__Scala_2_11_8 extends ScalaRecords {
   val scalaVersion = "2.11.8"
-  val managedDependencies = List(
+  override val managedDependencies = super.managedDependencies ++ List(
       ManagedDependency(List("ch","epfl","lamp"),"scala-records_2.11","0.3")
     )
-  val unmanagedDependencies = List()
 }
 
 object ScalaRecords_0_4__Scala_2_11_8 extends ScalaRecords {
   val scalaVersion = "2.11.8"
-  val managedDependencies = List(
+  override val managedDependencies = super.managedDependencies ++ List(
       ManagedDependency(List("ch","epfl","lamp"),"scala-records_2.11","0.4")
     )
-  val unmanagedDependencies = List()
 }

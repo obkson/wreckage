@@ -1,6 +1,6 @@
 package wreckage.builder.benchmarking
 
-trait ScalaRTAccessPolymorphism extends ScalaBenchmark {
+trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
   val name = "RTAccessPolymorphism"
 
   val inputs: Seq[Int] = List(1,2,4,8,16,32)
@@ -40,7 +40,7 @@ trait ScalaRTAccessPolymorphism extends ScalaBenchmark {
 
 case object ScalaRTAccessPolymorphism extends ScalaRTAccessPolymorphism
 
-trait WhiteoakRTAccessPolymorphism extends WhiteoakBenchmark {
+trait WhiteoakRTAccessPolymorphism extends WhiteoakRTBenchmark {
   val name = "RTAccessPolymorphism"
 
   override def imports(recSyntax: RecordSyntax)

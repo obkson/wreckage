@@ -25,6 +25,9 @@ abstract class Compossible extends ScalaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
+    ScalaCTCreationSize,
+    ScalaCTCreationAccessLast,
+    ScalaCTCreationAccessSize,
     ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
@@ -38,10 +41,9 @@ abstract class Compossible extends ScalaJMHProjectBuilder {
 
 object Compossible_0_2__Scala_2_11_8 extends Compossible {
   val scalaVersion = "2.11.8"
-  val unmanagedDependencies = List(
+  override val unmanagedDependencies = super.unmanagedDependencies ++ List(
     UnmanagedDependency(List("org","cvogt"), "compossible_2.11", "0.2-SNAPSHOT",
       Paths.get("records/compossible/target/scala-2.11/compossible_2.11-0.2-SNAPSHOT.jar").toAbsolutePath())
   )
-  val managedDependencies = List()
 }
 

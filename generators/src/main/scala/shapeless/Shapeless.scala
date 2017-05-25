@@ -22,11 +22,12 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
   // Abstract
   val scalaVersion: String
-  val managedDependencies: Seq[ManagedDependency]
-  val unmanagedDependencies: Seq[UnmanagedDependency]
 
   val pkg = List("benchmarks")
   val features = List(
+    ScalaCTCreationSize,
+    ScalaCTCreationAccessLast,
+    ScalaCTCreationAccessSize,
     ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
@@ -40,9 +41,30 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
 object Shapeless_2_3_2__Scala_2_11_8 extends Shapeless {
   val scalaVersion = "2.11.8"
-  val managedDependencies = List(
+  override val managedDependencies = super.managedDependencies ++ List(
       ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.3.2")
     )
-  val unmanagedDependencies = List()
 }
+
+object Shapeless_2_3_0__Scala_2_11_8 extends Shapeless {
+  val scalaVersion = "2.11.8"
+  override val managedDependencies = super.managedDependencies ++ List(
+      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.3.0")
+    )
+}
+
+object Shapeless_2_2_5__Scala_2_11_8 extends Shapeless {
+  val scalaVersion = "2.11.8"
+  override val managedDependencies = super.managedDependencies ++ List(
+      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.2.5")
+    )
+}
+
+object Shapeless_2_0_0__Scala_2_11_8 extends Shapeless {
+  val scalaVersion = "2.11.8"
+  override val managedDependencies = super.managedDependencies ++ List(
+      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.0.0")
+    )
+}
+
 

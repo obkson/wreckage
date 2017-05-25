@@ -6,15 +6,11 @@ import wreckage.builder._, benchmarking._
 object AnonRefinements__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
   val scalaVersion = "2.11.8"
-  val artifactId = this.name
-
-  val unmanagedDependencies = List()
-  val managedDependencies = List()
 
   // case class syntax
   object Syntax extends RecordSyntax {
 
-    val imports = List()
+    val imports = List("scala.language.reflectiveCalls")
 
     def create(fields: Seq[(String, String)]): String = {
       // e.g. new {val f1=1; val f2=2; val f3=3; val f4=4;}
@@ -34,6 +30,9 @@ object AnonRefinements__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
+    ScalaCTCreationSize,
+    ScalaCTCreationAccessLast,
+    ScalaCTCreationAccessSize,
     ScalaRTCreationFields,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

@@ -17,7 +17,14 @@ lazy val generators = (project in file("generators")).dependsOn(builder)
   (Keys.`package` in Compile in records_scalanative).value
   (Keys.`package` in Compile in records_dottynative).value
 
-  // Note that whiteoak build process is not included here, since it would ssh into vagrant on every build...
+  import sys.process._
+  import java.io.File
+  // Build java native
+  Process("./build.sh", new File("./records/javanative")).!
+  // Build whiteoak
+  // ...on second thought, don't. It would ssh into vagrant on every build...
+
+  // and run compile
   (compile in Runtime in generators).value
 }
 
