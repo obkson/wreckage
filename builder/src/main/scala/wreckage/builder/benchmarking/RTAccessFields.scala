@@ -12,7 +12,7 @@ trait ScalaRTAccessFields extends ScalaRTBenchmark {
     val fields: Seq[(String, String)] = (1 to inputs.max).map{ idx =>
       (s"f$idx", s"$idx")
     }
-    s"""val r = ${recSyntax.create(fields)}"""
+    s"""val r: ${recSyntax.tpe(fields)} = ${recSyntax.create(fields)}"""
   }
 
   def method(input: Int, recSyntax: RecordSyntax): String = {

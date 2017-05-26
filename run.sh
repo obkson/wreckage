@@ -48,8 +48,11 @@ function run_singleshot {
 }
 
 
-run_steadystate "java"     "javamethodreflection__java_1_8"
-run_steadystate "java"     "javafieldreflection__java_1_8"
+# Java
+#run_steadystate "java"     "javamethodreflection__java_1_8"
+#run_steadystate "java"     "javafieldreflection__java_1_8"
+
+# Scala
 #run_singleshot "scala"    "anonrefinements__scala_2_11_8"
 #run_singleshot "scala"    "caseclass__scala_2_11_8"
 #run_singleshot "scala"    "scalarecords_0_4__scala_2_11_8"
@@ -59,6 +62,16 @@ run_steadystate "java"     "javafieldreflection__java_1_8"
 #run_singleshot "scala"    "shapeless_2_3_0__scala_2_11_8"
 #run_singleshot "scala"    "scalarecords_0_3__scala_2_11_8"
 #run_singleshot "scala"    "shapeless_2_0_0__scala_2_11_8"
-#run "whiteoak" "whiteoaknative__whiteoak_2_1"
+
+# Scala Data Structures
+run_steadystate "scala"     "interfacerecord__scala_2_11_8"
+run_steadystate "scala"     "hashmaprecord__scala_2_11_8"
+run_steadystate "scala"     "arrayrecord__scala_2_11_8"
+run_steadystate "scala"     "listrecord__scala_2_11_8"
+
+# Dotty
 #run "dotty"    "caseclass__dotty_0_1"
 #run "dotty"    "selreclist__dotty_0_1"
+
+# Whiteoak
+#run "whiteoak" "whiteoaknative__whiteoak_2_1"

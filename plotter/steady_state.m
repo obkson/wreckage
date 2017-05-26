@@ -32,6 +32,10 @@ pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8');   
     cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
     cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
+    cellstr('interfacerecord__scala_2_11_8'), cellstr('Interface per Field');
+    cellstr('arrayrecord__scala_2_11_8'), cellstr('Array');
+    cellstr('listrecord__scala_2_11_8'), cellstr('List');
+    cellstr('hashmaprecord__scala_2_11_8'), cellstr('HashMap');
     cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
     cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
     %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
@@ -50,11 +54,9 @@ colors = [
     0 0 1; %blue
     0 1 1; %cyan
     1 0 1; %magenta
-    %1 1 0; %yellow
-    
-
-    %1 0.5 0       %orange
-    %0.5 0.3 0.1;  % brown
+    1 1 0; %yellow
+    1 0.5 0       %orange
+    0.5 0.3 0.1;  % brown
  ];
 
 k = 10;

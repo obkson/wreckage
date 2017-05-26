@@ -11,8 +11,12 @@ fi
 (cd records/compossible && sbt package)
 
 sbt -J-Xss8m "project generators" \
-"runMain javanative.JavaMethodReflection__Java_1_8 $GENDIR/java" \
-"runMain javanative.JavaFieldReflection__Java_1_8 $GENDIR/java" \
+"runMain scalanative.InterfaceRecord__Scala_2_11_8 $GENDIR/scala" \
+"runMain scalanative.HashMapRecord__Scala_2_11_8 $GENDIR/scala" \
+"runMain scalanative.ListRecord__Scala_2_11_8 $GENDIR/scala" \
+"runMain scalanative.ArrayRecord__Scala_2_11_8 $GENDIR/scala" \
+#"runMain javanative.JavaMethodReflection__Java_1_8 $GENDIR/java" \
+#"runMain javanative.JavaFieldReflection__Java_1_8 $GENDIR/java" \
 #"runMain scalanative.CaseClass__Scala_2_11_8 $GENDIR/scala" \
 #"runMain scalanative.AnonRefinements__Scala_2_11_8 $GENDIR/scala" \
 #"runMain scalarecords.ScalaRecords_0_4__Scala_2_11_8 $GENDIR/scala" \

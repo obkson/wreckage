@@ -13,7 +13,7 @@ trait ScalaRTAccessSize extends ScalaRTBenchmark {
       val fields: Seq[(String, String)] = (1 to input).map{ idx =>
         (s"f$idx", s"$idx")
       }
-      s"""val r_$input = ${recSyntax.create(fields)}"""
+      s"""val r_$input: ${recSyntax.tpe(fields)} = ${recSyntax.create(fields)}"""
     }.mkString("\n")
   }
 
