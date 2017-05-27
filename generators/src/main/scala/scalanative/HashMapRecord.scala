@@ -31,8 +31,8 @@ object HashMapRecord__Scala_2_11_8 extends ScalaJMHProjectBuilder {
   val pkg = List("benchmarks")
   val features = List(
     ScalaRTAccessFields,
-    ScalaRTAccessSize
-    //ScalaRTAccessPolymorphism
+    ScalaRTAccessSize,
+    ScalaRTAccessPolymorphism
   )
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
 

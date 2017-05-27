@@ -6,17 +6,24 @@ trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
   val inputs: Seq[Int] = List(1,2,4,8,16,32)
 
   def state(recSyntax: RecordSyntax): String = {
-    // Create a record with 8 fields
-    val fields: Seq[(String, String)] = (1 to 8).map{ idx =>
-      (s"f$idx", s"$idx")
-    }
-    val rec = recSyntax.create(fields)
-
     // Create an Array of such records
-    val rs = (1 to inputs.max).map( _ => rec )
-      .mkString("Array(\n  ", ",\n  ",")")
+    val rs = (1 to inputs.max).map{ i => 
+
+      val es = (1 until i).map{ j =>
+        (s"f$j", s"$j")
+      }
+      val fs = List( ("g1", s"$i") )
+      val gs = (1 to (inputs.max-i)).map{ j =>
+        (s"e$j", s"${i+j}")
+      }
+      val fields: Seq[(String, String)] = es ++ fs ++ gs
+
+      recSyntax.create(fields)
+
+    }.mkString(s"Array[${recSyntax.tpe(List( ("g1","1") ))}](\n  ", ",\n  ",")")
 
     val ret = s"""
+      |${recSyntax.tpeCarrier(List( ("g1","1") ))} // e.g. Compossible can place a type carrier here
       |val rs = $rs
       |var i = -1
       |""".stripMargin
@@ -32,7 +39,7 @@ trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
   def methodBody(input: Int, recSyntax: RecordSyntax): String = {
     s"""{
        |  i = (i + 1) % ${input}
-       |  ${recSyntax.access("rs(i)", s"f8")}
+       |  ${recSyntax.access("rs(i)", s"g1")}
        |}
        |""".stripMargin
   }
@@ -40,32 +47,47 @@ trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
 
 case object ScalaRTAccessPolymorphism extends ScalaRTAccessPolymorphism
 
-trait WhiteoakRTAccessPolymorphism extends WhiteoakRTBenchmark {
+
+// Java Version
+
+trait JavaRTAccessPolymorphism extends JavaRTBenchmark {
   val name = "RTAccessPolymorphism"
+
+  val inputs: Seq[Int] = List(1,2,4,8,16,32)
 
   override def imports(recSyntax: RecordSyntax)
     = super.imports(recSyntax) + "\n" + "import java.util.ArrayList;"
 
-  val inputs: Seq[Int] = List(1,2,4,8,16,32)
-
   def state(recSyntax: RecordSyntax): String = {
-    // Create a record with 8 fields
-    val fields: Seq[(String, String)] = (1 to 8).map{ idx =>
-      (s"f$idx", s"$idx")
+
+    val lubCarrier = recSyntax.tpeCarrier(List( ("g1","1") ))
+    val lub = recSyntax.tpe(List( ("g1","1") ))
+
+    val rs = (1 to inputs.max).map{ i => 
+
+      val es = (1 until i).map{ j =>
+        (s"f$j", s"$j")
+      }
+      val fs = List( ("g1", s"$i") )
+      val gs = (1 to (inputs.max-i)).map{ j =>
+        (s"e$j", s"${i+j}")
+      }
+      val fields: Seq[(String, String)] = es ++ fs ++ gs
+
+      recSyntax.create(fields)
     }
-    val rec = recSyntax.create(fields)
-    val recTpe = recSyntax.tpe(fields)
 
     val decl = s"""
-         |ArrayList<$recTpe> rs;
+         |$lubCarrier
+         |ArrayList<$lub> rs;
          |int i;
          |""".stripMargin
 
     val prepare = s"""
       |@Setup(Level.Trial)
       |public void prepare() {
-      |  rs = new ArrayList<$recTpe>(${inputs.max});
-      |  ${(1 to inputs.max).map( _ => s"""rs.add($rec);""" ).mkString("\n")}
+      |  rs = new ArrayList<$lub>(${inputs.max});
+      |  ${rs.map( rec => s"""rs.add($rec);""" ).mkString("\n  ")}
       |  i = -1;
       |}
       |""".stripMargin
@@ -75,17 +97,15 @@ trait WhiteoakRTAccessPolymorphism extends WhiteoakRTBenchmark {
 
   def method(input: Int, recSyntax: RecordSyntax): String = {
     s"""@Benchmark
-       |public int poly_deg$input() ${methodBody(input, recSyntax)}
-       |""".stripMargin
-  }
-
-  def methodBody(input: Int, recSyntax: RecordSyntax): String = {
-    s"""{
+       |public int poly_deg$input() throws Exception {
        |  i = (i + 1) % ${input};
-       |  return ${recSyntax.access("rs.get(i)", s"f8")};
+       |  return ${recSyntax.access("rs.get(i)", s"g1")};
        |}
        |""".stripMargin
   }
+
 }
 
-case object WhiteoakRTAccessPolymorphism extends WhiteoakRTAccessPolymorphism
+case object JavaRTAccessPolymorphism extends JavaRTAccessPolymorphism
+
+

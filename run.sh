@@ -34,6 +34,19 @@ function run_steadystate {
     mkdir -p $DATADIR/$BENCH
     (cd "$GENDIR/$LANG/$BENCH" && $CMD)
 }
+# Java
+run_steadystate "java"     "javafieldreflection__java_1_8"
+
+# Scala
+run_steadystate "scala"     "hashmaprecord__scala_2_11_8"
+run_steadystate "scala"     "caseclass__scala_2_11_8"
+run_steadystate "scala"     "anonrefinements__scala_2_11_8"
+run_steadystate "scala"     "interfacerecord__scala_2_11_8"
+run_steadystate "scala"     "arrayrecord__scala_2_11_8"
+run_steadystate "scala"     "listrecord__scala_2_11_8"
+run_steadystate "scala"     "scalarecords_0_4__scala_2_11_8"
+run_steadystate "scala"     "compossible_0_2__scala_2_11_8"
+
 
 function run_singleshot {
     LANG=$1
@@ -50,7 +63,6 @@ function run_singleshot {
 
 # Java
 #run_steadystate "java"     "javamethodreflection__java_1_8"
-#run_steadystate "java"     "javafieldreflection__java_1_8"
 
 # Scala
 #run_singleshot "scala"    "anonrefinements__scala_2_11_8"
@@ -62,12 +74,6 @@ function run_singleshot {
 #run_singleshot "scala"    "shapeless_2_3_0__scala_2_11_8"
 #run_singleshot "scala"    "scalarecords_0_3__scala_2_11_8"
 #run_singleshot "scala"    "shapeless_2_0_0__scala_2_11_8"
-
-# Scala Data Structures
-run_steadystate "scala"     "interfacerecord__scala_2_11_8"
-run_steadystate "scala"     "hashmaprecord__scala_2_11_8"
-run_steadystate "scala"     "arrayrecord__scala_2_11_8"
-run_steadystate "scala"     "listrecord__scala_2_11_8"
 
 # Dotty
 #run "dotty"    "caseclass__dotty_0_1"

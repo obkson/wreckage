@@ -1,18 +1,18 @@
 clc; close all; clear;
 
-%feature = 'RTAccessPolymorphism';
-%prefix = 'poly_deg';
-%xlbl = 'Degree of Polymorphism';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 60;
-
-feature = 'RTAccessSize';
-prefix = 'access_f';
-xlbl = 'Record Size';
+feature = 'RTAccessPolymorphism';
+prefix = 'poly_deg';
+xlbl = 'Degree of Polymorphism';
 ylbl = 'Access time [ns]';
 scaling = 1;
-ymax = 250;
+ymax = 60;
+
+%feature = 'RTAccessSize';
+%prefix = 'access_f';
+%xlbl = 'Record Size';
+%ylbl = 'Access time [ns]';
+%scaling = 1;
+%ymax = 250;
 
 %feature = 'RTAccessFields';
 %prefix = 'access_f';
@@ -30,15 +30,15 @@ ymax = 250;
 
 pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8');   
-    cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
-    cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
+    %cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
+    %cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
     cellstr('interfacerecord__scala_2_11_8'), cellstr('Interface per Field');
-    cellstr('arrayrecord__scala_2_11_8'), cellstr('Array');
-    cellstr('listrecord__scala_2_11_8'), cellstr('List');
-    cellstr('hashmaprecord__scala_2_11_8'), cellstr('HashMap');
+    %cellstr('arrayrecord__scala_2_11_8'), cellstr('Array');
+    %cellstr('listrecord__scala_2_11_8'), cellstr('List');
+    %cellstr('hashmaprecord__scala_2_11_8'), cellstr('HashMap');
     cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
     cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
-    %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
+    cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
     %cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
     %cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');     
     

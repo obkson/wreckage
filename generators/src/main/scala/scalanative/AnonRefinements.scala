@@ -18,7 +18,7 @@ object AnonRefinements__Scala_2_11_8 extends ScalaJMHProjectBuilder {
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
-      // e.g. new AnyRef{val f1: Int; val f2: Int; val f3: Int; val f4: Int;}
+      // e.g. AnyRef{val f1: Int; val f2: Int; val f3: Int; val f4: Int;}
       fields.map{ case (k, v) => s"""val $k: Int""" }.mkString(s"AnyRef{", "; ","}")
     }
 

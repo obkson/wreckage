@@ -20,12 +20,24 @@ object InterfaceRecord__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
     def create(fields: Seq[(String, String)]): String = {
       // e.g. InterfaceRecord4(1,2,3,4)
-      fields.map{ case (k, v) => s"""$v""" }.mkString(s"InterfaceRecord${fields.length}(", ",",")")
+      val idx = fields.indexWhere(_._1 == "g1")
+      if (idx == -1){
+        fields.map{ case (k, v) => s"""$v""" }.mkString(s"InterfaceRecord${fields.length}(", ", ",")")
+      }else{
+        fields.map{ case (k, v) => s"""$v""" }.mkString(s"InterfaceRecordPoly${fields.length}_${idx+1}(", ", ",")")
+      }
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
-      // e.g. InterfaceRecordType4
-      s"InterfaceRecordType${fields.length}"
+      val idx = fields.indexWhere(_._1 == "g1")
+      if (idx == -1){
+        // e.g. InterfaceRecordType4
+        s"InterfaceRecordType${fields.length}"
+      } else {
+
+        // e.g. InterfaceRecordTypePoly32_4
+        s"InterfaceRecordTypePoly${fields.length}_${idx+1}"
+      }
     }
 
     def access(prefix: String, field: String): String = {
@@ -37,8 +49,8 @@ object InterfaceRecord__Scala_2_11_8 extends ScalaJMHProjectBuilder {
   val pkg = List("benchmarks")
   val features = List(
     ScalaRTAccessFields,
-    ScalaRTAccessSize
-    //ScalaRTAccessPolymorphism
+    ScalaRTAccessSize,
+    ScalaRTAccessPolymorphism
   )
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
 

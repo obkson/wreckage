@@ -1,5 +1,8 @@
 package object scalanative {
 
+type InterfaceRecordTypePoly1_1 = Record
+  with    G1[Int]
+
 type InterfaceRecordType1 = Record
   with    F1[Int]
 

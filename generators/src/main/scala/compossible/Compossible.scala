@@ -15,7 +15,16 @@ abstract class Compossible extends ScalaJMHProjectBuilder {
       fields.map{ case (k, v) => s"$k $v" }.mkString("(Record ", " ",")")
     }
 
-    def tpe(fields: Seq[(String, String)]): String = ??? // Not expressible inline
+    override def tpeCarrier(fields: Seq[(String, String)]): String = {
+      // e.g. (RecordType f1[Int] & f2[Int] &)
+      val rt = fields.map{ case (k, v) => s"$k[Int]" }.mkString("(RecordType ", " & "," &)")
+      s"val rt_${fields.map(_._1).mkString("")} = $rt"
+    }
+
+    def tpe(fields: Seq[(String, String)]): String = {
+      // use type carrier
+      s"rt_${fields.map(_._1).mkString("")}.Type"
+    }
 
     def access(prefix: String, field: String): String = {
       // e.g. rec.f2

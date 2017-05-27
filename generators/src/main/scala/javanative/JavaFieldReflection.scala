@@ -18,8 +18,13 @@ object JavaFieldReflection__Java_1_8 extends JavaJMHProjectBuilder {
     val imports = List("javanative.*")
 
     def create(fields: Seq[(String, String)]): String = {
-      // e.g. FieldClass4(1,2,3,4)
-      fields.map{ case (_, v) => v }.mkString(s"new FieldClass${fields.length}(", ", ",")")
+      val idx = fields.indexWhere(_._1 == "g1")
+      if (idx == -1){
+        // e.g. FieldClass4(1,2,3,4)
+        fields.map{ case (k, v) => s"""$v""" }.mkString(s"new FieldClass${fields.length}(", ", ",")")
+      }else{
+        fields.map{ case (k, v) => s"""$v""" }.mkString(s"new FieldClassPoly${fields.length}_${idx+1}(", ", ",")")
+      }
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
@@ -36,8 +41,8 @@ object JavaFieldReflection__Java_1_8 extends JavaJMHProjectBuilder {
   val features = List(
     //JavaRTCreationFields,
     JavaRTAccessSize,
-    JavaRTAccessFields
-    //JavaRTAccessPolymorphism
+    JavaRTAccessFields,
+    JavaRTAccessPolymorphism
   )
 
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))

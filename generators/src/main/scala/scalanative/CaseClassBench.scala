@@ -17,15 +17,20 @@ object CaseClass__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
     val imports = List("scalanative._")
 
-    // TODO check byte-code of named arguments!
     def create(fields: Seq[(String, String)]): String = {
-      // e.g. CaseClass4(f1=1, f2=2, f3=3, f4=4)
+      // e.g. CaseClass4(1, 2, 3, 4)
       fields.map{ case (k, v) => s"""$v""" }.mkString(s"${this.tpe(fields)}(", ", ",")")
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
-      // e.g. CaseClass4
-      s"CaseClass${fields.length}"
+      val idx = fields.indexWhere(_._1 == "g1")
+      if (idx == -1){
+        // e.g. CaseClass4
+        s"CaseClass${fields.length}"
+      } else {
+        // e.g. CaseClassPoly32_4
+        s"CaseClassPoly${fields.length}_${idx+1}"
+      }
     }
 
     def access(prefix: String, field: String): String = {

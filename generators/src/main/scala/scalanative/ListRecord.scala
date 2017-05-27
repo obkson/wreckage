@@ -24,15 +24,15 @@ object ListRecord__Scala_2_11_8 extends ScalaJMHProjectBuilder {
 
     def access(prefix: String, field: String): String = {
       // e.g. rec(3).asInstanceOf[Int] // 3 is the index of f4
-      s"""$prefix(${field.stripPrefix("f").toInt-1}).asInstanceOf[Int]"""
+      s"""$prefix(${field.stripPrefix("f").stripPrefix("g").toInt-1}).asInstanceOf[Int]"""
     }
   }
 
   val pkg = List("benchmarks")
   val features = List(
     ScalaRTAccessFields,
-    ScalaRTAccessSize
-    //ScalaRTAccessPolymorphism
+    ScalaRTAccessSize,
+    ScalaRTAccessPolymorphism
   )
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
 
