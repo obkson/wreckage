@@ -23,8 +23,18 @@ object ListRecord__Scala_2_11_8 extends ScalaJMHProjectBuilder {
     }
 
     def access(prefix: String, field: String): String = {
-      // e.g. rec(3).asInstanceOf[Int] // 3 is the index of f4
-      s"""$prefix(${field.stripPrefix("f").stripPrefix("g").toInt-1}).asInstanceOf[Int]"""
+      if (prefix.slice(0,3) == "rs("){
+        // ugly work-around to detect the polymorphic benchmark and
+        // in that case access field based on the index in the
+        // record array "rs" instead of getting index from the "g1" label
+        val ridx = prefix.stripPrefix("rs(").stripSuffix(")")
+        s"""$prefix($ridx).asInstanceOf[Int]"""
+
+      }else{
+        // The usual case:
+        // e.g. rec(3).asInstanceOf[Int] // 3 is the index of f4
+        s"""$prefix(${field.stripPrefix("f").stripPrefix("g").toInt-1}).asInstanceOf[Int]"""
+      }
     }
   }
 

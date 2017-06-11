@@ -28,10 +28,10 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
     ScalaCTCreationSize,
     ScalaCTCreationAccessLast,
     ScalaCTCreationAccessSize,
-    ScalaRTCreationFields,
+    ScalaRTCreationSize,
     ScalaRTAccessFields,
-    ScalaRTAccessSize,
-    ScalaRTAccessPolymorphism
+    ScalaRTAccessSize
+    //ScalaRTAccessPolymorphism // no subtyping, no polymorphism
   )
 
   // Implemented

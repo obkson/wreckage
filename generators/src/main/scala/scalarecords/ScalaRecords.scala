@@ -9,7 +9,7 @@ abstract class ScalaRecords extends ScalaJMHProjectBuilder {
     ScalaCTCreationSize,
     ScalaCTCreationAccessLast,
     ScalaCTCreationAccessSize,
-    ScalaRTCreationFields,
+    ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
     ScalaRTAccessPolymorphism

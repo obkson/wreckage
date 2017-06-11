@@ -36,8 +36,8 @@ object SelRecList__Dotty_0_1 extends Dotty_0_1__JMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
-    ScalaRTAccessFields,
-    ScalaRTAccessPolymorphism
+    ScalaRTAccessFields
+    //ScalaRTAccessPolymorphism
   )
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
 

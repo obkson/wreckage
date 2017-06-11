@@ -6,17 +6,31 @@ case class CaseClass1(
 case class CaseClass2(
    f1: Int,  f2: Int
 )
+case class CaseClass3(
+   f1: Int,  f2: Int,  f3: Int
+)
 case class CaseClass4(
    f1: Int,  f2: Int,  f3: Int,  f4: Int
 )
 case class CaseClass5(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int
 )
+case class CaseClass6(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int
+)
 case class CaseClass8(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int
 )
 case class CaseClass10(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int
+)
+case class CaseClass12(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int
+)
+case class CaseClass14(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int
 )
 case class CaseClass15(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
@@ -26,14 +40,38 @@ case class CaseClass16(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
   f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int
 )
+case class CaseClass18(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int
+)
 case class CaseClass20(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
   f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int
+)
+case class CaseClass22(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int
+)
+case class CaseClass24(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int, f23: Int, f24: Int
 )
 case class CaseClass25(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
   f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
   f21: Int, f22: Int, f23: Int, f24: Int, f25: Int
+)
+case class CaseClass26(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int, f23: Int, f24: Int, f25: Int, f26: Int
+)
+case class CaseClass28(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int, f23: Int, f24: Int, f25: Int, f26: Int, f27: Int, f28: Int
 )
 case class CaseClass30(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,

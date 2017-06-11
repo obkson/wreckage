@@ -3,7 +3,7 @@ package wreckage.builder.benchmarking
 trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
   val name = "RTAccessPolymorphism"
 
-  val inputs: Seq[Int] = List(1,2,4,8,16,32)
+  val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
 
   def state(recSyntax: RecordSyntax): String = {
     // Create an Array of such records
@@ -14,7 +14,7 @@ trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
       }
       val fs = List( ("g1", s"$i") )
       val gs = (1 to (inputs.max-i)).map{ j =>
-        (s"e$j", s"${i+j}")
+        (s"h$j", s"${i+j}")
       }
       val fields: Seq[(String, String)] = es ++ fs ++ gs
 
@@ -53,7 +53,7 @@ case object ScalaRTAccessPolymorphism extends ScalaRTAccessPolymorphism
 trait JavaRTAccessPolymorphism extends JavaRTBenchmark {
   val name = "RTAccessPolymorphism"
 
-  val inputs: Seq[Int] = List(1,2,4,8,16,32)
+  val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
 
   override def imports(recSyntax: RecordSyntax)
     = super.imports(recSyntax) + "\n" + "import java.util.ArrayList;"
@@ -70,7 +70,7 @@ trait JavaRTAccessPolymorphism extends JavaRTBenchmark {
       }
       val fs = List( ("g1", s"$i") )
       val gs = (1 to (inputs.max-i)).map{ j =>
-        (s"e$j", s"${i+j}")
+        (s"h$j", s"${i+j}")
       }
       val fields: Seq[(String, String)] = es ++ fs ++ gs
 

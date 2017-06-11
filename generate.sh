@@ -11,18 +11,20 @@ fi
 (cd records/compossible && sbt package)
 
 sbt -J-Xss8m "project generators" \
-"runMain javanative.JavaFieldReflection__Java_1_8 $GENDIR/java" \
-"runMain scalanative.AnonRefinements__Scala_2_11_8 $GENDIR/scala" \
-"runMain scalanative.InterfaceRecord__Scala_2_11_8 $GENDIR/scala" \
-"runMain scalanative.CaseClass__Scala_2_11_8 $GENDIR/scala" \
-"runMain scalarecords.ScalaRecords_0_4__Scala_2_11_8 $GENDIR/scala" \
-"runMain compossible.Compossible_0_2__Scala_2_11_8 $GENDIR/scala" \
-"runMain scalanative.HashMapRecord__Scala_2_11_8 $GENDIR/scala" \
 "runMain scalanative.ArrayRecord__Scala_2_11_8 $GENDIR/scala" \
 "runMain scalanative.ListRecord__Scala_2_11_8 $GENDIR/scala" \
-#"runMain javanative.JavaMethodReflection__Java_1_8 $GENDIR/java" \
-#"runMain scalanative.CaseClass__Scala_2_11_8 $GENDIR/scala" \
+"runMain scalanative.HashMapRecord__Scala_2_11_8 $GENDIR/scala" \
+"runMain scalanative.InterfaceRecord__Scala_2_11_8 $GENDIR/scala" \
+"runMain javanative.JavaMethodReflection__Java_1_8 $GENDIR/java" \
+"runMain javanative.JavaFieldReflection__Java_1_8 $GENDIR/java" \
+
+#"runMain scalarecords.ScalaRecords_0_4__Scala_2_11_8 $GENDIR/scala" \
+#"runMain compossible.Compossible_0_2__Scala_2_11_8 $GENDIR/scala" \
 #"runMain shapeless.Shapeless_2_3_2__Scala_2_11_8 $GENDIR/scala" \
+#"runMain scalanative.CaseClass__Scala_2_11_8 $GENDIR/scala" \
+#"runMain scalanative.AnonRefinements__Scala_2_11_8 $GENDIR/scala" \
+#"runMain dottynative.SelRecHashMap__Dotty_0_1 $GENDIR/dotty"
+
 #"runMain shapeless.Shapeless_2_3_0__Scala_2_11_8 $GENDIR/scala" \
 #"runMain shapeless.Shapeless_2_2_5__Scala_2_11_8 $GENDIR/scala" \
 #"runMain shapeless.Shapeless_2_0_0__Scala_2_11_8 $GENDIR/scala" \

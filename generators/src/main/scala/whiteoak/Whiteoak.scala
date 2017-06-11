@@ -40,7 +40,7 @@ object WhiteoakNative__Whiteoak_2_1 extends WhiteoakJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
-    WhiteoakRTCreationFields,
+    WhiteoakRTCreationSize,
     WhiteoakRTAccessFields
   )
 

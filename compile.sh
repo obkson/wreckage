@@ -13,32 +13,31 @@ rm -r ~/.m2/repository/se/obkson/wreckage/records
 rm -r ~/.m2/repository/org/cvogt
 
 
-
-
-# Java
-#(cd "$GENDIR/java/javamethodreflection__java_1_8" && mvn clean install)
-(cd "$GENDIR/java/javafieldreflection__java_1_8" && mvn clean install)
+#### Existing
 
 # Scala
-(cd "$GENDIR/scala/caseclass__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/anonrefinements__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/scalarecords_0_4__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/compossible_0_2__scala_2_11_8" && mvn clean install)
+#(cd "$GENDIR/scala/caseclass__scala_2_11_8" && mvn clean install)
+#(cd "$GENDIR/scala/anonrefinements__scala_2_11_8" && mvn clean install)
+#(cd "$GENDIR/scala/scalarecords_0_4__scala_2_11_8" && mvn clean install)
+#(cd "$GENDIR/scala/compossible_0_2__scala_2_11_8" && mvn clean install)
 #(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_11_8" && mvn clean install)
-#(cd "$GENDIR/scala/shapeless_2_2_5__scala_2_11_8" && mvn clean install)
-#(cd "$GENDIR/scala/shapeless_2_3_0__scala_2_11_8" && mvn clean install)
-#(cd "$GENDIR/scala/shapeless_2_0_0__scala_2_11_8" && mvn clean install)
-
-# Scala data structures
-(cd "$GENDIR/scala/interfacerecord__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/hashmaprecord__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/arrayrecord__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/listrecord__scala_2_11_8" && mvn clean install)
 
 # Dotty
-#(cd "$GENDIR/dotty/caseclass__dotty_0_1" && mvn clean install)
-#(cd "$GENDIR/dotty/selreclist__dotty_0_1" && mvn clean install)
+#(cd "$GENDIR/dotty/selrechashmap__dotty_0_1" && mvn clean install)
 
 # Whiteoak
 #(cd "$GENDIR/whiteoak" && vagrant ssh -c "rm -r ~/.m2/repository/se/obkson/wreckage/records && cd /vagrant/whiteoaknative__whiteoak_2_1 && jenv exec mvn clean install")
+
+
+##### Scala data structures
+
+# Java
+(cd "$GENDIR/java/javamethodreflection__java_1_8" && mvn clean install)
+(cd "$GENDIR/java/javafieldreflection__java_1_8" && mvn clean install)
+
+# Scala
+(cd "$GENDIR/scala/arrayrecord__scala_2_11_8" && mvn clean install)
+(cd "$GENDIR/scala/listrecord__scala_2_11_8" && mvn clean install)
+(cd "$GENDIR/scala/hashmaprecord__scala_2_11_8" && mvn clean install)
+(cd "$GENDIR/scala/interfacerecord__scala_2_11_8" && mvn clean install)
 

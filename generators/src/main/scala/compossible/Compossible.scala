@@ -37,7 +37,7 @@ abstract class Compossible extends ScalaJMHProjectBuilder {
     ScalaCTCreationSize,
     ScalaCTCreationAccessLast,
     ScalaCTCreationAccessSize,
-    ScalaRTCreationFields,
+    ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
     ScalaRTAccessPolymorphism

@@ -33,7 +33,7 @@ object AnonRefinements__Scala_2_11_8 extends ScalaJMHProjectBuilder {
     ScalaCTCreationSize,
     ScalaCTCreationAccessLast,
     ScalaCTCreationAccessSize,
-    ScalaRTCreationFields,
+    ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
     ScalaRTAccessPolymorphism

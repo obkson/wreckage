@@ -20,6 +20,11 @@ case class InterfaceRecord5(
 ) extends Record
   with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int]
 
+case class InterfaceRecord6(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int]
+
 case class InterfaceRecord8(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int
 ) extends Record
@@ -29,6 +34,20 @@ case class InterfaceRecord10(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int
 ) extends Record
   with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with  F10[Int]
+
+case class InterfaceRecord12(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int]
+
+case class InterfaceRecord14(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int] with F13[Int] with F14[Int]
 
 case class InterfaceRecord15(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
@@ -44,12 +63,37 @@ case class InterfaceRecord16(
   with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
   with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int]
 
+case class InterfaceRecord18(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int]
+
 case class InterfaceRecord20(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
   f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int
 ) extends Record
   with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
   with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int] with F19[Int] with F20[Int]
+
+case class InterfaceRecord22(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int] with F19[Int] with F20[Int]
+  with F21[Int] with F22[Int]
+
+case class InterfaceRecord24(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int, f23: Int, f24: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int] with F19[Int] with F20[Int]
+  with F21[Int] with F22[Int] with F23[Int] with F24[Int]
 
 case class InterfaceRecord25(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
@@ -59,6 +103,24 @@ case class InterfaceRecord25(
   with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
   with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int] with F19[Int] with F20[Int]
   with F21[Int] with F22[Int] with F23[Int] with F24[Int] with F25[Int]
+
+case class InterfaceRecord26(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int, f23: Int, f24: Int, f25: Int, f26: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int] with F19[Int] with F20[Int]
+  with F21[Int] with F22[Int] with F23[Int] with F24[Int] with F25[Int] with F26[Int]
+
+case class InterfaceRecord28(
+   f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,
+  f11: Int, f12: Int, f13: Int, f14: Int, f15: Int, f16: Int, f17: Int, f18: Int, f19: Int, f20: Int,
+  f21: Int, f22: Int, f23: Int, f24: Int, f25: Int, f26: Int, f27: Int, f28: Int
+) extends Record
+  with  F1[Int] with  F2[Int] with  F3[Int] with  F4[Int] with  F5[Int] with  F6[Int] with  F7[Int] with  F8[Int] with  F9[Int] with F10[Int]
+  with F11[Int] with F12[Int] with F13[Int] with F14[Int] with F15[Int] with F16[Int] with F17[Int] with F18[Int] with F19[Int] with F20[Int]
+  with F21[Int] with F22[Int] with F23[Int] with F24[Int] with F25[Int] with F26[Int] with F27[Int] with F28[Int]
 
 case class InterfaceRecord30(
    f1: Int,  f2: Int,  f3: Int,  f4: Int,  f5: Int,  f6: Int,  f7: Int,  f8: Int,  f9: Int, f10: Int,

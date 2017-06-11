@@ -10,7 +10,7 @@ public class GetterClassPoly32_14 {
   public GetterClassPoly32_14(
                       int  f1, int  f2, int  f3, int  f4, int  f5, int  f6, int  f7, int  f8, int  f9, int f10,
                       int f11, int f12, int f13,
-                      int  _g1,
+                      int  g1,
                       int  h1, int  h2, int  h3, int  h4, int  h5, int  h6, int  h7, int  h8, int  h9, int h10,
                       int h11, int h12, int h13, int h14, int h15, int h16, int h17, int h18
                       ) {

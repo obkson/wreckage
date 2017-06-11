@@ -34,50 +34,29 @@ function run_steadystate {
     mkdir -p $DATADIR/$BENCH
     (cd "$GENDIR/$LANG/$BENCH" && $CMD)
 }
-# Java
-run_steadystate "java"     "javafieldreflection__java_1_8"
+
+### Existing
 
 # Scala
-run_steadystate "scala"     "hashmaprecord__scala_2_11_8"
 run_steadystate "scala"     "caseclass__scala_2_11_8"
 run_steadystate "scala"     "anonrefinements__scala_2_11_8"
-run_steadystate "scala"     "interfacerecord__scala_2_11_8"
-run_steadystate "scala"     "arrayrecord__scala_2_11_8"
-run_steadystate "scala"     "listrecord__scala_2_11_8"
 run_steadystate "scala"     "scalarecords_0_4__scala_2_11_8"
 run_steadystate "scala"     "compossible_0_2__scala_2_11_8"
+run_steadystate "scala"     "shapeless_2_3_2__scala_2_11_8"
+
+#Dotty
+#run_steadystate "dotty"       "selreclist__dotty_0_1"
+run_steadystate "dotty"       "selrechashmap__dotty_0_1"
 
 
-function run_singleshot {
-    LANG=$1
-    BENCH=$2
-    DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
-
-    CMD="java -Xss8m -jar target/benchmarks.jar -wi 0 -i 1 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
-    echo "$CMD"
-
-    mkdir -p $DATADIR/$BENCH
-    (cd "$GENDIR/$LANG/$BENCH" && $CMD)
-}
-
+### Data structures
 
 # Java
-#run_steadystate "java"     "javamethodreflection__java_1_8"
+#run_steadystate "java"     "javafieldreflection__java_1_8"
+#%run_steadystate "java"     "javamethodreflection__java_1_8"
 
 # Scala
-#run_singleshot "scala"    "anonrefinements__scala_2_11_8"
-#run_singleshot "scala"    "caseclass__scala_2_11_8"
-#run_singleshot "scala"    "scalarecords_0_4__scala_2_11_8"
-#run_singleshot "scala"    "compossible_0_2__scala_2_11_8"
-#run_singleshot "scala"    "shapeless_2_3_2__scala_2_11_8"
-#run_singleshot "scala"    "shapeless_2_2_5__scala_2_11_8"
-#run_singleshot "scala"    "shapeless_2_3_0__scala_2_11_8"
-#run_singleshot "scala"    "scalarecords_0_3__scala_2_11_8"
-#run_singleshot "scala"    "shapeless_2_0_0__scala_2_11_8"
-
-# Dotty
-#run "dotty"    "caseclass__dotty_0_1"
-#run "dotty"    "selreclist__dotty_0_1"
-
-# Whiteoak
-#run "whiteoak" "whiteoaknative__whiteoak_2_1"
+#run_steadystate "scala"     "arrayrecord__scala_2_11_8"
+#run_steadystate "scala"     "listrecord__scala_2_11_8"
+#run_steadystate "scala"     "hashmaprecord__scala_2_11_8"
+#run_steadystate "scala"     "interfacerecord__scala_2_11_8"

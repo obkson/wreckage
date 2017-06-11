@@ -52,8 +52,4 @@ public class GetterClassPoly32_1 {
   public int h29() {return _h29;}
   public int h30() {return _h30;}
   public int h31() {return _h31;}
-  public int h32() {return _h32;}
 }
-
-}
-
