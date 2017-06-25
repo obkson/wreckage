@@ -5,18 +5,18 @@ prefix = 'compile_s';
 xlbl = 'Record Size';
 ylbl = 'Compilation time [s]';
 scaling = 1;
-ymax = 140;
+ymax = 45;
 
 
 pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8');   
-    %cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
-    %cellstr('anonrefinements__scala_2_11_8'), cellstr('Scala structural'); 
-    %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
-    %cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
-    %cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');    
-    cellstr('shapeless_2_3_0__scala_2_11_8'), cellstr('Shapeless 2.3.0');    
-    cellstr('shapeless_2_2_5__scala_2_11_8'), cellstr('Shapeless 2.2.5');     
+    cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
+    cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
+    cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
+    cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
+    cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');    
+    %cellstr('shapeless_2_3_0__scala_2_11_8'), cellstr('Shapeless 2.3.0');    
+    %cellstr('shapeless_2_2_5__scala_2_11_8'), cellstr('Shapeless 2.2.5');     
      
     
     %cellstr('caseclass__dotty_0_1');               %magenta
@@ -25,10 +25,10 @@ pigs = [
 ];
 
 colors = [
-    %0 0 0; %black
-    %1 0 0; %red
-    %0.2 0.8 0.2;  %green
-    %0 0 1; %blue
+    0 0 0; %black
+    1 0 0; %red
+    0.2 0.8 0.2;  %green
+    0 0 1; %blue
     0.1 0.8 1; %cyan
     1 0 1; %magenta
     %0 0 0; %black

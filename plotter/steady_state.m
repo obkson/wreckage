@@ -5,15 +5,15 @@ clc; close all; clear;
 %xlbl = 'Degree of Polymorphism';
 %ylbl = 'Access time [ns]';
 %scaling = 1;
-%ymax = 500;
-%ymax = 50;
+%ymax = 2500;
+%ymax = 45;
 
-%feature = 'RTAccessSize';
-%prefix = 'access_f';
-%xlbl = 'Record Size';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 300;
+feature = 'RTAccessSize';
+prefix = 'access_f';
+xlbl = 'Record Size';
+ylbl = 'Access time [ns]';
+scaling = 1;
+ymax = 2000;
 %ymax = 50;
 
 %feature = 'RTAccessFields';
@@ -31,41 +31,43 @@ clc; close all; clear;
 %ymax = 9;
 
 pigs = [
-    %cellstr('scalarecords_0_3__scala_2_11_8');   
-    %cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
-    %cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
+    %cellstr('scalarecords_0_3__scala_2_11_8'); 
+    cellstr('whiteoaknative__whiteoak_2_1'), cellstr('Whiteoak 2.1');       %yellow
+    cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
+    cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
     
-    cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
-    cellstr('anonrefinements__scala_2_11_8'), cellstr('Scala structural'); 
-    cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
+    %cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
+    cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
+    
+    %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
     %cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     
-    cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');
-    cellstr('selrechashmap__dotty_0_1'), cellstr('Dotty structural');     %orange
+    %cellstr('shapeless_2_3_2__scala_2_11_8'), cellstr('Shapeless 2.3.2');
+    %cellstr('selrechashmap__dotty_0_1'), cellstr('Dotty structural');    
 
-    cellstr('interfacerecord__scala_2_11_8'), cellstr('One interface per field');
-    cellstr('arrayrecord__scala_2_11_8'), cellstr('Array');
+    %cellstr('interfacerecord__scala_2_11_8'), cellstr('One interface per field');
+    %cellstr('arrayrecord__scala_2_11_8'), cellstr('Array');
     %cellstr('listrecord__scala_2_11_8'), cellstr('List');
     %cellstr('hashmaprecord__scala_2_11_8'), cellstr('HashMap');
    
     %cellstr('caseclass__dotty_0_1');               %magenta
-    %cellstr('whiteoaknative__whiteoak_2_1');       %yellow
+   
 ];
 
 colors = [ 
-    
-    %0 0.8 0.8;  %heaven
-    
     0 0 0;        %black
-    1 0 0;        %red
-    0.2 0.8 0.2;  %green
-    %0.1 0.8 1;   %cyan
-
-    1 0 1;        % magenta
     1 0.7 0.1   % orange
-    0 0 1;          %blue
+    0 0.8 0.8;  %heaven
+    1 0 0;        %red
+    0 0 0;        %black
     
-     0.4 0 0.4;  % dark lila
-    0.5 0.3 0.1;  % brown
+    
+    0.2 0.8 0.2;  %green
+    0 0 1;          %blue
+    0.1 0.8 1;   %cyan
+    1 0 1;        % magenta
+    
+     %0.4 0 0.4;  % dark lila
+    %0.5 0.3 0.1;  % brown
     
     
  ];

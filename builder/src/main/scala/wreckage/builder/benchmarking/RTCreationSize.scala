@@ -29,9 +29,9 @@ trait ScalaRTCreationSize extends ScalaRTBenchmark {
 case object ScalaRTCreationSize extends ScalaRTCreationSize
 
 
-// Whiteoak Version
+// Java Version
 
-trait WhiteoakRTCreationSize extends WhiteoakRTBenchmark {
+trait JavaRTCreationSize extends JavaRTBenchmark {
   val name = "RTCreationSize"
 
   val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
@@ -41,7 +41,7 @@ trait WhiteoakRTCreationSize extends WhiteoakRTBenchmark {
 
   def method(input: Int, recSyntax: RecordSyntax): String = {
     // ... and let the record depend on it to avoid constant folding
-    val fields: Seq[(String, String)] = ("f1", "x") :: (1 to input).map{ idx =>
+    val fields: Seq[(String, String)] = ("f1", "x") :: (2 to input).map{ idx =>
       (s"f$idx", s"$idx")
     }.toList
 
@@ -55,6 +55,11 @@ trait WhiteoakRTCreationSize extends WhiteoakRTBenchmark {
        |}""".stripMargin
   }
 }
+case object JavaRTCreationSize extends JavaRTCreationSize
 
-case object WhiteoakRTCreationSize extends WhiteoakRTCreationSize
+// Whiteoak Version
+
+case object WhiteoakRTCreationSize extends JavaRTCreationSize {
+  override def filename_extension = "wo"
+}
 

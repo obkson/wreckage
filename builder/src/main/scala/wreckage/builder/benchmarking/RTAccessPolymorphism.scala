@@ -103,9 +103,13 @@ trait JavaRTAccessPolymorphism extends JavaRTBenchmark {
        |}
        |""".stripMargin
   }
-
 }
-
 case object JavaRTAccessPolymorphism extends JavaRTAccessPolymorphism
+
+// Whiteoak Version
+
+case object WhiteoakRTAccessPolymorphism extends JavaRTAccessPolymorphism {
+  override def filename_extension = "wo"
+}
 
 

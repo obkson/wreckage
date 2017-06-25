@@ -23,13 +23,23 @@ object WhiteoakNative__Whiteoak_2_1 extends WhiteoakJMHProjectBuilder {
     val imports = List("whiteoaknative.*")
 
     def create(fields: Seq[(String, String)]): String = {
-      // e.g. RecordClass4(1,2,3,4)
-      fields.map{ case (_, v) => v }.mkString(s"new RecordClass${fields.length}(", ", ",")")
+      val idx = fields.indexWhere(_._1 == "g1")
+      if (idx == -1){
+        // e.g. RecordClass4(1,2,3,4)
+        fields.map{ case (k, v) => s"""$v""" }.mkString(s"new RecordClass${fields.length}(", ", ",")")
+      }else{
+        fields.map{ case (k, v) => s"""$v""" }.mkString(s"new RecordClassPoly${fields.length}_${idx+1}(", ", ",")")
+      }
     }
 
     def tpe(fields: Seq[(String, String)]): String = {
-      // e.g. RecordStruct4
-      s"RecordStruct${fields.length}"
+      val idx = fields.indexWhere(_._1 == "g1")
+      if (idx == -1){
+        // e.g. RecordStruct4
+        s"RecordStruct${fields.length}"
+      }else{
+        s"RecordStructPoly${fields.length}_${idx+1}"
+      }
     }
 
     def access(prefix: String, field: String): String = {
@@ -41,7 +51,9 @@ object WhiteoakNative__Whiteoak_2_1 extends WhiteoakJMHProjectBuilder {
   val pkg = List("benchmarks")
   val features = List(
     WhiteoakRTCreationSize,
-    WhiteoakRTAccessFields
+    WhiteoakRTAccessFields,
+    WhiteoakRTAccessSize,
+    WhiteoakRTAccessPolymorphism
   )
 
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))

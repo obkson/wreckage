@@ -1,97 +1,196 @@
 package whiteoaknative;
 
-/************** RECORD TYPES *******************/
-
+/************** RECORD TYPES *********************/
 public struct RecordStruct1 {
-  int  f1();
+public int f1(); 
 }
 public struct RecordStruct2 {
-  int  f1(); int  f2();
+public int f1(); public int f2(); 
 }
 public struct RecordStruct4 {
-  int  f1(); int  f2(); int  f3(); int  f4();
+public int f1(); public int f2(); public int f3(); public int f4(); 
+}
+public struct RecordStruct6 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); 
 }
 public struct RecordStruct8 {
-  int  f1(); int  f2(); int  f3(); int  f4(); int  f5(); int  f6(); int  f7(); int  f8();
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); 
+}
+public struct RecordStruct10 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); 
+}
+public struct RecordStruct12 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); 
+}
+public struct RecordStruct14 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); 
 }
 public struct RecordStruct16 {
-  int  f1(); int  f2(); int  f3(); int  f4(); int  f5(); int  f6(); int  f7(); int  f8(); int  f9(); int f10();
-  int f11(); int f12(); int f13(); int f14(); int f15(); int f16();
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); 
+}
+public struct RecordStruct18 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); 
+}
+public struct RecordStruct20 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); 
+}
+public struct RecordStruct22 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); public int f21(); public int f22(); 
+}
+public struct RecordStruct24 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); public int f21(); public int f22(); public int f23(); public int f24(); 
+}
+public struct RecordStruct26 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); public int f21(); public int f22(); public int f23(); public int f24(); public int f25(); public int f26(); 
+}
+public struct RecordStruct28 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); public int f21(); public int f22(); public int f23(); public int f24(); public int f25(); public int f26(); public int f27(); public int f28(); 
+}
+public struct RecordStruct30 {
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); public int f21(); public int f22(); public int f23(); public int f24(); public int f25(); public int f26(); public int f27(); public int f28(); public int f29(); public int f30(); 
 }
 public struct RecordStruct32 {
-  int  f1(); int  f2(); int  f3(); int  f4(); int  f5(); int  f6(); int  f7(); int  f8(); int  f9(); int f10();
-  int f11(); int f12(); int f13(); int f14(); int f15(); int f16(); int f17(); int f18(); int f19(); int f20();
-  int f21(); int f22(); int f23(); int f24(); int f25(); int f26(); int f27(); int f28(); int f29(); int f30();
-  int f31(); int f32();
+public int f1(); public int f2(); public int f3(); public int f4(); public int f5(); public int f6(); public int f7(); public int f8(); public int f9(); public int f10(); public int f11(); public int f12(); public int f13(); public int f14(); public int f15(); public int f16(); public int f17(); public int f18(); public int f19(); public int f20(); public int f21(); public int f22(); public int f23(); public int f24(); public int f25(); public int f26(); public int f27(); public int f28(); public int f29(); public int f30(); public int f31(); public int f32(); 
 }
 
-/************** RECORD CLASSES ******************/
-
+/************** RECORD CLASSES *******************/
 public class RecordClass1 {
-  private int  _f1;
+  private int _f1;
 
-  public RecordClass1(int  f1) {
-     _f1= f1;
+  public RecordClass1(int f1) {
+    _f1 = f1;
   }
-  public int  f1() {return  _f1;}
-}
 
+  public int f1() {return _f1;}
+}
 public class RecordClass2 {
-  private int  _f1,  _f2;
+  private int _f1,_f2;
 
-  public RecordClass2(int  f1, int  f2) {
-     _f1= f1; _f2= f2;
+  public RecordClass2(int f1,int f2) {
+    _f1 = f1;_f2 = f2;
   }
-  public int  f1() {return  _f1;}
-  public int  f2() {return  _f2;}
-}
 
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+}
 public class RecordClass4 {
-  private int  _f1,  _f2,  _f3,  _f4;
+  private int _f1,_f2,_f3,_f4;
 
-  public RecordClass4(int  f1, int  f2, int  f3, int  f4) {
-     _f1= f1; _f2= f2; _f3= f3; _f4= f4;
+  public RecordClass4(int f1,int f2,int f3,int f4) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;
   }
-  public int  f1() {return  _f1;}
-  public int  f2() {return  _f2;}
-  public int  f3() {return  _f3;}
-  public int  f4() {return  _f4;}
-}
 
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+}
+public class RecordClass6 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6;
+
+  public RecordClass6(int f1,int f2,int f3,int f4,int f5,int f6) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+}
 public class RecordClass8 {
-  private int  _f1,  _f2,  _f3,  _f4,  _f5,  _f6,  _f7,  _f8;
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8;
 
-  public RecordClass8(int  f1, int  f2, int  f3, int  f4, int  f5, int  f6, int  f7, int  f8) {
-     _f1= f1; _f2= f2; _f3= f3; _f4= f4; _f5= f5; _f6= f6; _f7= f7; _f8= f8;
+  public RecordClass8(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;
   }
-  public int  f1() {return  _f1;}
-  public int  f2() {return  _f2;}
-  public int  f3() {return  _f3;}
-  public int  f4() {return  _f4;}
-  public int  f5() {return  _f5;}
-  public int  f6() {return  _f6;}
-  public int  f7() {return  _f7;}
-  public int  f8() {return  _f8;}
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
 }
+public class RecordClass10 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10;
 
-public class RecordClass16 {
-  private int  _f1,  _f2,  _f3,  _f4,  _f5,  _f6,  _f7,  _f8,  _f9, _f10,
-              _f11, _f12, _f13, _f14, _f15, _f16;
-
-  public RecordClass16(int  f1, int  f2, int  f3, int  f4, int  f5, int  f6, int  f7, int  f8, int  f9, int f10,
-                       int f11, int f12, int f13, int f14, int f15, int f16) {
-     _f1= f1; _f2= f2; _f3= f3; _f4= f4; _f5= f5; _f6= f6; _f7= f7; _f8= f8; _f9= f9; _f10=f10;
-    _f11=f11;_f12=f12;_f13=f13;_f14=f14;_f15=f15;_f16=f16;
+  public RecordClass10(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;
   }
-  public int  f1() {return  _f1;}
-  public int  f2() {return  _f2;}
-  public int  f3() {return  _f3;}
-  public int  f4() {return  _f4;}
-  public int  f5() {return  _f5;}
-  public int  f6() {return  _f6;}
-  public int  f7() {return  _f7;}
-  public int  f8() {return  _f8;}
-  public int  f9() {return  _f9;}
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+}
+public class RecordClass12 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12;
+
+  public RecordClass12(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+}
+public class RecordClass14 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14;
+
+  public RecordClass14(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+}
+public class RecordClass16 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16;
+
+  public RecordClass16(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
   public int f10() {return _f10;}
   public int f11() {return _f11;}
   public int f12() {return _f12;}
@@ -100,31 +199,246 @@ public class RecordClass16 {
   public int f15() {return _f15;}
   public int f16() {return _f16;}
 }
+public class RecordClass18 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18;
 
-public class RecordClass32 {
-  private int  _f1,  _f2,  _f3,  _f4,  _f5,  _f6,  _f7,  _f8,  _f9, _f10,
-              _f11, _f12, _f13, _f14, _f15, _f16, _f17, _f18, _f19, _f20,
-              _f21, _f22, _f23, _f24, _f25, _f26, _f27, _f28, _f29, _f30,
-              _f31, _f32;
-
-  public RecordClass32(int  f1, int  f2, int  f3, int  f4, int  f5, int  f6, int  f7, int  f8, int  f9, int f10,
-                       int f11, int f12, int f13, int f14, int f15, int f16, int f17, int f18, int f19, int f20,
-                       int f21, int f22, int f23, int f24, int f25, int f26, int f27, int f28, int f29, int f30,
-                       int f31, int f32) {
-     _f1= f1; _f2= f2; _f3= f3; _f4= f4; _f5= f5; _f6= f6; _f7= f7; _f8= f8; _f9= f9; _f10=f10;
-    _f11=f11;_f12=f12;_f13=f13;_f14=f14;_f15=f15;_f16=f16;_f17=f17;_f18=f18;_f19=f19; _f20=f20;
-    _f21=f21;_f22=f22;_f23=f23;_f24=f24;_f25=f25;_f26=f26;_f27=f27;_f28=f28;_f29=f29; _f30=f30;
-    _f31=f31;_f32=f32;
+  public RecordClass18(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;
   }
-  public int  f1() {return  _f1;}
-  public int  f2() {return  _f2;}
-  public int  f3() {return  _f3;}
-  public int  f4() {return  _f4;}
-  public int  f5() {return  _f5;}
-  public int  f6() {return  _f6;}
-  public int  f7() {return  _f7;}
-  public int  f8() {return  _f8;}
-  public int  f9() {return  _f9;}
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+}
+public class RecordClass20 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20;
+
+  public RecordClass20(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+}
+public class RecordClass22 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22;
+
+  public RecordClass22(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+}
+public class RecordClass24 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24;
+
+  public RecordClass24(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+}
+public class RecordClass26 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26;
+
+  public RecordClass26(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+}
+public class RecordClass28 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28;
+
+  public RecordClass28(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int f28() {return _f28;}
+}
+public class RecordClass30 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28,_f29,_f30;
+
+  public RecordClass30(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28,int f29,int f30) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;_f29 = f29;_f30 = f30;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int f28() {return _f28;}
+  public int f29() {return _f29;}
+  public int f30() {return _f30;}
+}
+public class RecordClass32 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28,_f29,_f30,_f31,_f32;
+
+  public RecordClass32(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28,int f29,int f30,int f31,int f32) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;_f29 = f29;_f30 = f30;_f31 = f31;_f32 = f32;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
   public int f10() {return _f10;}
   public int f11() {return _f11;}
   public int f12() {return _f12;}
@@ -149,3 +463,1291 @@ public class RecordClass32 {
   public int f31() {return _f31;}
   public int f32() {return _f32;}
 }
+
+/************** RECORD TYPES POLY *********************/
+public struct RecordStructPoly1_1 {
+  public int g1();
+}
+
+/************** RECORD CLASSES POLY *******************/
+public class RecordClassPoly32_1 {
+  private int _g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25,_h26,_h27,_h28,_h29,_h30,_h31;
+
+  public RecordClassPoly32_1(int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25,int h26,int h27,int h28,int h29,int h30,int h31) {
+    _g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;_h26 = h26;_h27 = h27;_h28 = h28;_h29 = h29;_h30 = h30;_h31 = h31;
+  }
+
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+  public int h26() {return _h26;}
+  public int h27() {return _h27;}
+  public int h28() {return _h28;}
+  public int h29() {return _h29;}
+  public int h30() {return _h30;}
+  public int h31() {return _h31;}
+}
+public class RecordClassPoly32_2 {
+  private int _f1,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25,_h26,_h27,_h28,_h29,_h30;
+
+  public RecordClassPoly32_2(int f1,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25,int h26,int h27,int h28,int h29,int h30) {
+    _f1 = f1;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;_h26 = h26;_h27 = h27;_h28 = h28;_h29 = h29;_h30 = h30;
+  }
+
+  public int f1() {return _f1;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+  public int h26() {return _h26;}
+  public int h27() {return _h27;}
+  public int h28() {return _h28;}
+  public int h29() {return _h29;}
+  public int h30() {return _h30;}
+}
+public class RecordClassPoly32_3 {
+  private int _f1,_f2,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25,_h26,_h27,_h28,_h29;
+
+  public RecordClassPoly32_3(int f1,int f2,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25,int h26,int h27,int h28,int h29) {
+    _f1 = f1;_f2 = f2;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;_h26 = h26;_h27 = h27;_h28 = h28;_h29 = h29;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+  public int h26() {return _h26;}
+  public int h27() {return _h27;}
+  public int h28() {return _h28;}
+  public int h29() {return _h29;}
+}
+public class RecordClassPoly32_4 {
+  private int _f1,_f2,_f3,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25,_h26,_h27,_h28;
+
+  public RecordClassPoly32_4(int f1,int f2,int f3,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25,int h26,int h27,int h28) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;_h26 = h26;_h27 = h27;_h28 = h28;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+  public int h26() {return _h26;}
+  public int h27() {return _h27;}
+  public int h28() {return _h28;}
+}
+public class RecordClassPoly32_5 {
+  private int _f1,_f2,_f3,_f4,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25,_h26,_h27;
+
+  public RecordClassPoly32_5(int f1,int f2,int f3,int f4,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25,int h26,int h27) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;_h26 = h26;_h27 = h27;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+  public int h26() {return _h26;}
+  public int h27() {return _h27;}
+}
+public class RecordClassPoly32_6 {
+  private int _f1,_f2,_f3,_f4,_f5,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25,_h26;
+
+  public RecordClassPoly32_6(int f1,int f2,int f3,int f4,int f5,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25,int h26) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;_h26 = h26;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+  public int h26() {return _h26;}
+}
+public class RecordClassPoly32_7 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24,_h25;
+
+  public RecordClassPoly32_7(int f1,int f2,int f3,int f4,int f5,int f6,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24,int h25) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;_h25 = h25;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+  public int h25() {return _h25;}
+}
+public class RecordClassPoly32_8 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23,_h24;
+
+  public RecordClassPoly32_8(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23,int h24) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;_h24 = h24;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+  public int h24() {return _h24;}
+}
+public class RecordClassPoly32_9 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22,_h23;
+
+  public RecordClassPoly32_9(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22,int h23) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;_h23 = h23;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+  public int h23() {return _h23;}
+}
+public class RecordClassPoly32_10 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21,_h22;
+
+  public RecordClassPoly32_10(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21,int h22) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;_h22 = h22;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+  public int h22() {return _h22;}
+}
+public class RecordClassPoly32_11 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20,_h21;
+
+  public RecordClassPoly32_11(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20,int h21) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;_h21 = h21;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+  public int h21() {return _h21;}
+}
+public class RecordClassPoly32_12 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19,_h20;
+
+  public RecordClassPoly32_12(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19,int h20) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;_h20 = h20;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+  public int h20() {return _h20;}
+}
+public class RecordClassPoly32_13 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18,_h19;
+
+  public RecordClassPoly32_13(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18,int h19) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;_h19 = h19;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+  public int h19() {return _h19;}
+}
+public class RecordClassPoly32_14 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17,_h18;
+
+  public RecordClassPoly32_14(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17,int h18) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;_h18 = h18;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+  public int h18() {return _h18;}
+}
+public class RecordClassPoly32_15 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16,_h17;
+
+  public RecordClassPoly32_15(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16,int h17) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;_h17 = h17;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+  public int h17() {return _h17;}
+}
+public class RecordClassPoly32_16 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15,_h16;
+
+  public RecordClassPoly32_16(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15,int h16) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;_h16 = h16;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+  public int h16() {return _h16;}
+}
+public class RecordClassPoly32_17 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14,_h15;
+
+  public RecordClassPoly32_17(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14,int h15) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;_h15 = h15;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+  public int h15() {return _h15;}
+}
+public class RecordClassPoly32_18 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13,_h14;
+
+  public RecordClassPoly32_18(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13,int h14) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;_h14 = h14;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+  public int h14() {return _h14;}
+}
+public class RecordClassPoly32_19 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12,_h13;
+
+  public RecordClassPoly32_19(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12,int h13) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;_h13 = h13;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+  public int h13() {return _h13;}
+}
+public class RecordClassPoly32_20 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11,_h12;
+
+  public RecordClassPoly32_20(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11,int h12) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;_h12 = h12;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+  public int h12() {return _h12;}
+}
+public class RecordClassPoly32_21 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10,_h11;
+
+  public RecordClassPoly32_21(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10,int h11) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;_h11 = h11;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+  public int h11() {return _h11;}
+}
+public class RecordClassPoly32_22 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9,_h10;
+
+  public RecordClassPoly32_22(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9,int h10) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;_h10 = h10;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+  public int h10() {return _h10;}
+}
+public class RecordClassPoly32_23 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8,_h9;
+
+  public RecordClassPoly32_23(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8,int h9) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;_h9 = h9;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+  public int h9() {return _h9;}
+}
+public class RecordClassPoly32_24 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7,_h8;
+
+  public RecordClassPoly32_24(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7,int h8) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;_h8 = h8;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+  public int h8() {return _h8;}
+}
+public class RecordClassPoly32_25 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_g1,_h1,_h2,_h3,_h4,_h5,_h6,_h7;
+
+  public RecordClassPoly32_25(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int g1,int h1,int h2,int h3,int h4,int h5,int h6,int h7) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;_h7 = h7;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+  public int h7() {return _h7;}
+}
+public class RecordClassPoly32_26 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_g1,_h1,_h2,_h3,_h4,_h5,_h6;
+
+  public RecordClassPoly32_26(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int g1,int h1,int h2,int h3,int h4,int h5,int h6) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;_h6 = h6;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+  public int h6() {return _h6;}
+}
+public class RecordClassPoly32_27 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_g1,_h1,_h2,_h3,_h4,_h5;
+
+  public RecordClassPoly32_27(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int g1,int h1,int h2,int h3,int h4,int h5) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;_h5 = h5;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+  public int h5() {return _h5;}
+}
+public class RecordClassPoly32_28 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_g1,_h1,_h2,_h3,_h4;
+
+  public RecordClassPoly32_28(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int g1,int h1,int h2,int h3,int h4) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;_h4 = h4;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+  public int h4() {return _h4;}
+}
+public class RecordClassPoly32_29 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28,_g1,_h1,_h2,_h3;
+
+  public RecordClassPoly32_29(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28,int g1,int h1,int h2,int h3) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;_g1 = g1;_h1 = h1;_h2 = h2;_h3 = h3;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int f28() {return _f28;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+  public int h3() {return _h3;}
+}
+public class RecordClassPoly32_30 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28,_f29,_g1,_h1,_h2;
+
+  public RecordClassPoly32_30(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28,int f29,int g1,int h1,int h2) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;_f29 = f29;_g1 = g1;_h1 = h1;_h2 = h2;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int f28() {return _f28;}
+  public int f29() {return _f29;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+  public int h2() {return _h2;}
+}
+public class RecordClassPoly32_31 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28,_f29,_f30,_g1,_h1;
+
+  public RecordClassPoly32_31(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28,int f29,int f30,int g1,int h1) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;_f29 = f29;_f30 = f30;_g1 = g1;_h1 = h1;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int f28() {return _f28;}
+  public int f29() {return _f29;}
+  public int f30() {return _f30;}
+  public int g1() {return _g1;}
+  public int h1() {return _h1;}
+}
+public class RecordClassPoly32_32 {
+  private int _f1,_f2,_f3,_f4,_f5,_f6,_f7,_f8,_f9,_f10,_f11,_f12,_f13,_f14,_f15,_f16,_f17,_f18,_f19,_f20,_f21,_f22,_f23,_f24,_f25,_f26,_f27,_f28,_f29,_f30,_f31,_g1;
+
+  public RecordClassPoly32_32(int f1,int f2,int f3,int f4,int f5,int f6,int f7,int f8,int f9,int f10,int f11,int f12,int f13,int f14,int f15,int f16,int f17,int f18,int f19,int f20,int f21,int f22,int f23,int f24,int f25,int f26,int f27,int f28,int f29,int f30,int f31,int g1) {
+    _f1 = f1;_f2 = f2;_f3 = f3;_f4 = f4;_f5 = f5;_f6 = f6;_f7 = f7;_f8 = f8;_f9 = f9;_f10 = f10;_f11 = f11;_f12 = f12;_f13 = f13;_f14 = f14;_f15 = f15;_f16 = f16;_f17 = f17;_f18 = f18;_f19 = f19;_f20 = f20;_f21 = f21;_f22 = f22;_f23 = f23;_f24 = f24;_f25 = f25;_f26 = f26;_f27 = f27;_f28 = f28;_f29 = f29;_f30 = f30;_f31 = f31;_g1 = g1;
+  }
+
+  public int f1() {return _f1;}
+  public int f2() {return _f2;}
+  public int f3() {return _f3;}
+  public int f4() {return _f4;}
+  public int f5() {return _f5;}
+  public int f6() {return _f6;}
+  public int f7() {return _f7;}
+  public int f8() {return _f8;}
+  public int f9() {return _f9;}
+  public int f10() {return _f10;}
+  public int f11() {return _f11;}
+  public int f12() {return _f12;}
+  public int f13() {return _f13;}
+  public int f14() {return _f14;}
+  public int f15() {return _f15;}
+  public int f16() {return _f16;}
+  public int f17() {return _f17;}
+  public int f18() {return _f18;}
+  public int f19() {return _f19;}
+  public int f20() {return _f20;}
+  public int f21() {return _f21;}
+  public int f22() {return _f22;}
+  public int f23() {return _f23;}
+  public int f24() {return _f24;}
+  public int f25() {return _f25;}
+  public int f26() {return _f26;}
+  public int f27() {return _f27;}
+  public int f28() {return _f28;}
+  public int f29() {return _f29;}
+  public int f30() {return _f30;}
+  public int f31() {return _f31;}
+  public int g1() {return _g1;}
+}
+

@@ -38,16 +38,20 @@ function run_steadystate {
 ### Existing
 
 # Scala
-run_steadystate "scala"     "caseclass__scala_2_11_8"
-run_steadystate "scala"     "anonrefinements__scala_2_11_8"
-run_steadystate "scala"     "scalarecords_0_4__scala_2_11_8"
-run_steadystate "scala"     "compossible_0_2__scala_2_11_8"
-run_steadystate "scala"     "shapeless_2_3_2__scala_2_11_8"
+#run_steadystate "scala"     "caseclass__scala_2_11_8"
+#run_steadystate "scala"     "anonrefinements__scala_2_11_8"
+#run_steadystate "scala"     "scalarecords_0_4__scala_2_11_8"
+#run_steadystate "scala"     "compossible_0_2__scala_2_11_8"
+#run_steadystate "scala"     "shapeless_2_3_2__scala_2_11_8"
 
 #Dotty
 #run_steadystate "dotty"       "selreclist__dotty_0_1"
-run_steadystate "dotty"       "selrechashmap__dotty_0_1"
+#run_steadystate "dotty"       "selrechashmap__dotty_0_1"
 
+#Whiteoak
+run_steadystate "whiteoak"   "whiteoaknative__whiteoak_2_1"
+
+run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_2"
 
 ### Data structures
 

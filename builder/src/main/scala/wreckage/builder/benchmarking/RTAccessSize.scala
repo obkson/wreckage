@@ -54,7 +54,11 @@ trait JavaRTAccessSize extends JavaRTBenchmark {
         |  return ${recSyntax.access(s"r_$input", s"f$input")};
         |}""".stripMargin
   }
-
 }
-
 case object JavaRTAccessSize extends JavaRTAccessSize
+
+// Whiteoak Version
+
+case object WhiteoakRTAccessSize extends JavaRTAccessSize {
+  override def filename_extension = "wo"
+}

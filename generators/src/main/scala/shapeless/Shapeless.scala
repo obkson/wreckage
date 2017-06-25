@@ -60,11 +60,10 @@ object Shapeless_2_2_5__Scala_2_11_8 extends Shapeless {
     )
 }
 
-object Shapeless_2_0_0__Scala_2_11_8 extends Shapeless {
-  val scalaVersion = "2.11.8"
+object Shapeless_2_3_2__Scala_2_12_2 extends Shapeless {
+  val scalaVersion = "2.12.2"
   override val managedDependencies = super.managedDependencies ++ List(
-      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.0.0")
+      ManagedDependency(List("com","chuusai"), "shapeless_2.12", "2.3.2")
     )
 }
-
 
