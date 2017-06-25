@@ -1,1 +1,1 @@
-# Wreckage Records Benchmarking Suite
+# The Wreckage Records Benchmarking Library
