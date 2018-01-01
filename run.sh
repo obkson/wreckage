@@ -28,6 +28,7 @@ function run_steadystate {
     BENCH=$2
     DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
 
+    # 0 warmups, 20 iterations in 1 thread in 10 consequtive forks of a jvm
     CMD="java -jar target/benchmarks.jar -wi 0 -i 20 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
     echo "$CMD"
 
@@ -38,26 +39,29 @@ function run_steadystate {
 ### Existing
 
 # Scala
-#run_steadystate "scala"     "caseclass__scala_2_11_8"
+run_steadystate "scala"     "caseclasses__scala_2_12_3"
 #run_steadystate "scala"     "anonrefinements__scala_2_11_8"
 #run_steadystate "scala"     "scalarecords_0_4__scala_2_11_8"
 #run_steadystate "scala"     "compossible_0_2__scala_2_11_8"
-#run_steadystate "scala"     "shapeless_2_3_2__scala_2_11_8"
+run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_3"
 
 #Dotty
 #run_steadystate "dotty"       "selreclist__dotty_0_1"
 #run_steadystate "dotty"       "selrechashmap__dotty_0_1"
+#run_steadystate "dotty"       "records__dotty_localfork"
+run_steadystate "dotty"       "caseclasses__dotty_casestudy"
+run_steadystate "dotty"       "records__dotty_casestudy"
 
 #Whiteoak
-run_steadystate "whiteoak"   "whiteoaknative__whiteoak_2_1"
+#run_steadystate "whiteoak"   "whiteoaknative__whiteoak_2_1"
 
-run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_2"
+#run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_2"
 
 ### Data structures
 
 # Java
 #run_steadystate "java"     "javafieldreflection__java_1_8"
-#%run_steadystate "java"     "javamethodreflection__java_1_8"
+#run_steadystate "java"     "javamethodreflection__java_1_8"
 
 # Scala
 #run_steadystate "scala"     "arrayrecord__scala_2_11_8"

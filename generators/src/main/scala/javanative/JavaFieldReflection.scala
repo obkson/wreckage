@@ -39,13 +39,10 @@ object JavaFieldReflection__Java_1_8 extends JavaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
-    //JavaRTCreationFields,
+    JavaRTCreationSize,
     JavaRTAccessSize,
     JavaRTAccessFields,
     JavaRTAccessPolymorphism
   )
-
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
-
 }
-

@@ -32,12 +32,12 @@ ymax = 2000;
 
 pigs = [
     %cellstr('scalarecords_0_3__scala_2_11_8'); 
-    cellstr('whiteoaknative__whiteoak_2_1'), cellstr('Whiteoak 2.1');       %yellow
-    cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
+    %cellstr('whiteoaknative__whiteoak_2_1'), cellstr('Whiteoak 2.1');       %yellow
+    %cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
     cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
     
     %cellstr('caseclass__scala_2_11_8'), cellstr('Case Class');            
-    cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
+    %cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
     
     %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
     %cellstr('compossible_0_2__scala_2_11_8'), cellstr('Compossible 0.2');     

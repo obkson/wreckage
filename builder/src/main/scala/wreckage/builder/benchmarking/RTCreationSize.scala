@@ -6,7 +6,7 @@ package wreckage.builder.benchmarking
 trait ScalaRTCreationSize extends ScalaRTBenchmark {
   val name = "RTCreationSize"
 
-  val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
+  val inputs: Seq[Int] = List(1,2,4,8,16,32)
 
   // put a mutable value in benhmarking state...
   def state(recSyntax: RecordSyntax): String = "var x = 1"

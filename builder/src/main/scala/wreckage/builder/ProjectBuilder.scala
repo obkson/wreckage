@@ -119,6 +119,7 @@ abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
   def dottyBuildVersion: String // e.g. 0.1.1-bin-20170506-385178d-NIGHTLY
 
   def srcfolder = List("src","main","scala")
+  def pomPath = "/dotty-pom.xml"
 
   lazy val pom = {
     import java.util.regex.Pattern
@@ -130,7 +131,7 @@ abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
 
     val deps = managedDependencies ++ unmanagedDependencies
 
-    val pomTmpl = FileHelper.getResourceForClassAsString("/dotty-pom.xml", getClass)
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomPath, getClass)
     val pomStr = FileHelper.replace(pomTmpl,
       Map("{{name}}"            -> s"JMH Benchmarks for ${this.name}",
           "{{groupId}}"         -> groupId.mkString("."),

@@ -20,23 +20,23 @@ rm -r ~/.m2/repository/org/cvogt
 #(cd "$GENDIR/scala/anonrefinements__scala_2_11_8" && mvn clean install)
 #(cd "$GENDIR/scala/scalarecords_0_4__scala_2_11_8" && mvn clean install)
 #(cd "$GENDIR/scala/compossible_0_2__scala_2_11_8" && mvn clean install)
-#(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_12_2" && mvn clean install)
+(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_12_3" && mvn clean install)
+#(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_12_2" && mvn clean install)
 
 # Dotty
 #(cd "$GENDIR/dotty/selrechashmap__dotty_0_1" && mvn clean install)
 
 # Whiteoak
-(cd "$GENDIR/whiteoak" && \
- vagrant up && \
- vagrant ssh -c "rm -r ~/.m2/repository/se/obkson/wreckage/records && cd /vagrant/whiteoaknative__whiteoak_2_1 && jenv exec mvn clean install")
+#(cd "$GENDIR/whiteoak" && \
+# vagrant up && \
+# vagrant ssh -c "rm -r ~/.m2/repository/se/obkson/wreckage/records && cd /vagrant/whiteoaknative__whiteoak_2_1 && jenv exec mvn clean install")
 
 
 ##### Scala data structures
 
 # Java
 #(cd "$GENDIR/java/javamethodreflection__java_1_8" && mvn clean install)
-#(cd "$GENDIR/java/javafieldreflection__java_1_8" && mvn clean install)
+(cd "$GENDIR/java/javafieldreflection__java_1_8" && mvn clean install)
 
 # Scala
 #(cd "$GENDIR/scala/arrayrecord__scala_2_11_8" && mvn clean install)
@@ -44,3 +44,5 @@ rm -r ~/.m2/repository/org/cvogt
 #(cd "$GENDIR/scala/hashmaprecord__scala_2_11_8" && mvn clean install)
 #(cd "$GENDIR/scala/interfacerecord__scala_2_11_8" && mvn clean install)
 
+# Dotty
+(cd "$GENDIR/dotty/records__dotty_localfork" && mvn clean install)
