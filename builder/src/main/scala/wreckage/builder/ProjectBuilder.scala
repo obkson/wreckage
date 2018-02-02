@@ -88,7 +88,9 @@ abstract class ScalaJMHProjectBuilder extends JMHProjectBuilder {
   def managedDependencies: Seq[ManagedDependency] = List(
       //ManagedDependency(List("org","scala-lang"),"scala-library",scalaVersion), // already included by pom
       ManagedDependency(List("org","scala-lang"),"scala-reflect",scalaVersion),
-      ManagedDependency(List("org","scala-lang"),"scala-compiler",scalaVersion)
+      ManagedDependency(List("org","scala-lang"),"scala-compiler",scalaVersion),
+      ManagedDependency(List("com","eed3si9n"),"shaded-scalajson_2.12","1.0.0-M4"),
+      ManagedDependency(List("org","spire-math"),"jawn-parser_2.12","0.11.0")
     )
   def unmanagedDependencies: Seq[UnmanagedDependency]= List()
   def sourceFiles: Seq[SourceFile]
@@ -120,6 +122,11 @@ abstract class DottyJMHProjectBuilder extends JMHProjectBuilder {
 
   def srcfolder = List("src","main","scala")
   def pomPath = "/dotty-pom.xml"
+
+  def managedDependencies: Seq[ManagedDependency] = List(
+      ManagedDependency(List("com","eed3si9n"),"shaded-scalajson_2.12","1.0.0-M4"),
+      ManagedDependency(List("org","spire-math"),"jawn-parser_2.12","0.11.0")
+    )
 
   lazy val pom = {
     import java.util.regex.Pattern
@@ -158,7 +165,7 @@ abstract class Dotty_0_1__JMHProjectBuilder extends DottyJMHProjectBuilder {
 
   val dottyBuildVersion = getLatestDottyBuild // e.g. "0.1.1-bin-20170506-385178d-NIGHTLY"
 
-  def managedDependencies = List(
+  override def managedDependencies = super.managedDependencies ++ List(
     ManagedDependency(List("ch","epfl","lamp"), "dotty-compiler_0.1", dottyBuildVersion),
     ManagedDependency(List("ch","epfl","lamp"), "dotty-library_0.1", dottyBuildVersion),
     ManagedDependency(List("ch","epfl","lamp"), "dotty-interfaces", dottyBuildVersion),

@@ -17,8 +17,11 @@ trait ScalaCTCreationAccessSize extends ScalaCTBenchmark {
     }.mkString("\n")
 
     s"""|$imports
+        |
+        |${recSyntax.decl(s"Rec${fields.size}", fields)}
+        |
         |class C {
-        |  val r = ${recSyntax.create(fields)}
+        |  val r = ${recSyntax.create(s"Rec${fields.size}", fields)}
         |$access
         |}
         |""".stripMargin
@@ -41,7 +44,7 @@ trait ScalaCTCreationAccessLast extends ScalaCTBenchmark {
 
     s"""|$imports
         |class C {
-        |  val r = ${recSyntax.create(fields)}
+        |  val r = ${recSyntax.create(s"Rec${fields.size}", fields)}
         |  val f = ${recSyntax.access("r", s"f$input")}
         |}
         |""".stripMargin

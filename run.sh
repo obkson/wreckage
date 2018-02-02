@@ -37,20 +37,14 @@ function run_steadystate {
 }
 
 ### Existing
+run_steadystate "dotty"     "caseclass__dotty_0_6_snapshot"
+run_steadystate "dotty"     "recordsdirect__dotty_0_6_snapshot"
+run_steadystate "dotty"     "records__dotty_0_6_snapshot"
+run_steadystate "dotty"     "recordsunsafe__dotty_0_6_snapshot"
 
-# Scala
-run_steadystate "scala"     "caseclasses__scala_2_12_3"
-#run_steadystate "scala"     "anonrefinements__scala_2_11_8"
-#run_steadystate "scala"     "scalarecords_0_4__scala_2_11_8"
-#run_steadystate "scala"     "compossible_0_2__scala_2_11_8"
+run_steadystate "scala"     "caseclass__scala_2_12_3"
+run_steadystate "scala"     "compossible_0_2__scala_2_12_3"
 run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_3"
-
-#Dotty
-#run_steadystate "dotty"       "selreclist__dotty_0_1"
-#run_steadystate "dotty"       "selrechashmap__dotty_0_1"
-#run_steadystate "dotty"       "records__dotty_localfork"
-run_steadystate "dotty"       "caseclasses__dotty_casestudy"
-run_steadystate "dotty"       "records__dotty_casestudy"
 
 #Whiteoak
 #run_steadystate "whiteoak"   "whiteoaknative__whiteoak_2_1"

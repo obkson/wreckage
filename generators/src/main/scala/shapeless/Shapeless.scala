@@ -1,5 +1,6 @@
 package shapeless
 
+import java.nio.file.Paths
 import wreckage.builder._, benchmarking._
 
 abstract class Shapeless extends ScalaJMHProjectBuilder {
@@ -9,14 +10,24 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
     val imports = List("shapeless._", "syntax.singleton._", "record._")
 
-    def create(fields: Seq[(String, String)]): String = {
-      fields.map{ case (k, v) => s"""("$k"->>$v)""" }.mkString("", " :: "," :: HNil")
+    def decl(name: String, fields: Seq[(String, String)]): String = {
+      s"""type $name = ${tpe(name, fields)}"""
     }
 
-    def tpe(fields: Seq[(String, String)]): String = ??? // TODO
+    def create(name: String, fields: Seq[(String, String)]): String = {
+      fields.map{ case (k, v) => s"""('$k->>$v)""" }.mkString("", " :: "," :: HNil")
+    }
+
+    def tpe(name: String, fields: Seq[(String, String)]): String = {
+      fields.map{ case (k, v) => s"""'$k->$v""" }.mkString("Record.`",", ","`.T")
+    }
 
     def access(prefix: String, field: String): String = {
-      s"""$prefix("$field")"""
+      s"""$prefix.get('$field)"""
+    }
+
+    def increment(prefix: String, field: String) = {
+      s"""$prefix.updateWith('$field)(_ + 1)"""
     }
   }
 
@@ -25,13 +36,11 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
   val pkg = List("benchmarks")
   val features = List(
-    ScalaCTCreationSize,
-    ScalaCTCreationAccessLast,
     ScalaCTCreationAccessSize,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
-    ScalaRTAccessSize
-    //ScalaRTAccessPolymorphism // no subtyping, no polymorphism
+    ScalaRTUpdateSize,
+    ScalaRTCaseStudy
   )
 
   // Implemented
@@ -39,31 +48,13 @@ abstract class Shapeless extends ScalaJMHProjectBuilder {
 
 }
 
-object Shapeless_2_3_2__Scala_2_11_8 extends Shapeless {
-  val scalaVersion = "2.11.8"
-  override val managedDependencies = super.managedDependencies ++ List(
-      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.3.2")
-    )
-}
-
-object Shapeless_2_3_0__Scala_2_11_8 extends Shapeless {
-  val scalaVersion = "2.11.8"
-  override val managedDependencies = super.managedDependencies ++ List(
-      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.3.0")
-    )
-}
-
-object Shapeless_2_2_5__Scala_2_11_8 extends Shapeless {
-  val scalaVersion = "2.11.8"
-  override val managedDependencies = super.managedDependencies ++ List(
-      ManagedDependency(List("com","chuusai"), "shapeless_2.11", "2.2.5")
-    )
-}
-
-object Shapeless_2_3_2__Scala_2_12_2 extends Shapeless {
-  val scalaVersion = "2.12.2"
+object Shapeless_2_3_2__Scala_2_12_3 extends Shapeless {
+  val scalaVersion = "2.12.3"
   override val managedDependencies = super.managedDependencies ++ List(
       ManagedDependency(List("com","chuusai"), "shapeless_2.12", "2.3.2")
     )
+  override val unmanagedDependencies = super.unmanagedDependencies ++ List(
+    UnmanagedDependency(List("se", "obkson", "wreckage"), "parsing_2.12", "0.1",
+      Paths.get("parsing/target/scala-2.12/parsing_2.12-0.1.jar").toAbsolutePath())
+  )
 }
-

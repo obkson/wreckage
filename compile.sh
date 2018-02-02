@@ -8,23 +8,28 @@ if [ -z "$GENDIR" ]; then
   exit 1
 fi
 
-# Must purge cached version of our locally produced record jars
+# Must purge cached version of our locally produced jars
 rm -r ~/.m2/repository/se/obkson/wreckage/records
+rm -r ~/.m2/repository/se/obkson/wreckage/parsing_2.12
+rm -r ~/.m2/repository/se/obkson/wreckage/benchmarks
 rm -r ~/.m2/repository/org/cvogt
+rm -r ~/.m2/repository/ch/epfl/lamp
 
 
-#### Existing
+(cd "$GENDIR/dotty/caseclass__dotty_0_6_snapshot" && mvn clean install)
+(cd "$GENDIR/dotty/records__dotty_0_6_snapshot" && mvn clean install)
+(cd "$GENDIR/dotty/recordsdirect__dotty_0_6_snapshot" && mvn clean install)
+(cd "$GENDIR/dotty/recordsunsafe__dotty_0_6_snapshot" && mvn clean install)
+
+(cd "$GENDIR/scala/compossible_0_2__scala_2_12_3" && mvn clean install)
+(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_12_3" && mvn clean install)
+(cd "$GENDIR/scala/caseclass__scala_2_12_3" && mvn clean install)
 
 # Scala
-#(cd "$GENDIR/scala/caseclass__scala_2_11_8" && mvn clean install)
 #(cd "$GENDIR/scala/anonrefinements__scala_2_11_8" && mvn clean install)
 #(cd "$GENDIR/scala/scalarecords_0_4__scala_2_11_8" && mvn clean install)
-#(cd "$GENDIR/scala/compossible_0_2__scala_2_11_8" && mvn clean install)
-(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_12_3" && mvn clean install)
 #(cd "$GENDIR/scala/shapeless_2_3_2__scala_2_12_2" && mvn clean install)
 
-# Dotty
-#(cd "$GENDIR/dotty/selrechashmap__dotty_0_1" && mvn clean install)
 
 # Whiteoak
 #(cd "$GENDIR/whiteoak" && \
@@ -36,7 +41,7 @@ rm -r ~/.m2/repository/org/cvogt
 
 # Java
 #(cd "$GENDIR/java/javamethodreflection__java_1_8" && mvn clean install)
-(cd "$GENDIR/java/javafieldreflection__java_1_8" && mvn clean install)
+#(cd "$GENDIR/java/javafieldreflection__java_1_8" && mvn clean install)
 
 # Scala
 #(cd "$GENDIR/scala/arrayrecord__scala_2_11_8" && mvn clean install)
@@ -45,4 +50,4 @@ rm -r ~/.m2/repository/org/cvogt
 #(cd "$GENDIR/scala/interfacerecord__scala_2_11_8" && mvn clean install)
 
 # Dotty
-(cd "$GENDIR/dotty/records__dotty_localfork" && mvn clean install)
+#(cd "$GENDIR/dotty/records__dotty_localfork" && mvn clean install)

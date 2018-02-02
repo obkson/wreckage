@@ -6,6 +6,8 @@ trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
   val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
 
   def state(recSyntax: RecordSyntax): String = {
+    val baseFields = ("g1", "1") :: Nil
+
     // Create an Array of such records
     val rs = (1 to inputs.max).map{ i => 
 
@@ -18,12 +20,12 @@ trait ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
       }
       val fields: Seq[(String, String)] = es ++ fs ++ gs
 
-      recSyntax.create(fields)
+      recSyntax.create(s"Rec${fields.size}", fields)
 
-    }.mkString(s"Array[${recSyntax.tpe(List( ("g1","1") ))}](\n  ", ",\n  ",")")
+    }.mkString(s"Array[${recSyntax.tpe("Base", baseFields)}](\n  ", ",\n  ",")")
 
     val ret = s"""
-      |${recSyntax.tpeCarrier(List( ("g1","1") ))} // e.g. Compossible can place a type carrier here
+      |${recSyntax.decl("Base", baseFields)} // e.g. Compossible can place a type carrier here
       |val rs = $rs
       |var i = -1
       |""".stripMargin
@@ -60,8 +62,8 @@ trait JavaRTAccessPolymorphism extends JavaRTBenchmark {
 
   def state(recSyntax: RecordSyntax): String = {
 
-    val lubCarrier = recSyntax.tpeCarrier(List( ("g1","1") ))
-    val lub = recSyntax.tpe(List( ("g1","1") ))
+    val lubDecl = recSyntax.decl("Base", List( ("g1","1") ))
+    val lub = recSyntax.tpe("Base", List( ("g1","1") ))
 
     val rs = (1 to inputs.max).map{ i => 
 
@@ -74,11 +76,11 @@ trait JavaRTAccessPolymorphism extends JavaRTBenchmark {
       }
       val fields: Seq[(String, String)] = es ++ fs ++ gs
 
-      recSyntax.create(fields)
+      recSyntax.create(s"Rec${fields.size}", fields)
     }
 
     val decl = s"""
-         |$lubCarrier
+         |$lubDecl
          |ArrayList<$lub> rs;
          |int i;
          |""".stripMargin

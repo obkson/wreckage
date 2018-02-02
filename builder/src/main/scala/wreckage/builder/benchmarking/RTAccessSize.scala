@@ -14,8 +14,8 @@ trait ScalaRTAccessSize extends ScalaRTBenchmark {
         (s"f$idx", s"$idx")
       }
       // let the accessed records be mutable vars in benchmarking state to prevent constant folding
-      s"""|${recSyntax.tpeCarrier(fields)}
-          |var r_$input = ${recSyntax.create(fields)}
+      s"""|${recSyntax.decl(s"Rec${fields.size}", fields)}
+          |var r_$input = ${recSyntax.create(s"Rec${fields.size}", fields)}
           |""".stripMargin
     }.mkString("\n")
   }
@@ -26,7 +26,6 @@ trait ScalaRTAccessSize extends ScalaRTBenchmark {
        |def access_f$input = ${recSyntax.access(s"r_$input", s"f$input")}
        |""".stripMargin
   }
-
 }
 
 case object ScalaRTAccessSize extends ScalaRTAccessSize
@@ -44,7 +43,7 @@ trait JavaRTAccessSize extends JavaRTBenchmark {
       val fields: Seq[(String, String)] = (1 to input).map{ idx =>
         (s"f$idx", s"$idx")
       }
-      s"""${recSyntax.tpe(fields)} r_$input = ${recSyntax.create(fields)};"""
+      s"""${recSyntax.tpe(s"Rec${fields.size}", fields)} r_$input = ${recSyntax.create(s"Rec${fields.size}", fields)};"""
     }.mkString("\n")
   }
 

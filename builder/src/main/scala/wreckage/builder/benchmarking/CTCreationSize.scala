@@ -14,7 +14,7 @@ trait ScalaCTCreationSize extends ScalaCTBenchmark {
 
     s"""|$imports
         |class C {
-        |  val r = ${recSyntax.create(fields)}
+        |  val r = ${recSyntax.create(s"Rec${fields.size}", fields)}
         |}
         |""".stripMargin
   }

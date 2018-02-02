@@ -17,10 +17,12 @@ trait ScalaRTCreationSize extends ScalaRTBenchmark {
       (s"f$idx", s"$idx")
     }.toList
 
-    val rec = recSyntax.create(fields)
+    val rec = recSyntax.create(s"Rec${fields.size}", fields)
 
     // return the created record to prevent dead code elimination
-    s"""@Benchmark
+    s"""${recSyntax.decl(s"Rec${fields.size}", fields.map(f => (f._1, "Int")))}
+       |
+       |@Benchmark
        |def create_f$input = $rec
        |""".stripMargin
   }
@@ -45,8 +47,8 @@ trait JavaRTCreationSize extends JavaRTBenchmark {
       (s"f$idx", s"$idx")
     }.toList
 
-    val tpe = recSyntax.tpe(fields)
-    val rec = recSyntax.create(fields)
+    val tpe = recSyntax.tpe(s"Rec${fields.size}", fields)
+    val rec = recSyntax.create(s"Rec${fields.size}", fields)
 
     // return the created record to prevent dead code elimination
     s"""@Benchmark

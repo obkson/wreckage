@@ -9,11 +9,20 @@ if [ -z "$GENDIR" ]; then
 fi
 
 (cd records/compossible && sbt package)
+(cd parsing && sbt package)
 
 sbt -J-Xss8m "project generators" \
-"runMain javanative.JavaFieldReflection__Java_1_8 $GENDIR/java" \
-"runMain dottynative.Records__Dotty_LocalFork $GENDIR/dotty" \
-"runMain shapeless.Shapeless_2_3_2__Scala_2_11_8 $GENDIR/scala"
+"runMain dottynative.CaseClass__Dotty_0_6_SNAPSHOT $GENDIR/dotty" \
+"runMain dottynative.Records__Dotty_0_6_SNAPSHOT $GENDIR/dotty" \
+"runMain dottynative.RecordsUnsafe__Dotty_0_6_SNAPSHOT $GENDIR/dotty" \
+"runMain dottynative.RecordsDirect__Dotty_0_6_SNAPSHOT $GENDIR/dotty" \
+"runMain compossible.Compossible_0_2__Scala_2_12_3 $GENDIR/scala" \
+"runMain scalanative.CaseClass__Scala_2_12_3 $GENDIR/scala" \
+"runMain shapeless.Shapeless_2_3_2__Scala_2_12_3 $GENDIR/scala"
+
+
+#"runMain javanative.JavaFieldReflection__Java_1_8 $GENDIR/java" \
+#"runMain dottynative.Records__Dotty_LocalFork $GENDIR/dotty" \
 #"runMain whiteoak.WhiteoakNative__Whiteoak_2_1 $GENDIR/whiteoak" \
 #"runMain shapeless.Shapeless_2_3_2__Scala_2_12_2 $GENDIR/scala" \
 #"runMain scalanative.ArrayRecord__Scala_2_11_8 $GENDIR/scala" \

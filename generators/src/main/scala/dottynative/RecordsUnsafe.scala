@@ -3,7 +3,7 @@ package dottynative
 import java.nio.file.Paths
 import wreckage.builder._, benchmarking._
 
-object Records__Dotty_0_6_SNAPSHOT extends DottyJMHProjectBuilder {
+object RecordsUnsafe__Dotty_0_6_SNAPSHOT extends DottyJMHProjectBuilder {
 
   val artifactId = this.name
   val dottyBuildVersion = "0.6.0-bin-SNAPSHOT"
@@ -53,7 +53,7 @@ object Records__Dotty_0_6_SNAPSHOT extends DottyJMHProjectBuilder {
     }
 
     def increment(prefix: String, field: String) = {
-      s"""$prefix ++ Record($field=$prefix.$field+1)"""
+      s"""$prefix.extendUnsafe(Record($field=$prefix.$field+1))"""
     }
   }
 
@@ -63,42 +63,6 @@ object Records__Dotty_0_6_SNAPSHOT extends DottyJMHProjectBuilder {
     ScalaRTAccessFields,
     ScalaRTUpdateSize,
     ScalaRTCaseStudy
-    /*
-    new ScalaRTCaseStudy {
-      override def methodBody(recSyntax: RecordSyntax) = {
-        val emptyUserStats = recSyntax.create("UserStats", ("email", "email") :: ("monday", "0") ::
-          ("tuesday", "0") :: ("wednesday", "0") :: ("thursday", "0") :: ("friday", "0") ::
-          ("saturday", "0") :: ("sunday", "0") :: Nil)
-
-        s"""|commits.foreach(obj => {
-            |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "email")}
-            |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "date")}
-            |    .atZone(ZoneId.systemDefault())
-            |    .getDayOfWeek().getValue()
-            |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats
-            |  def update(oldStats: UserStats, dow: Int)(implicit
-            |    mo_ev: Ext[UserStats, Record{val monday: Int}],
-            |    tu_ev: Ext[UserStats, Record{val tuesday: Int}],
-            |    we_ev: Ext[UserStats, Record{val wednesday: Int}],
-            |    th_ev: Ext[UserStats, Record{val thursday: Int}],
-            |    fr_ev: Ext[UserStats, Record{val friday: Int}],
-            |    sa_ev: Ext[UserStats, Record{val saturday: Int}],
-            |    su_ev: Ext[UserStats, Record{val sunday: Int}]
-            |  ) = dow match {
-            |    case 1 => ${recSyntax.increment("oldStats", "monday")}
-            |    case 2 => ${recSyntax.increment("oldStats", "tuesday")}
-            |    case 3 => ${recSyntax.increment("oldStats", "wednesday")}
-            |    case 4 => ${recSyntax.increment("oldStats", "thursday")}
-            |    case 5 => ${recSyntax.increment("oldStats", "friday")}
-            |    case 6 => ${recSyntax.increment("oldStats", "saturday")}
-            |    case 7 => ${recSyntax.increment("oldStats", "sunday")}
-            |  }
-            |  val newStats = update(oldStats, dow)
-            |  table = table + (email->newStats)
-            |})""".stripMargin
-      }
-    }
-    */
   )
   val sourceFiles: Seq[SourceFile] = features.map(_.sourceFile(pkg, Syntax))
 }

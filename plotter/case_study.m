@@ -1,16 +1,19 @@
 clc; close all; clear;
 
 pigs = [
-   cellstr('caseclasses__dotty_casestudy'), cellstr('Dotty Case classes');
-   cellstr('records__dotty_casestudy'), cellstr('Dotty Records');
-   cellstr('caseclasses__scala_2_12_3'), cellstr('Scala2 Case classes');
+   cellstr('compossible_0_2__scala_2_12_3'), cellstr('Scala2 Compossible');
+   cellstr('records__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records');
+   cellstr('recordsdirect__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records Direct');
+   cellstr('recordsunsafe__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records Unsafe');
+   cellstr('caseclass__dotty_0_4_snapshot'), cellstr('Dotty Case classes');
+   cellstr('caseclass__scala_2_12_3'), cellstr('Scala2 Case classes');
    cellstr('shapeless_2_3_2__scala_2_12_3'), cellstr('Scala2 Shapeless')
 ];
 scaling=1;
 
-k = 10;
+k = 5;
 covthresh = 0.02;
-confidence = 0.999;
+confidence = 0.95;
 
 ms = [];
 es = [];
@@ -18,7 +21,7 @@ es = [];
 for pigindex = 1:length(pigs)
     pig = pigs{pigindex};
     disp(pig);
-    filename = ['../../../data/',pig,'/','UserStats','.json'];
+    filename = ['../../../data/',pig,'/','RTCaseStudy','.json'];
     text = fileread(filename);
     
     benchmarks = jsondecode(text);
@@ -76,6 +79,6 @@ end
 
 figure;
 hold on;
-bar(1:4,ms);
-errorbar(1:4, ms, es, '.', 'LineWidth', 1, 'Color', [0,0,0]);
-set(gca,'xTick', 1:4, 'xticklabel', pigs(:,2));
+bar(1:length(pigs),ms);
+errorbar(1:length(pigs), ms, es, '.', 'LineWidth', 1, 'Color', [0,0,0]);
+set(gca,'xTick', 1:length(pigs), 'xticklabel', pigs(:,2));
