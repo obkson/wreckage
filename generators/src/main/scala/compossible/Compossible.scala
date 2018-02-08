@@ -10,14 +10,6 @@ abstract class Compossible extends ScalaJMHProjectBuilder {
 
     val imports = List("org.cvogt.compossible._")
 
-    def decl(name: String, fields: Seq[(String, String)]): String = {
-      // e.g. val rt_Rec2 = (RecordType f1[Int] & f2[Int] &)
-      //      type Rec2 = rt_Rec2.Type
-      val rt = fields.map{ case (k, t) => s"$k[$t]" }.mkString("(RecordType ", " & "," &)")
-      s"""val rt_$name = $rt
-         |type $name = rt_$name.Type""".stripMargin
-    }
-
     def create(name: String, fields: Seq[(String, String)]): String = {
       // e.g. (Record f1 1 f2 2)
       fields.map{ case (k, v) => s"$k $v" }.mkString("(Record ", " ",")")

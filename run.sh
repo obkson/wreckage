@@ -35,4 +35,5 @@ function run_steadystate {
     (cd "$GENDIR/$BENCH" && $CMD)
 }
 
+run_steadystate "scala212_compossible"
 run_steadystate "scala212_caseclass"

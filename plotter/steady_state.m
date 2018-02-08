@@ -1,12 +1,11 @@
 clc; close all; clear;
 
-%feature = 'RTAccessPolymorphism';
-%prefix = 'poly_deg';
-%xlbl = 'Degree of Polymorphism';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 2500;
-%ymax = 45;
+feature = 'RTCreationSize';
+prefix = 'create_f';
+xlbl = 'Record Size';
+ylbl = 'Creation time [ms]';
+scaling = 0.001;
+ymax = 16;
 
 %feature = 'RTAccessSize';
 %prefix = 'access_f';
@@ -16,12 +15,20 @@ clc; close all; clear;
 %ymax = 2000;
 %ymax = 50;
 
-feature = 'RTAccessFields';
-prefix = 'access_f';
-xlbl = 'Field index';
-ylbl = 'Access time [ns]';
-scaling = 1;
-ymax = 50;
+%feature = 'RTAccessFields';
+%prefix = 'access_f';
+%xlbl = 'Field index';
+%ylbl = 'Access time [ns]';
+%scaling = 1;
+%ymax = 50;
+
+%feature = 'RTAccessPolymorphism';
+%prefix = 'poly_deg';
+%xlbl = 'Degree of Polymorphism';
+%ylbl = 'Access time [ns]';
+%scaling = 1;
+%ymax = 2500;
+%ymax = 45;
 
 %feature = 'RTUpdateSize';
 %prefix = 'update_f';
@@ -30,21 +37,14 @@ ymax = 50;
 %scaling = 1;
 %ymax = 500;
 
-%feature = 'RTCreationSize';
-%prefix = 'create_f';
-%xlbl = 'Record Size';
-%ylbl = 'Creation time [ms]';
-%scaling = 0.001;
-%ymax = 12;
-
 pigs = [
    cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
-   cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
+   cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible');
 ];
 
 colors = [ 
     0 0 0;      %black
-    1 0.7 0.1   % orange
+    1 0.7 0.1   %orange
     0 0.8 0.8;  %heaven
     1 0 0;      %red
     0.2 0.8 0.2;%green
