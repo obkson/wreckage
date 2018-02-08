@@ -25,8 +25,6 @@ import java.time.{Instant, ZoneId, LocalDate}
 @State(Scope.Benchmark)
 class {{name}} {
 
-{{declarations}}
-
 /************** Json Format for benchmark specific types ***************/
 
 implicit object JsonFormatInstant extends JsonFormat[Instant] {

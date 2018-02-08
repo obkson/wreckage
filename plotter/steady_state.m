@@ -16,19 +16,19 @@ clc; close all; clear;
 %ymax = 2000;
 %ymax = 50;
 
-%feature = 'RTAccessFields';
-%prefix = 'access_f';
-%xlbl = 'Field index';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 50;
-
-feature = 'RTUpdateSize';
-prefix = 'update_f';
-xlbl = 'Record Size';
-ylbl = 'Update time [ns]';
+feature = 'RTAccessFields';
+prefix = 'access_f';
+xlbl = 'Field index';
+ylbl = 'Access time [ns]';
 scaling = 1;
-ymax = 500;
+ymax = 50;
+
+%feature = 'RTUpdateSize';
+%prefix = 'update_f';
+%xlbl = 'Record Size';
+%ylbl = 'Update time [ns]';
+%scaling = 1;
+%ymax = 500;
 
 %feature = 'RTCreationSize';
 %prefix = 'create_f';
@@ -38,50 +38,29 @@ ymax = 500;
 %ymax = 12;
 
 pigs = [
-    cellstr('compossible_0_2__scala_2_12_3'), cellstr('Scala2 Compossible 0.2');
-    cellstr('records__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records');
-    cellstr('recordsunsafe__dotty_0_6_snapshot'), cellstr('Dotty0.6 Unsafe Records');
-    cellstr('recordsdirect__dotty_0_6_snapshot'), cellstr('Dotty0.6 Direct Records');
-    cellstr('caseclass__scala_2_12_3'), cellstr('Scala2 Case Class');
-    cellstr('caseclass__dotty_0_4_snapshot'), cellstr('Dotty0.4 Case Class');
-    cellstr('shapeless_2_3_2__scala_2_12_3'), cellstr('Scala2 Shapeless 2.3.2');
-    %cellstr('scalarecords_0_3__scala_2_11_8');
-    %cellstr('whiteoaknative__whiteoak_2_1'), cellstr('Whiteoak 2.1');       %yellow
-    %cellstr('javamethodreflection__java_1_8'), cellstr('Method Reflection');
-    %cellstr('javafieldreflection__java_1_8'), cellstr('Field Reflection');
-    
-    %cellstr('anonrefinements__scala_2_11_8'), cellstr('Anon. Refinements'); 
-    
-    %cellstr('scalarecords_0_4__scala_2_11_8'), cellstr('scala-records 0.4');     
-    
-    
-    %cellstr('selrechashmap__dotty_0_1'), cellstr('Dotty structural');    
-
-    %cellstr('interfacerecord__scala_2_11_8'), cellstr('One interface per field');
-    %cellstr('arrayrecord__scala_2_11_8'), cellstr('Array');
-    %cellstr('listrecord__scala_2_11_8'), cellstr('List');
-    %cellstr('hashmaprecord__scala_2_11_8'), cellstr('HashMap');
+   cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
+   cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
 ];
 
 colors = [ 
-    0 0 0;        %black
+    0 0 0;      %black
     1 0.7 0.1   % orange
     0 0.8 0.8;  %heaven
-    1 0 0;        %red
-    0.2 0.8 0.2;  %green
-    0 0 0;        %black
+    1 0 0;      %red
+    0.2 0.8 0.2;%green
+    0 0 0;      %black
     
     
     
-    0 0 1;          %blue
-    0.1 0.8 1;   %cyan
-    1 0 1;        % magenta
+    0 0 1;      %blue
+    0.1 0.8 1;  %cyan
+    1 0 1;      % magenta
     
-     %0.4 0 0.4;  % dark lila
+    %0.4 0 0.4;  % dark lila
     %0.5 0.3 0.1;  % brown
  ];
 
-k = 10;
+k = 3;
 covthresh = 0.02;
 confidence = 0.95;
 

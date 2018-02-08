@@ -24,41 +24,15 @@ if [ -z "$DATADIR" ]; then
 fi
 
 function run_steadystate {
-    LANG=$1
-    BENCH=$2
+    BENCH=$1
     DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
 
-    # 0 warmups, 20 iterations in 1 thread in 10 consequtive forks of a jvm
-    CMD="java -jar target/benchmarks.jar -wi 0 -i 20 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
+    # 0 warmups, 5 iterations in 1 thread in 5 consequtive forks of a jvm
+    CMD="java -jar target/benchmarks.jar -wi 0 -i 5 -t 1 -f 5 $FEATURE -rf json -rff $DATAFILE"
     echo "$CMD"
 
     mkdir -p $DATADIR/$BENCH
-    (cd "$GENDIR/$LANG/$BENCH" && $CMD)
+    (cd "$GENDIR/$BENCH" && $CMD)
 }
 
-### Existing
-run_steadystate "dotty"     "caseclass__dotty_0_6_snapshot"
-run_steadystate "dotty"     "recordsdirect__dotty_0_6_snapshot"
-run_steadystate "dotty"     "records__dotty_0_6_snapshot"
-run_steadystate "dotty"     "recordsunsafe__dotty_0_6_snapshot"
-
-run_steadystate "scala"     "caseclass__scala_2_12_3"
-run_steadystate "scala"     "compossible_0_2__scala_2_12_3"
-run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_3"
-
-#Whiteoak
-#run_steadystate "whiteoak"   "whiteoaknative__whiteoak_2_1"
-
-#run_steadystate "scala"     "shapeless_2_3_2__scala_2_12_2"
-
-### Data structures
-
-# Java
-#run_steadystate "java"     "javafieldreflection__java_1_8"
-#run_steadystate "java"     "javamethodreflection__java_1_8"
-
-# Scala
-#run_steadystate "scala"     "arrayrecord__scala_2_11_8"
-#run_steadystate "scala"     "listrecord__scala_2_11_8"
-#run_steadystate "scala"     "hashmaprecord__scala_2_11_8"
-#run_steadystate "scala"     "interfacerecord__scala_2_11_8"
+run_steadystate "scala212_caseclass"

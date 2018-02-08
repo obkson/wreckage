@@ -2,15 +2,13 @@ package wreckage.builder
 package benchmarking
 
 /* Currently only for Scala / Dotty */
-trait ScalaRTCaseStudy extends Benchmark{
+case object ScalaRTCaseStudy extends Benchmark {
 
   def name = "RTCaseStudy"
   def filename_extension = "scala"
   def template = "/JMHScalaRTCaseStudyTemplate.scala"
 
-  case class TypeDeclaration(name: String, fields: List[(String, String)])
-
-  val commitEvent = TypeDeclaration("CommitEvent",
+  val commitEvent = RecordType("CommitEvent", None,
     ("sha", "String") ::
     ("url", "String") ::
     ("html_url", "String") ::
@@ -21,7 +19,7 @@ trait ScalaRTCaseStudy extends Benchmark{
     ("commit", "Commit") ::
     Nil
   )
-  val commit = TypeDeclaration("Commit",
+  val commit = RecordType("Commit", None,
     ("committer", "CommitIdentity") ::
     ("message", "String") ::
     ("tree", "Tree") ::
@@ -31,25 +29,25 @@ trait ScalaRTCaseStudy extends Benchmark{
     ("author", "CommitIdentity") ::
     Nil
   )
-  val commitIdentity = TypeDeclaration("CommitIdentity",
+  val commitIdentity = RecordType("CommitIdentity", None,
     ("name", "String") ::
     ("email", "String") ::
     ("date", "Instant") ::
     Nil
   )
-  val tree = TypeDeclaration("Tree",
+  val tree = RecordType("Tree", None,
     ("sha", "String") ::
     ("url", "String") ::
     Nil
   )
-  val verification = TypeDeclaration("Verification",
+  val verification = RecordType("Verification", None,
     ("verified", "Boolean") ::
     ("reason", "String") ::
     ("signature", "Option[String]") ::
     ("payload", "Option[String]") ::
     Nil
   )
-  val user = TypeDeclaration("User",
+  val user = RecordType("User", None,
     ("login", "String") ::
     ("id", "Long") ::
     ("avatar_url", "String") ::
@@ -68,13 +66,13 @@ trait ScalaRTCaseStudy extends Benchmark{
     ("site_admin", "Boolean") ::
     Nil
   )
-  val shortCommit = TypeDeclaration("ShortCommit",
+  val shortCommit = RecordType("ShortCommit", None,
     ("sha", "String") ::
     ("url", "String") ::
     ("html_url", "String") ::
     Nil
   )
-  val userStats = TypeDeclaration("UserStats",
+  val userStats = RecordType("UserStats", None,
     ("email", "String") ::
     ("monday", "Int") ::
     ("tuesday", "Int") ::
@@ -86,72 +84,65 @@ trait ScalaRTCaseStudy extends Benchmark{
     Nil
   )
 
-  def imports(recSyntax: RecordSyntax) = recSyntax.imports
-    .map{imp => s"import $imp"}
-    .mkString("\n")
-
-  def declarations(recSyntax: RecordSyntax) = {
-    List(userStats, shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
-      .map{decl => recSyntax.decl(decl.name, decl.fields)}
-      .mkString("\n")
-  }
-
-  def formats(recSyntax: RecordSyntax) = {
-    def jsonFormat(decl: TypeDeclaration) = {
-      val fieldExtractors = decl.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
-      s"""implicit object ${decl.name}Format extends JsonFormat[${decl.name}] {
-         |  def read(ast: JValue): ${decl.name} = ast match {
-         |    case JObject(map) => {
-         |      ${fieldExtractors.mkString("\n      ")}
-         |      ${recSyntax.create(decl.name, decl.fields.map{ case (name, _) => (name, name) })}
-         |    }
-         |    case x => deserializationError("Expected ${decl.name} as JObject, but got " + x)
-         |  }
-         |}""".stripMargin
-    }
-    List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
-      .map(jsonFormat)
-      .mkString("\n")
-  }
-
-  def methodBody(recSyntax: RecordSyntax) = {
-    val emptyUserStats = recSyntax.create("UserStats", ("email", "email") :: ("monday", "0") ::
-      ("tuesday", "0") :: ("wednesday", "0") :: ("thursday", "0") :: ("friday", "0") ::
-      ("saturday", "0") :: ("sunday", "0") :: Nil)
-
-    s"""|commits.foreach(obj => {
-        |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "email")}
-        |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "date")}
-        |    .atZone(ZoneId.systemDefault())
-        |    .getDayOfWeek().getValue()
-        |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats
-        |  val newStats = dow match {
-        |    case 1 => ${recSyntax.increment("oldStats", "monday")}
-        |    case 2 => ${recSyntax.increment("oldStats", "tuesday")}
-        |    case 3 => ${recSyntax.increment("oldStats", "wednesday")}
-        |    case 4 => ${recSyntax.increment("oldStats", "thursday")}
-        |    case 5 => ${recSyntax.increment("oldStats", "friday")}
-        |    case 6 => ${recSyntax.increment("oldStats", "saturday")}
-        |    case 7 => ${recSyntax.increment("oldStats", "sunday")}
-        |  }
-        |  table = table + (email->newStats)
-        |})""".stripMargin
-  }
-
   /* Real Time Benchmark specific source generator */
   def source(pkg: Seq[String], recSyntax: RecordSyntax): String = {
+
+    def imports = recSyntax.imports.map(imp => s"import $imp").mkString("\n")
+
+    val formats = {
+      def jsonFormat(tpe: RecordType) = {
+        val fieldExtractors = tpe.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
+        s"""implicit object ${tpe.alias}Format extends JsonFormat[${tpe.alias}] {
+           |  def read(ast: JValue): ${tpe.alias} = ast match {
+           |    case JObject(map) => {
+           |      ${fieldExtractors.mkString("\n      ")}
+           |      ${recSyntax.create(tpe, tpe.fields.map{ case (name, _) => (name, name) })}
+           |    }
+           |    case x => deserializationError("Expected ${tpe.alias} as JObject, but got " + x)
+           |  }
+           |}""".stripMargin
+      }
+      List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
+        .map(jsonFormat)
+        .mkString("\n")
+    }
+
+    val methodBody = {
+      val emptyUserStats = recSyntax.create(userStats, ("email", "email") :: ("monday", "0") ::
+        ("tuesday", "0") :: ("wednesday", "0") :: ("thursday", "0") :: ("friday", "0") ::
+        ("saturday", "0") :: ("sunday", "0") :: Nil)
+
+      s"""|commits.foreach(obj => {
+          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "email")}
+          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "date")}
+          |    .atZone(ZoneId.systemDefault())
+          |    .getDayOfWeek().getValue()
+          |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats
+          |  val newStats = dow match {
+          |    case 1 => ${recSyntax.increment("oldStats", "monday")}
+          |    case 2 => ${recSyntax.increment("oldStats", "tuesday")}
+          |    case 3 => ${recSyntax.increment("oldStats", "wednesday")}
+          |    case 4 => ${recSyntax.increment("oldStats", "thursday")}
+          |    case 5 => ${recSyntax.increment("oldStats", "friday")}
+          |    case 6 => ${recSyntax.increment("oldStats", "saturday")}
+          |    case 7 => ${recSyntax.increment("oldStats", "sunday")}
+          |  }
+          |  table = table + (email->newStats)
+          |})""".stripMargin
+    }
+
     val tmplStr = FileHelper.getResourceForClassAsString(template, getClass)
     val src = FileHelper.replace(tmplStr,
       Map("{{pkg}}"           -> pkg.mkString("."),
           "{{name}}"          -> name,
-          "{{imports}}"       -> imports(recSyntax),
-          "{{declarations}}"  -> declarations(recSyntax),
-          "{{formats}}"       -> formats(recSyntax),
-          "{{method_body}}"   -> methodBody(recSyntax)
+          "{{imports}}"       -> imports,
+          "{{formats}}"       -> formats,
+          "{{method_body}}"   -> methodBody
       )
     )
     src
   }
-}
 
-case object ScalaRTCaseStudy extends ScalaRTCaseStudy
+  // the types are declared directly in the benchmark
+  def types = List(userStats, shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
+}
