@@ -4,7 +4,9 @@ import benchmarking._
 import scala.collection.immutable.HashMap
 import java.nio.file.{Path, Paths}
 
-trait BenchmarkAndLibraryGenerator extends BenchmarkGenerator {
+// NOTE: This trait is currently only supported for Scala
+// TODO: extend this for other JVM langs as well
+trait BenchmarkAndLibraryGenerator extends ScalaBenchmarkGenerator {
 
   def library: RecordLibrary
 

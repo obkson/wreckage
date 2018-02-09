@@ -61,6 +61,36 @@ THE POSSIBILITY OF SUCH DAMAGE.
             <artifactId>jmh-core</artifactId>
             <version>${jmh.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.12.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-asm</artifactId>
+            <version>6.0.0-scala-1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.sbt</groupId>
+            <artifactId>sbt-interface</artifactId>
+            <version>0.13.15</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.epfl.lamp</groupId>
+            <artifactId>dotty-library_0.6</artifactId>
+            <version>0.6.0-bin-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.epfl.lamp</groupId>
+            <artifactId>dotty-compiler_0.6</artifactId>
+            <version>0.6.0-bin-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.epfl.lamp</groupId>
+            <artifactId>dotty-interfaces</artifactId>
+            <version>0.6.0-bin-SNAPSHOT</version>
+        </dependency>
         {{dependencies}}
     </dependencies>
 
@@ -70,7 +100,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
         <!--
             JMH version to use with this project.
           -->
-        <jmh.version>1.18</jmh.version>
+        <jmh.version>1.20</jmh.version>
 
         <!--
             Java source/target to use for compilation.

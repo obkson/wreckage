@@ -3,7 +3,7 @@ import java.nio.file.Paths
 
 import wreckage.builder._, benchmarking._
 
-object Scala212_Compossible extends BenchmarkGenerator {
+object Scala212_Compossible extends ScalaBenchmarkGenerator {
 
   val name = "scala212_compossible"
 

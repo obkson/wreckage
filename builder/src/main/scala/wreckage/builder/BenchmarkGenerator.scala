@@ -10,38 +10,23 @@ trait BenchmarkGenerator {
   def name: String
   def benchmarks: List[Benchmark]
   def syntax: RecordSyntax
+  def srcFolder: Seq[String]
+  def fileExt: String
+  def pomContent: String
 
   // Default
   def groupId = List("se", "obkson", "wreckage")
   def version = "0.1"
+  def pkg = List(name)
 
-  def srcFolder = List("src", "main", "scala")
-  def fileExt = "scala"
+  // Implemented
+  lazy val sourceFiles = benchmarks.map { benchmark =>
+    val name = s"${benchmark.name}.${fileExt}"
+    val content = benchmark.source(pkg, syntax)
+    SourceFile(pkg, name, content)
+  }
 
   def genBenchmarks(odAbsPath: Path, jarMap: Map[String, Path]): Boolean = {
-    val pkg = List(name)
-
-    val sourceFiles = benchmarks.map { benchmark =>
-      val name = s"${benchmark.name}.${fileExt}"
-      val content = benchmark.source(pkg, syntax)
-      SourceFile(pkg, name, content)
-    }
-
-    // Implemented for Scala:
-    val pom = {
-      val pomPath = "/scala-bench-pom.xml"
-      val scalaVersion = "2.12.4"
-      val deps = syntax.dependencies
-      val pomTmpl = FileHelper.getResourceForClassAsString(pomPath, getClass)
-      FileHelper.replace(pomTmpl,
-        Map("{{name}}"         -> s"JMH Benchmarks for ${name}",
-            "{{groupId}}"      -> groupId.mkString("."),
-            "{{artifactId}}"   -> name,
-            "{{scalaVersion}}" -> scalaVersion,
-            "{{dependencies}}" -> deps.map(_.toXML).mkString("\n")
-        )
-      )
-    }
 
     // Validate output directory
     if (!Files.exists(odAbsPath)) {
@@ -54,11 +39,11 @@ trait BenchmarkGenerator {
     }
 
     // Create project root
-    val projectroot = odAbsPath.resolve(Paths.get(this.name))
+    val projectroot = odAbsPath.resolve(Paths.get(name))
     Logger.info(s"""creating ${projectroot.normalize}""")
     FileHelper.createDirClean(projectroot)
 
-    // Create Maven Scala folder structure
+    // Create Maven standard folder structure
     val srcRoot = projectroot.resolve(Paths.get(".", srcFolder:_*))
     Logger.info(s"""creating ${srcRoot.normalize}""")
     Files.createDirectories(srcRoot)
@@ -88,7 +73,7 @@ trait BenchmarkGenerator {
 
     // Create Maven pom
     val pomPath = projectroot.resolve(Paths.get("pom.xml"))
-    FileHelper.createFile(pomPath, pom)
+    FileHelper.createFile(pomPath, pomContent)
 
     true
   }
@@ -112,5 +97,63 @@ trait BenchmarkGenerator {
 
       genBenchmarks(odAbsPath, jarMap)
     }
+  }
+}
+
+
+trait ScalaBenchmarkGenerator extends BenchmarkGenerator {
+  // Still abstract
+  def name: String
+  def benchmarks: List[Benchmark]
+  def syntax: RecordSyntax
+
+  // Scala-specific stuff
+  val scalaVersion = "2.12.4"
+
+  // Implemented for parent
+  def srcFolder = List("src", "main", "scala")
+  def fileExt = "scala"
+
+  lazy val pomContent = {
+    val deps = syntax.dependencies
+    val pomTmplPath = "/scala-bench-pom.tmpl"
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomTmplPath, getClass)
+    FileHelper.replace(pomTmpl,
+      Map("{{name}}"         -> s"JMH Benchmarks for ${name}",
+          "{{groupId}}"      -> groupId.mkString("."),
+          "{{artifactId}}"   -> name,
+          "{{scalaVersion}}" -> scalaVersion,
+          "{{dependencies}}" -> deps.map(_.toXML).mkString("\n")
+      )
+    )
+  }
+}
+
+
+trait DottyBenchmarkGenerator extends BenchmarkGenerator {
+  // Still abstract
+  def name: String
+  def benchmarks: List[Benchmark]
+  def syntax: RecordSyntax
+
+  // Implemented for parent
+  def srcFolder = List("src", "main", "scala")
+  def fileExt = "scala"
+
+  lazy val pomContent = {
+    val deps = syntax.dependencies
+    val sources = sourceFiles.map { src =>
+      s"<argument>$${project.basedir}/${srcFolder.mkString("/")}/${src.pkg.mkString("/")}/${src.name}</argument>"
+    }.mkString("\n")
+    val pomTmplPath = "/dotty-bench-pom.tmpl"
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomTmplPath, getClass)
+    FileHelper.replace(pomTmpl,
+      Map("{{name}}"         -> s"JMH Benchmarks for ${name}",
+          "{{groupId}}"      -> groupId.mkString("."),
+          "{{artifactId}}"   -> name,
+          "{{dependencies}}" -> deps.map(_.toXML).mkString("\n"),
+          "{{sources}}"      -> sources
+      )
+    )
   }
 }

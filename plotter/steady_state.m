@@ -40,6 +40,7 @@ ymax = 16;
 pigs = [
    cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
    cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible');
+   cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
 ];
 
 colors = [ 
