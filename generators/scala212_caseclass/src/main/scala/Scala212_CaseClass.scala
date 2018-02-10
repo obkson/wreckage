@@ -49,6 +49,7 @@ object Scala212_CaseClass extends BenchmarkAndLibraryGenerator with ScalaLanguag
 
   lazy val benchmarks = List[Benchmark](
     ScalaRTCreationSize,
-    ScalaRTAccessFields
+    ScalaRTAccessFields,
+    ScalaRTAccessSize
   )
 }

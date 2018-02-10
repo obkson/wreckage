@@ -35,8 +35,8 @@ function run_steadystate {
     (cd "$GENDIR/$BENCH" && $CMD)
 }
 
-run_steadystate "scala212_shapeless233"
 run_steadystate "dotty06_caseclass"
 run_steadystate "dotty06_records"
-run_steadystate "scala212_compossible"
 run_steadystate "scala212_caseclass"
+run_steadystate "scala212_compossible"
+run_steadystate "scala212_shapeless233"

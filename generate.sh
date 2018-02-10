@@ -14,6 +14,8 @@ ch/epfl/lamp/dotty-library_0.6/0.6.0-bin-SNAPSHOT/dotty-library_0.6-0.6.0-bin-SN
 ch/epfl/lamp/dotty-compiler_0.6/0.6.0-bin-SNAPSHOT/dotty-compiler_0.6-0.6.0-bin-SNAPSHOT.jar=$DOTTY_LIB/dotty-compiler_0.6-0.6.0-bin-SNAPSHOT.jar \
 ch/epfl/lamp/dotty-interfaces/0.6.0-bin-SNAPSHOT/dotty-interfaces-0.6.0-bin-SNAPSHOT.jar=$DOTTY_LIB/dotty-interfaces-0.6.0-bin-SNAPSHOT.jar"
 
+# purge the local maven dep cache
+rm -r ~/.m2/repository/se/obkson/wreckage
 
 # --------- Dotty 0.6 CASE CLASS ---------
 

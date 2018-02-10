@@ -1,19 +1,11 @@
 clc; close all; clear all;
 
-feature = 'RTCreationSize';
-prefix = 'create_f';
-xlbl = 'Record Size';
-ylbl = 'Creation time [ms]';
-scaling = 0.001;
-ymax = 16;
-
-%feature = 'RTAccessSize';
-%prefix = 'access_f';
+%feature = 'RTCreationSize';
+%prefix = 'create_f';
 %xlbl = 'Record Size';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 2000;
-%ymax = 50;
+%ylbl = 'Creation time [ms]';
+%scaling = 0.001;
+%ymax = 16;
 
 %feature = 'RTAccessFields';
 %prefix = 'access_f';
@@ -21,6 +13,14 @@ ymax = 16;
 %ylbl = 'Access time [ns]';
 %scaling = 1;
 %ymax = 50;
+
+feature = 'RTAccessSize';
+prefix = 'access_f';
+xlbl = 'Record Size';
+ylbl = 'Access time [ns]';
+scaling = 1;
+ymax = 2000;
+ymax = 50;
 
 %feature = 'RTAccessPolymorphism';
 %prefix = 'poly_deg';
