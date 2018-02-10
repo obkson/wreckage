@@ -21,22 +21,34 @@ trait LibraryGenerator extends Generator {
       val recordFiles = benchmarks.flatMap(_.types).map { recTpe =>
         val name = s"${recTpe.alias}.${this.fileExt}"
         val content =
-          s"""|package ${pkg.mkString(".")}
+          s"""|package ${pkg.mkString(".")};
+              |
               |${library.decl(recTpe)}
               |""".stripMargin
         SourceFile(pkg, name, content)
       }
       // find set of unique parents
       val parents = Set[(RecordType)](benchmarks.flatMap(_.types).flatMap(_.parent): _*)
-      val parentFiles = parents.map { pTpe =>
-        val name = s"${pTpe.alias}.${this.fileExt}"
-        val content =
-          s"""|package ${pkg.mkString(".")}
-              |${library.baseDecl(pTpe)}
-              |""".stripMargin
-        SourceFile(pkg, name, content)
+      val parentFiles = parents.flatMap { pTpe =>
+        library.baseDecl(pTpe) match {
+          case Some(decl) =>
+            val name = s"${pTpe.alias}.${this.fileExt}"
+            val content = s"""package ${pkg.mkString(".")};\n\n$decl"""
+            List(SourceFile(pkg, name, content))
+          case None => List()
+        }
       }
-      recordFiles ++ parentFiles
+      val fields = Set[(String, String)](benchmarks.flatMap(_.types).flatMap(_.fields): _*)
+      val fieldFiles = fields.flatMap { case (l, t) =>
+        library.fieldDecl(l, t) match {
+          case Some(decl) =>
+            val name = s"Field_${l}_${t}.${this.fileExt}"
+            val content = s"""package ${pkg.mkString(".")};\n\n$decl"""
+            List(SourceFile(pkg, name, content))
+          case None => List()
+        }
+      }
+      recordFiles ++ parentFiles ++ fieldFiles
     }
     val name = library.name
     val groupId = library.output.groupId

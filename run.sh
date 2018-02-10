@@ -35,6 +35,7 @@ function run_steadystate {
     (cd "$GENDIR/$BENCH" && $CMD)
 }
 
+run_steadystate "java18_fieldinterface"
 run_steadystate "dotty06_caseclass"
 run_steadystate "dotty06_records"
 run_steadystate "scala212_caseclass"

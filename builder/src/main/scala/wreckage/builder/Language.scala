@@ -38,6 +38,7 @@ trait ScalaLanguage extends Language {
           "{{groupId}}"      -> groupId.mkString("."),
           "{{artifactId}}"   -> artifactId,
           "{{version}}"      -> version,
+          "{{dependencies}}" -> dependencies.map(_.toXML).mkString("\n"),
           "{{scalaVersion}}" -> scalaVersion
       )
     )
@@ -74,9 +75,42 @@ trait DottyLanguage extends Language {
       Map("{{name}}"         -> s"Record Library for ${name}",
           "{{groupId}}"      -> groupId.mkString("."),
           "{{artifactId}}"   -> artifactId,
-          "{{dependencies}}" -> dependencies.map(_.toXML).mkString("\n"),
           "{{version}}"      -> version,
+          "{{dependencies}}" -> dependencies.map(_.toXML).mkString("\n"),
           "{{sources}}"      -> sourceXML(sources)
+      )
+    )
+  }
+}
+
+
+trait JavaLanguage extends Language {
+
+  def srcFolder = List("src", "main", "java")
+  def fileExt = "java"
+
+  def benchmarkPomContent(name: String, groupId: Seq[String], artifactId: String, version: String, dependencies: Seq[Dependency], sources: Seq[SourceFile]): String = {
+    val pomTmplPath = "/java-bench-pom.tmpl"
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomTmplPath, getClass)
+    FileHelper.replace(pomTmpl,
+      Map("{{name}}"         -> s"JMH Benchmarks for ${name}",
+          "{{groupId}}"      -> groupId.mkString("."),
+          "{{artifactId}}"   -> artifactId,
+          "{{javaVersion}}"  -> "1.8",
+          "{{dependencies}}" -> dependencies.map(_.toXML).mkString("\n")
+      )
+    )
+  }
+
+  def libraryPomContent(name: String, groupId: Seq[String], artifactId: String, version: String, dependencies: Seq[Dependency], sources: Seq[SourceFile]): String = {
+    val pomTmplPath = "/java-lib-pom.tmpl"
+    val pomTmpl = FileHelper.getResourceForClassAsString(pomTmplPath, getClass)
+    FileHelper.replace(pomTmpl,
+      Map("{{name}}"         -> s"Record Library for ${name}",
+          "{{groupId}}"      -> groupId.mkString("."),
+          "{{artifactId}}"   -> artifactId,
+          "{{version}}"      -> version,
+          "{{dependencies}}" -> dependencies.map(_.toXML).mkString("\n"),
       )
     )
   }

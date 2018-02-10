@@ -17,6 +17,23 @@ ch/epfl/lamp/dotty-interfaces/0.6.0-bin-SNAPSHOT/dotty-interfaces-0.6.0-bin-SNAP
 # purge the local maven dep cache
 rm -r ~/.m2/repository/se/obkson/wreckage
 
+
+# --------- Java 1.8 FIELD INTERFACE -----------
+
+# generate library src
+sbt "project java18_fieldinterface" "run library $GENDIR"
+
+# package to jar
+(cd $GENDIR/java18_fieldinterface_lib && mvn clean package)
+
+# generate benchmarks
+sbt "project java18_fieldinterface" "run benchmarks $GENDIR \
+se/obkson/wreckage/java18_fieldinterface_lib/0.1/java18_fieldinterface_lib-0.1.jar=$GENDIR/java18_fieldinterface_lib/target/java18_fieldinterface_lib-0.1.jar"
+
+# package to jar
+(cd $GENDIR/java18_fieldinterface && mvn clean package)
+
+
 # --------- Dotty 0.6 CASE CLASS ---------
 
 # generate library src

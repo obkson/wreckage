@@ -33,9 +33,9 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
       s"""case class ${tpe.alias}($fieldDecls) $inheritance"""
     }
 
-    def baseDecl(tpe: RecordType): String = {
+    def baseDecl(tpe: RecordType) = Some(
       s"""class ${tpe.alias}(${tpe.fields.map{ case (l, t) => s"val $l: $t" }.mkString(", ")})"""
-    }
+    )
 
     def fieldDecl(label: String, tpe: String) = None
   }

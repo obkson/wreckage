@@ -55,6 +55,7 @@ case class MavenProject(
 
     // Create Maven pom
     val pomPath = projectroot.resolve(Paths.get("pom.xml"))
+    Logger.info(s"""creating ${pomPath.normalize}""")
     FileHelper.createFile(pomPath, pomContent)
 
     true

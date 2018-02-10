@@ -43,3 +43,16 @@ trait ScalaRTBenchmark extends RTBenchmark {
   def state(recSyntax: RecordSyntax): String
   def method(input: Int, recSyntax: RecordSyntax): String
 }
+
+trait JavaRTBenchmark extends RTBenchmark {
+  def template = "/JMHJavaRTTemplate.java"
+  def imports(recSyntax: RecordSyntax) = recSyntax.imports.map(imp => s"import $imp;").mkString("\n")
+
+  /* implementations of this trait must still provide: */
+  def name: String
+  def inputs: Seq[Int]
+  def types: Seq[RecordType]
+
+  def state(recSyntax: RecordSyntax): String
+  def method(input: Int, recSyntax: RecordSyntax): String
+}
