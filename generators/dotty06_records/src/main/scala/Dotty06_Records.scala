@@ -39,6 +39,7 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
   lazy val benchmarks = List[Benchmark](
     ScalaRTCreationSize,
     ScalaRTAccessFields,
-    ScalaRTAccessSize
+    ScalaRTAccessSize,
+    ScalaRTUpdateSize
   )
 }

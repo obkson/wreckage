@@ -14,13 +14,20 @@ clc; close all; clear all;
 %scaling = 1;
 %ymax = 50;
 
-feature = 'RTAccessSize';
-prefix = 'access_f';
+%feature = 'RTAccessSize';
+%prefix = 'access_f';
+%xlbl = 'Record Size';
+%ylbl = 'Access time [ns]';
+%scaling = 1;
+%ymax = 2000;
+%ymax = 50;
+
+feature = 'RTUpdateSize';
+prefix = 'update_f';
 xlbl = 'Record Size';
-ylbl = 'Access time [ns]';
+ylbl = 'Update time [ns]';
 scaling = 1;
-ymax = 2000;
-ymax = 50;
+ymax = 500;
 
 %feature = 'RTAccessPolymorphism';
 %prefix = 'poly_deg';
@@ -30,12 +37,7 @@ ymax = 50;
 %ymax = 2500;
 %ymax = 45;
 
-%feature = 'RTUpdateSize';
-%prefix = 'update_f';
-%xlbl = 'Record Size';
-%ylbl = 'Update time [ns]';
-%scaling = 1;
-%ymax = 500;
+
 
 pigs = [
    cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');

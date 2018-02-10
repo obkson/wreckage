@@ -41,6 +41,7 @@ object Scala212_Shapeless233 extends BenchmarkGenerator with ScalaLanguage {
   lazy val benchmarks = List[Benchmark](
     ScalaRTCreationSize,
     ScalaRTAccessFields,
-    ScalaRTAccessSize
+    ScalaRTAccessSize,
+    ScalaRTUpdateSize
   )
 }
