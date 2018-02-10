@@ -58,6 +58,15 @@ se/obkson/wreckage/scala212_caseclass_lib_2.12/0.1/scala212_caseclass_lib_2.12-0
 (cd $GENDIR/scala212_caseclass && mvn clean package)
 
 
+# --------- Scala 2.12 ANON REFINEMENTS ----------
+
+# generate benchmarks
+sbt "project scala212_anonref" "run $GENDIR"
+
+# package to jar
+(cd $GENDIR/scala212_anonref && mvn clean package)
+
+
 # --------- Scala 2.12 COMPOSSIBLE ----------
 
 # package forked compossible into jar

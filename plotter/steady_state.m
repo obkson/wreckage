@@ -1,11 +1,11 @@
-clc; close all; clear all;
+clc; close all; clear;
 
-%feature = 'RTCreationSize';
-%prefix = 'create_f';
-%xlbl = 'Record Size';
-%ylbl = 'Creation time [ms]';
-%scaling = 0.001;
-%ymax = 16;
+feature = 'RTCreationSize';
+prefix = 'create_f';
+xlbl = 'Record Size';
+ylbl = 'Creation time [ms]';
+scaling = 0.001;
+ymax = 16;
 
 %feature = 'RTAccessFields';
 %prefix = 'access_f';
@@ -22,13 +22,6 @@ clc; close all; clear all;
 %ymax = 2000;
 %ymax = 50;
 
-feature = 'RTUpdateSize';
-prefix = 'update_f';
-xlbl = 'Record Size';
-ylbl = 'Update time [ns]';
-scaling = 1;
-ymax = 500;
-
 %feature = 'RTAccessPolymorphism';
 %prefix = 'poly_deg';
 %xlbl = 'Degree of Polymorphism';
@@ -37,12 +30,21 @@ ymax = 500;
 %ymax = 2500;
 %ymax = 45;
 
+%feature = 'RTUpdateSize';
+%prefix = 'update_f';
+%xlbl = 'Record Size';
+%ylbl = 'Update time [ns]';
+%scaling = 1;
+%ymax = 500;
+
+
 
 
 pigs = [
    cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
+   cellstr('scala212_anonref'), cellstr('Scala 2.12 Anon. Refinements');
    cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible 0.2');
-   cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
+   %cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
    cellstr('dotty06_caseclass'), cellstr('Dotty 0.6 Case class');
    cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
 ];
