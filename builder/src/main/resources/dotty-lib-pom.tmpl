@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>{{name}}</name>
+
+    <groupId>{{groupId}}</groupId>
+    <artifactId>{{artifactId}}</artifactId>
+    <version>{{version}}</version>
+
+    <packaging>jar</packaging>
+
+    <repositories>
+        <repository>
+            <id>repo</id>
+            <url>file:${project.basedir}/repo</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.12.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-asm</artifactId>
+            <version>6.0.0-scala-1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.sbt</groupId>
+            <artifactId>sbt-interface</artifactId>
+            <version>0.13.15</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.epfl.lamp</groupId>
+            <artifactId>dotty-library_0.6</artifactId>
+            <version>0.6.0-bin-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.epfl.lamp</groupId>
+            <artifactId>dotty-compiler_0.6</artifactId>
+            <version>0.6.0-bin-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.epfl.lamp</groupId>
+            <artifactId>dotty-interfaces</artifactId>
+            <version>0.6.0-bin-SNAPSHOT</version>
+        </dependency>
+        {{dependencies}}
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <id>Create directories</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mkdir</executable>
+                            <arguments>
+                                <argument>-p</argument>
+                                <argument>${project.basedir}/target/classes</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>Compile Dotty</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>java</executable>
+                            <arguments>
+                              <argument>-classpath</argument>
+                              <classpath/>
+                              <argument>-Dscala.usejavacp=true</argument>
+                              <argument>dotty.tools.dotc.Main</argument>
+                              <argument>-d</argument>
+                              <argument>${project.basedir}/target/classes/</argument>
+                              {{sources}}
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

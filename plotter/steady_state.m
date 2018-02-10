@@ -1,4 +1,4 @@
-clc; close all; clear;
+clc; close all; clear all;
 
 feature = 'RTCreationSize';
 prefix = 'create_f';
@@ -39,7 +39,9 @@ ymax = 16;
 
 pigs = [
    cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
-   cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible');
+   cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible 0.2');
+   cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
+   cellstr('dotty06_caseclass'), cellstr('Dotty 0.6 Case class');
    cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
 ];
 
@@ -47,6 +49,7 @@ colors = [
     0 0 0;      %black
     1 0.7 0.1   %orange
     0 0.8 0.8;  %heaven
+    
     1 0 0;      %red
     0.2 0.8 0.2;%green
     0 0 0;      %black
