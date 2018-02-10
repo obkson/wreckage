@@ -3,7 +3,7 @@ import java.nio.file.Paths
 
 import wreckage.builder._, benchmarking._
 
-object Dotty06_Records extends DottyBenchmarkGenerator {
+object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
 
   val name = "dotty06_records"
 

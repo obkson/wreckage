@@ -4,11 +4,8 @@ import java.nio.file.{Path, Paths, Files, StandardCopyOption}
 
 case class MavenProject(
   name: String,
-  groupId: Seq[String],
-  artifactId: String,
-  version: String,
   sources: Seq[SourceFile],
-  unmanagedDependencies: Map[Dependency, Path],
+  jarMap: Map[String, Path],
   pomContent: String,
   srcFolder: Seq[String],
 ) {
@@ -44,18 +41,16 @@ case class MavenProject(
     }
 
     // Create local repository
-    val reporoot = projectroot.resolve(Paths.get("repo"))
-    Logger.info(s"""creating ${reporoot.normalize}""")
-    Files.createDirectories(reporoot)
+    val repoRoot = projectroot.resolve(Paths.get("repo"))
+    Logger.info(s"""creating ${repoRoot.normalize}""")
+    Files.createDirectories(repoRoot)
 
-    unmanagedDependencies.foreach{ case (dep, jarLocation) =>
-      val fullPathSeq = dep.groupId ++ List(dep.artifactId, dep.version)
-      val fullPath = reporoot.resolve(Paths.get(".", fullPathSeq:_*))
-      val jarPath = fullPath.resolve(Paths.get(s"${dep.artifactId}-${dep.version}.jar")).normalize()
-      Logger.info(s"""creating ${jarPath}""")
-
-      Files.createDirectories(fullPath)
-      Files.copy(jarLocation, jarPath, StandardCopyOption.REPLACE_EXISTING)
+    jarMap.foreach { case (targetPath, absSourcePath) =>
+      val absTargetPath = repoRoot.resolve(Paths.get(targetPath))
+      val dirPath = absTargetPath.getParent()
+      Files.createDirectories(dirPath)
+      Files.copy(absSourcePath, absTargetPath, StandardCopyOption.REPLACE_EXISTING)
+      Logger.info(s"""creating ${absTargetPath.normalize}""")
     }
 
     // Create Maven pom
