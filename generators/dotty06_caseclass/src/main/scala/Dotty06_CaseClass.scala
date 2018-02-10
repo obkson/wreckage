@@ -15,9 +15,29 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
     val output = Dependency(List("se", "obkson", "wreckage"), s"${name}_0.6", "0.1")
 
     def decl(tpe: RecordType): String = {
-      // e.g. case class CC2(f1: Int, f2: Int)
-      s"""case class ${tpe.alias}(${tpe.fields.map{ case (l, t) => s"$l: $t" }.mkString(", ")})"""
+      val inheritance = tpe.parent match {
+        case Some(pTpe) => s"extends ${pTpe.alias}(${pTpe.fields.map(_._1).mkString(", ")})"
+        case None => ""
+      }
+      val parentFields: Set[String] = tpe.parent match {
+        case Some(pTpe) => Set(pTpe.fields.map(_._1): _*)
+        case None => Set.empty
+      }
+      val fieldDecls = tpe.fields.map{ case (l, t) =>
+        if (parentFields.contains(l))
+          s"override val $l: $t"
+        else
+          s"$l: $t"
+      }.mkString(", ")
+      // e.g. case class CC2(override val f1: Int, f2: Int) extends BaseClass(f1)
+      s"""case class ${tpe.alias}($fieldDecls) $inheritance"""
     }
+
+    def baseDecl(tpe: RecordType): String = {
+      s"""class ${tpe.alias}(${tpe.fields.map{ case (l, t) => s"val $l: $t" }.mkString(", ")})"""
+    }
+
+    def fieldDecl(label: String, tpe: String) = None
   }
 
   lazy val syntax = new RecordSyntax {
@@ -50,6 +70,7 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
+    ScalaRTAccessPolymorphism,
     ScalaRTUpdateSize
   )
 }

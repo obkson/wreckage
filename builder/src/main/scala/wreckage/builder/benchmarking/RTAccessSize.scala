@@ -28,11 +28,10 @@ case object ScalaRTAccessSize extends ScalaRTBenchmark {
   }
 
   def method(input: Int, recSyntax: RecordSyntax): String = {
-
-    def body(input: Int) = recSyntax.access(s"r_$input", s"f$input")
+    val body = recSyntax.access(s"r_$input", s"f$input")
     // return accessed value to prevent dead code elimination
     s"""|@Benchmark
-        |def access_f$input = ${body(input)}
+        |def access_f$input = $body
         |""".stripMargin
   }
 }

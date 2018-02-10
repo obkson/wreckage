@@ -42,6 +42,7 @@ object Scala212_Shapeless233 extends BenchmarkGenerator with ScalaLanguage {
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
+    //ScalaRTAccessPolymorphism // No subtyping! :(
     ScalaRTUpdateSize
   )
 }

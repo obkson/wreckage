@@ -1,7 +1,7 @@
 package wreckage.builder
 import benchmarking._
 
-import scala.collection.immutable.HashMap
+import scala.collection.immutable.{HashMap, Set}
 import java.nio.file.{Path, Paths}
 
 trait LibraryGenerator extends Generator {
@@ -17,16 +17,26 @@ trait LibraryGenerator extends Generator {
   def generateLibrary(odAbsPath: Path): Boolean = {
 
     val sources: List[SourceFile] = {
-      benchmarks.flatMap(_.types).map { recTpe =>
-        val pkg = library.pkg
+      val pkg = library.pkg
+      val recordFiles = benchmarks.flatMap(_.types).map { recTpe =>
         val name = s"${recTpe.alias}.${this.fileExt}"
         val content =
           s"""|package ${pkg.mkString(".")}
               |${library.decl(recTpe)}
               |""".stripMargin
-
         SourceFile(pkg, name, content)
       }
+      // find set of unique parents
+      val parents = Set[(RecordType)](benchmarks.flatMap(_.types).flatMap(_.parent): _*)
+      val parentFiles = parents.map { pTpe =>
+        val name = s"${pTpe.alias}.${this.fileExt}"
+        val content =
+          s"""|package ${pkg.mkString(".")}
+              |${library.baseDecl(pTpe)}
+              |""".stripMargin
+        SourceFile(pkg, name, content)
+      }
+      recordFiles ++ parentFiles
     }
     val name = library.name
     val groupId = library.output.groupId

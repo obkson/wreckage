@@ -40,6 +40,7 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
+    ScalaRTAccessPolymorphism,
     ScalaRTUpdateSize
   )
 }

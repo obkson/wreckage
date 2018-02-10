@@ -14,8 +14,16 @@ object Scala212_Compossible extends BenchmarkGenerator with ScalaLanguage {
 
     val imports = List("org.cvogt.compossible._")
 
-    // use declared type alias for type carrier
-    def tpe(tpe: RecordType): String = tpe.alias
+    override def tpeCarrier(tpe: RecordType): String = {
+      // e.g. (RecordType f1[Int] & f2[Int] &)
+      val carrier = tpe.fields.map{ case (k, v) => s"$k[Int]" }.mkString("(RecordType ", " & "," &)")
+      s"val carrier_${tpe.alias} = $carrier"
+    }
+
+    def tpe(tpe: RecordType): String = {
+      // use type carrier
+      s"carrier_${tpe.alias}.Type"
+    }
 
     // But no need for type alias to construct
     def create(tpe: RecordType, fields: Seq[(String, String)]): String = {
@@ -39,6 +47,7 @@ object Scala212_Compossible extends BenchmarkGenerator with ScalaLanguage {
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,
+    ScalaRTAccessPolymorphism,
     ScalaRTUpdateSize
   )
 }
