@@ -16,14 +16,28 @@ object Java18_FieldInterface extends BenchmarkAndLibraryGenerator with JavaLangu
     val output = Dependency(List("se", "obkson", "wreckage"), name, "0.1")
 
     def decl(tpe: RecordType): String = {
-      val interfaces = tpe.fields.map{ case (l, t) => s"Field_${l}_${t}" }.mkString(", ")
-      val fields = tpe.fields.map{ case (l, t) => s"private final ${t.toLowerCase} _$l;" }.mkString("\n  ")
+      val baseFields = tpe.parent match {
+        case Some(pTpe) => pTpe.fields
+        case None => List()
+      }
+      val baseDecls = tpe.parent match {
+        case Some(pTpe) => List(pTpe.alias)
+        case None => List()
+      }
+      // filter out the fields not already taken care of by the parent interface
+      val interfaceFields = Set[(String, String)](tpe.fields: _*) -- Set[(String, String)](baseFields: _*)
+      val interfaceDecls = interfaceFields.map{ case (l, t) => s"Field_${l}_${t}" }.toList.sorted
+      // implement both parent and the field interfaces
+      val implements = (baseDecls ++ interfaceDecls).mkString(", ")
+
+      // inner components of java class:
+      val privateFields = tpe.fields.map{ case (l, t) => s"private final ${t.toLowerCase} _$l;" }.mkString("\n  ")
       val constructorParams = tpe.fields.map{ case (l, t) => s"int $l" }.mkString(",")
       val constructorAssign = tpe.fields.map{ case (l, _) => s"_$l = $l;" }.mkString("\n    ")
       val getters = tpe.fields.map{ case (l, t) => s"  public ${t.toLowerCase} $l() {return _$l;}" }.mkString("\n")
 
-      s"""|public class ${tpe.alias} implements $interfaces {
-          |  $fields
+      s"""|public class ${tpe.alias} implements $implements {
+          |  $privateFields
           |
           |  public ${tpe.alias}($constructorParams) {
           |    $constructorAssign
@@ -33,7 +47,14 @@ object Java18_FieldInterface extends BenchmarkAndLibraryGenerator with JavaLangu
           |}""".stripMargin
     }
 
-    def baseDecl(tpe: RecordType) = None
+    def baseDecl(tpe: RecordType) = {
+      val getters = tpe.fields.map{ case (l, t) => s"  public ${t.toLowerCase} $l();" }.mkString("\n")
+      Some(
+        s"""|public interface ${tpe.alias} {
+            |$getters
+            |}""".stripMargin
+      )
+    }
 
     def fieldDecl(label: String, tpe: String) = Some(
       s"""|public interface Field_${label}_${tpe} {
@@ -59,7 +80,7 @@ object Java18_FieldInterface extends BenchmarkAndLibraryGenerator with JavaLangu
     // getter notation
     def access(prefix: String, field: String): String = {
       // e.g. rec.f4()
-      s"""$prefix.$field"""
+      s"""$prefix.$field()"""
     }
 
     // TODO!!!
@@ -67,6 +88,7 @@ object Java18_FieldInterface extends BenchmarkAndLibraryGenerator with JavaLangu
   }
 
   lazy val benchmarks = List[Benchmark](
-    JavaRTCreationSize
+    JavaRTCreationSize,
+    JavaRTAccessPolymorphism
   )
 }
