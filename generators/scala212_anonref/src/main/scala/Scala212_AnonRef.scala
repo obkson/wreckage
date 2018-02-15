@@ -23,9 +23,9 @@ object Scala212_AnonRef extends BenchmarkGenerator with ScalaLanguage {
     }
 
     // dot notation
-    def access(prefix: String, field: String): String = {
+    def access(prefix: String, label: String, tpe: String): String = {
       // e.g. rec.f2
-      s"""$prefix.$field"""
+      s"""$prefix.$label"""
     }
 
     // Not supported

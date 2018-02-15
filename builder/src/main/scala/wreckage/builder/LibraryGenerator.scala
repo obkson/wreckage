@@ -18,7 +18,7 @@ trait LibraryGenerator extends Generator {
 
     val sources: List[SourceFile] = {
       val pkg = library.pkg
-      val recordFiles = benchmarks.flatMap(_.types).map { recTpe =>
+      val recordFiles = Set[RecordType](benchmarks.flatMap(_.types): _*).map { recTpe =>
         val name = s"${recTpe.alias}.${this.fileExt}"
         val content =
           s"""|package ${pkg.mkString(".")};
@@ -26,7 +26,7 @@ trait LibraryGenerator extends Generator {
               |${library.decl(recTpe)}
               |""".stripMargin
         SourceFile(pkg, name, content)
-      }
+      }.toList
       // find set of unique parents
       val parents = Set[(RecordType)](benchmarks.flatMap(_.types).flatMap(_.parent): _*)
       val parentFiles = parents.flatMap { pTpe =>
@@ -42,7 +42,7 @@ trait LibraryGenerator extends Generator {
       val fieldFiles = fields.flatMap { case (l, t) =>
         library.fieldDecl(l, t) match {
           case Some(decl) =>
-            val name = s"Field_${l}_${t}.${this.fileExt}"
+            val name = s"Field_${l}.${this.fileExt}"
             val content = s"""package ${pkg.mkString(".")};\n\n$decl"""
             List(SourceFile(pkg, name, content))
           case None => List()

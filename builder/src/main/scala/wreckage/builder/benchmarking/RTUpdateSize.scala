@@ -7,7 +7,7 @@ package benchmarking
 case object ScalaRTUpdateSize extends ScalaRTBenchmark {
   val name = "RTUpdateSize"
 
-  val inputs: Seq[Int] = List(33,66,100)
+  val inputs: Seq[Int] = List(1,10,20,30,40,50,60,70)
 
   // one record type for each input size
   def types = inputs map typeForInput

@@ -20,6 +20,29 @@ rm -r ~/.m2/repository/se/obkson/wreckage
 sbt "project parsing" "package"
 
 
+# --------- Scala 2.12 COMPOSSIBLE ----------
+
+# package forked compossible into jar
+(cd records/compossible && sbt clean package)
+
+# generate benchmarks
+sbt "project scala212_compossible" "run $GENDIR \
+org/cvogt/compossible_2.12/0.2-SNAPSHOT/compossible_2.12-0.2-SNAPSHOT.jar=./records/compossible/target/scala-2.12/compossible_2.12-0.2-SNAPSHOT.jar \
+se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
+
+# package to jar
+(cd $GENDIR/scala212_compossible && mvn clean package)
+
+
+# --------- Scala 2.12 SHAPELESS 2.3.3 ----------
+
+# generate benchmarks
+sbt "project scala212_shapeless233" "run $GENDIR \
+se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
+
+# package to jar
+(cd $GENDIR/scala212_shapeless233 && mvn clean package)
+
 ## --------- Java 1.8 FIELD INTERFACE -----------
 #
 ## generate library src
@@ -36,20 +59,21 @@ sbt "project parsing" "package"
 #(cd $GENDIR/java18_fieldinterface && mvn clean package)
 #
 #
-## --------- Dotty 0.6 FIELD TRAIT GENERIC ---------
-#
-## generate library src
-#sbt "project dotty06_fieldtraitgeneric" "run library $GENDIR $DOTTY_DEPS"
-#
-## package to jar
-#(cd $GENDIR/dotty06_fieldtraitgeneric_lib && mvn clean package)
-#
-## generate benchmarks
-#sbt "project dotty06_fieldtraitgeneric" "run benchmarks $GENDIR $DOTTY_DEPS \
-#se/obkson/wreckage/dotty06_fieldtraitgeneric_lib_0.6/0.1/dotty06_fieldtraitgeneric_lib_0.6-0.1.jar=$GENDIR/dotty06_fieldtraitgeneric_lib/target/dotty06_fieldtraitgeneric_lib_0.6-0.1.jar"
-#
-## package to jar
-#(cd $GENDIR/dotty06_fieldtraitgeneric && mvn clean package)
+# --------- Dotty 0.6 FIELD TRAIT GENERIC ---------
+
+# generate library src
+sbt "project dotty06_fieldtraitgeneric" "run library $GENDIR $DOTTY_DEPS"
+
+# package to jar
+(cd $GENDIR/dotty06_fieldtraitgeneric_lib && mvn clean package)
+
+# generate benchmarks
+sbt "project dotty06_fieldtraitgeneric" "run benchmarks $GENDIR $DOTTY_DEPS \
+se/obkson/wreckage/dotty06_fieldtraitgeneric_lib_0.6/0.1/dotty06_fieldtraitgeneric_lib_0.6-0.1.jar=$GENDIR/dotty06_fieldtraitgeneric_lib/target/dotty06_fieldtraitgeneric_lib_0.6-0.1.jar \
+se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
+
+# package to jar
+(cd $GENDIR/dotty06_fieldtraitgeneric && mvn clean package)
 
 
 
@@ -97,34 +121,12 @@ se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-
 #(cd $GENDIR/scala212_caseclass && mvn clean package)
 #
 #
-## --------- Scala 2.12 ANON REFINEMENTS ----------
-#
-## generate benchmarks
-#sbt "project scala212_anonref" "run $GENDIR"
-#
-## package to jar
-#(cd $GENDIR/scala212_anonref && mvn clean package)
-#
-#
-# --------- Scala 2.12 COMPOSSIBLE ----------
-#
-## package forked compossible into jar
-#(cd records/compossible && sbt clean package)
-#
-## generate benchmarks
-#sbt "project scala212_compossible" "run $GENDIR \
-#org/cvogt/compossible_2.12/0.2-SNAPSHOT/compossible_2.12-0.2-SNAPSHOT.jar=./records/compossible/target/scala-2.12/compossible_2.12-0.2-SNAPSHOT.jar \
-#se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
-#
-## package to jar
-#(cd $GENDIR/scala212_compossible && mvn clean package)
-#
-#
-## --------- Scala 2.12 SHAPELESS 2.3.3 ----------
-#
-## generate benchmarks
-#sbt "project scala212_shapeless233" "run $GENDIR \
-#se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
-#
-## package to jar
-#(cd $GENDIR/scala212_shapeless233 && mvn clean package)
+# --------- Scala 2.12 ANON REFINEMENTS ----------
+
+# generate benchmarks
+sbt "project scala212_anonref" "run $GENDIR"
+
+# package to jar
+(cd $GENDIR/scala212_anonref && mvn clean package)
+
+

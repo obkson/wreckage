@@ -42,7 +42,7 @@ case object ScalaRTAccessPolymorphism extends ScalaRTBenchmark with RTAccessPoly
     s"""@Benchmark
        |def poly_deg$input = {
        |  i = (i + 1) % ${input}
-       |  ${recSyntax.access("rs(i)", s"g")}
+       |  ${recSyntax.access("rs(i)", s"g", "Int")}
        |}
        |""".stripMargin
   }
@@ -83,7 +83,7 @@ case object JavaRTAccessPolymorphism extends JavaRTBenchmark with RTAccessPolymo
     s"""@Benchmark
        |public int poly_deg$input() throws Exception {
        |  i = (i + 1) % $input;
-       |  return ${recSyntax.access("rs.get(i)", s"g")};
+       |  return ${recSyntax.access("rs.get(i)", s"g", "Int")};
        |}
        |""".stripMargin
   }

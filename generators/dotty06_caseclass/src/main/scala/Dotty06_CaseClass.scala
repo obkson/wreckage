@@ -71,14 +71,14 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
     }
 
     // dot notation
-    def access(prefix: String, field: String): String = {
+    def access(prefix: String, label: String, tpe: String): String = {
       // e.g. rec.f4
-      s"""$prefix.$field"""
+      s"""$prefix.$label"""
     }
 
     // use case class built-in copy method
     def increment(prefix: String, field: String): String = {
-      s"""$prefix.copy($field=${access(prefix, field)}+1)"""
+      s"""$prefix.copy($field=${access(prefix, field, "Int")}+1)"""
     }
   }
 

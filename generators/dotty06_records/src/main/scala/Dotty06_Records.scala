@@ -29,9 +29,9 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
     }
 
     // Dot notation
-    def access(prefix: String, field: String): String = {
+    def access(prefix: String, label: String, tpe: String): String = {
       // e.g. rec.f2
-      s"""$prefix.$field"""
+      s"""$prefix.$label"""
     }
 
     // *Safe*: Extend with already existing field

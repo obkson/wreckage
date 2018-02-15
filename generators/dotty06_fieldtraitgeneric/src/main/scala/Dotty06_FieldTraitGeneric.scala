@@ -16,35 +16,23 @@ object Dotty06_FieldTraitGeneric extends BenchmarkAndLibraryGenerator with Dotty
     val output = Dependency(List("se", "obkson", "wreckage"), s"${name}_0.6", "0.1")
 
     def decl(tpe: RecordType): String = {
-      val baseFields = tpe.parent match {
-        case Some(pTpe) => pTpe.fields
-        case None => List()
-      }
-      val baseDecls = tpe.parent match {
-        case Some(pTpe) => List(s"""${pTpe.alias}[${pTpe.fields.map{kv => kv._2}.mkString(",")}]""")
-        case None => List()
-      }
-      // filter out the fields not already taken care of by the parent interface
-      val interfaceFields = Set[(String, String)](tpe.fields: _*) -- Set[(String, String)](baseFields: _*)
-      val interfaceDecls = interfaceFields.map{ case (l, t) => s"Field_${l}_${t}[$t]" }.toList.sorted
-      // implement both parent and the field interfaces
-      val implements = (baseDecls ++ interfaceDecls).mkString(" with ")
+      val traitDecls = tpe.fields.map{ case (l, t) => s"Field_${l}[$t]" }.mkString("extends ", " with ", "")
       val params = tpe.fields.map{ case (l, t) => s"$l: $t" }.mkString(",")
 
-      s"""case class ${tpe.alias}($params) extends $implements"""
+      val imports = tpe.fields.flatMap(fld => fld match {
+        case (_, "Instant") => Some("import java.time.Instant")
+        case _ => None
+      }).mkString("\n")
+
+      s"""|$imports
+          |case class ${tpe.alias}($params) $traitDecls
+          |""".stripMargin
     }
 
-    def baseDecl(tpe: RecordType) = {
-      val getters = tpe.fields.map{ case (l, _) => s"  def $l: T_$l" }.mkString("\n")
-      Some(
-        s"""|trait ${tpe.alias}[${tpe.fields.map{ case (l, _) => s"T_$l"}.mkString(",")}] {
-            |$getters
-            |}""".stripMargin
-      )
-    }
+    def baseDecl(tpe: RecordType) = None
 
     def fieldDecl(label: String, tpe: String) = Some(
-      s"""|trait Field_${label}_${tpe}[T] {
+      s"""|trait Field_${label}[T] {
           |  def $label: T
           |}""".stripMargin
     )
@@ -55,11 +43,15 @@ object Dotty06_FieldTraitGeneric extends BenchmarkAndLibraryGenerator with Dotty
 
     def imports = List(s"${library.pkg.mkString(".")}._")
 
-    // nominal typing
-    def tpe(tpe: RecordType): String = if (tpe.alias == "RTAccessPolymorphism_Base")
-      tpe.alias + "[Int]"
-    else
-      tpe.alias
+    override def tpeCarrier(tpe: RecordType) = tpe.alias match {
+      case "BaseCommitEvent"
+         | "BaseCommit"
+         | "BaseCommitIdentity" => s"type ${tpe.alias} = AnyRef"
+      case _ => ""
+    }
+
+    // type erasure
+    def tpe(tpe: RecordType): String = "AnyRef"
 
     // call constructor in lib
     def create(tpe: RecordType, fields: Seq[(String, String)]): String = {
@@ -67,18 +59,23 @@ object Dotty06_FieldTraitGeneric extends BenchmarkAndLibraryGenerator with Dotty
       s"""${tpe.alias}(${fields.map{ case (l, v) => s"$l=$v" }.mkString(", ")})"""
     }
 
-    // dot notation
-    def access(prefix: String, field: String): String = {
-      // e.g. rec.f4
-      s"""$prefix.$field"""
+    // cast to trait before access
+    def access(prefix: String, label: String, tpe: String): String = {
+      // e.g. rec.asInstanceOf[Field_f4_[Int]].f4
+      s"""$prefix.asInstanceOf[Field_${label}[$tpe]].$label"""
     }
 
-    // TODO!!!
-    def increment(prefix: String, field: String): String = ???
+    def increment(prefix: String, field: String): String = {
+      s"$prefix.copy($field=${access(prefix, field, "Int")}+1)"
+    }
   }
 
   lazy val benchmarks = List[Benchmark](
+    ScalaRTCaseStudyComplete,
+    ScalaRTCaseStudyCompleteSubtyped,
     ScalaRTCreationSize,
+    ScalaRTAccessSize,
+    ScalaRTAccessFields,
     ScalaRTAccessPolymorphism
   )
 }

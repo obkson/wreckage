@@ -1,30 +1,24 @@
 #!/usr/bin/env bash
 
 GENDIR=$1
-FEATURE=$2
-DATADIR=$3
+DATADIR=$2
 
 if [ -z "$GENDIR" ]; then
   echo "$0: no base directory given" >&2
   echo "" >&2
-  echo "usage: $0 basedir feature datadir" >&2
-  exit 1
-fi
-if [ -z "$FEATURE" ]; then
-  echo "$0: no feature given" >&2
-  echo "" >&2
-  echo "usage: $0 basedir feature datadir" >&2
+  echo "usage: $0 basedir datadir" >&2
   exit 1
 fi
 if [ -z "$DATADIR" ]; then
   echo "$0: no data output directory given" >&2
   echo "" >&2
-  echo "usage: $0 basedir feature datadir" >&2
+  echo "usage: $0 basedir datadir" >&2
   exit 1
 fi
 
 function run_steadystate {
     BENCH=$1
+    FEATURE=$2
     DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
 
     # 0 warmups, 20 iterations in 1 thread in 10 consequtive forks of a jvm
@@ -35,13 +29,14 @@ function run_steadystate {
     (cd "$GENDIR/$BENCH" && $CMD)
 }
 
-#run_steadystate "java18_fieldinterface"
-#run_steadystate "scala211_fieldtraitgeneric"
-#run_steadystate "dotty06_fieldtraitgeneric"
-#run_steadystate "dotty06_fieldtrait"
-run_steadystate "dotty06_records"
-run_steadystate "dotty06_caseclass"
-#run_steadystate "scala212_anonref"
-#run_steadystate "scala212_compossible"
-#run_steadystate "scala212_caseclass"
-#run_steadystate "scala212_shapeless233"
+run_steadystate "dotty06_fieldtraitgeneric" "RTAccessPolymorphism"
+run_steadystate "scala212_compossible" "RTAccessPolymorphism"
+run_steadystate "scala212_anonref" "RTAccessPolymorphism"
+
+
+run_steadystate "dotty06_caseclass" "RTUpdateSize"
+run_steadystate "dotty06_records" "RTUpdateSize"
+run_steadystate "scala212_compossible" "RTUpdateSize"
+run_steadystate "scala212_shapeless233" "RTUpdateSize"
+
+run_steadystate "dotty06_caseclass" "RTAccessPolymorphism"

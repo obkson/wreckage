@@ -32,9 +32,9 @@ object Scala212_Shapeless233 extends BenchmarkGenerator with ScalaLanguage {
     }
 
     // getter fn with symbol argument
-    def access(prefix: String, field: String): String = {
+    def access(prefix: String, label: String, tpe: String): String = {
       // e.g. rec.get('f2)
-      s"""$prefix.get('$field)"""
+      s"""$prefix.get('$label)"""
     }
 
     // special "updateWith" method

@@ -108,8 +108,8 @@ case object ScalaRTCaseStudyComplete extends ScalaRTCaseStudy {
     val formats = {
       def jsonFormat(tpe: RecordType) = {
         val fieldExtractors = tpe.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
-        s"""implicit object ${tpe.alias}Format extends JsonFormat[${recSyntax.tpe(tpe)}] {
-           |  def read(ast: JValue): ${recSyntax.tpe(tpe)} = ast match {
+        s"""implicit object ${tpe.alias}Format extends JsonFormat[${tpe.alias}] {
+           |  def read(ast: JValue): ${tpe.alias} = ast match {
            |    case JObject(map) => {
            |      ${fieldExtractors.mkString("\n      ")}
            |      ${recSyntax.create(tpe, tpe.fields.map{ case (name, _) => (name, name) })}
@@ -130,8 +130,8 @@ case object ScalaRTCaseStudyComplete extends ScalaRTCaseStudy {
 
       s"""|val commits = parse(lines)
           |commits.foreach(obj => {
-          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "email")}
-          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "date")}
+          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "Commit"), "author", "CommitIdentity"), "email", "String")}
+          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "Commit"), "author", "CommitIdentity"), "date", "Instant")}
           |    .atZone(ZoneId.systemDefault())
           |    .getDayOfWeek().getValue()
           |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats
@@ -210,8 +210,8 @@ case object ScalaRTCaseStudyCompleteSubtyped extends ScalaRTCaseStudy {
     val formats = {
       def jsonFormat(tpe: RecordType) = {
         val fieldExtractors = tpe.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
-        s"""implicit object ${tpe.alias}Format extends JsonFormat[${recSyntax.tpe(tpe)}] {
-           |  def read(ast: JValue): ${recSyntax.tpe(tpe)} = ast match {
+        s"""implicit object ${tpe.alias}Format extends JsonFormat[${tpe.alias}] {
+           |  def read(ast: JValue): ${tpe.alias} = ast match {
            |    case JObject(map) => {
            |      ${fieldExtractors.mkString("\n      ")}
            |      ${recSyntax.create(tpe, tpe.fields.map{ case (name, _) => (name, name) })}
@@ -230,10 +230,10 @@ case object ScalaRTCaseStudyCompleteSubtyped extends ScalaRTCaseStudy {
         ("tuesday", "0") :: ("wednesday", "0") :: ("thursday", "0") :: ("friday", "0") ::
         ("saturday", "0") :: ("sunday", "0") :: Nil)
 
-      s"""|val commits: Seq[${recSyntax.tpe(baseCommitEvent)}] = parse(lines)
+      s"""|val commits: Seq[BaseCommitEvent] = parse(lines)
           |commits.foreach(obj => {
-          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "email")}
-          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit"), "author"), "date")}
+          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "BaseCommit"), "author", "BaseCommitIdentity"), "email", "String")}
+          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "BaseCommit"), "author", "BaseCommitIdentity"), "date", "Instant")}
           |    .atZone(ZoneId.systemDefault())
           |    .getDayOfWeek().getValue()
           |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats

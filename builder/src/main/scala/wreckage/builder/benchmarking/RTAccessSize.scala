@@ -22,10 +22,11 @@ case object ScalaRTAccessSize extends ScalaRTBenchmark with RTAccessSize {
 
   def state(recSyntax: RecordSyntax): String = {
     inputs.map{input =>
+      val tpe = typeForInput(input)
       val args = (1 to input).map { idx => (s"f$idx", s"$idx") }
       // let the accessed records be mutable vars in benchmarking state to prevent constant folding
-      s"""|
-          |var r_$input = ${recSyntax.create(typeForInput(input), args)}
+      s"""|${recSyntax.tpeCarrier(tpe)}
+          |var r_$input: ${recSyntax.tpe(tpe)} = ${recSyntax.create(tpe, args)}
           |""".stripMargin
     }.mkString("\n")
   }
@@ -33,7 +34,7 @@ case object ScalaRTAccessSize extends ScalaRTBenchmark with RTAccessSize {
   def method(input: Int, recSyntax: RecordSyntax): String = {
     // return accessed value to prevent dead code elimination
     s"""|@Benchmark
-        |def access_f$input = ${recSyntax.access(s"r_$input", s"f$input")}
+        |def access_f$input = ${recSyntax.access(s"r_$input", s"f$input", "Int")}
         |""".stripMargin
   }
 }
@@ -55,7 +56,7 @@ case object JavaRTAccessSize extends JavaRTBenchmark with RTAccessSize {
     // return accessed value to prevent dead code elimination
     s"""|@Benchmark
         |public int access_f$input() throws Exception {
-        |  return ${recSyntax.access(s"r_$input", s"f$input")};
+        |  return ${recSyntax.access(s"r_$input", s"f$input", "Int")};
         |}""".stripMargin
   }
 }

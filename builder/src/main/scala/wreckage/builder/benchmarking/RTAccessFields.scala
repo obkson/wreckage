@@ -21,16 +21,18 @@ case object ScalaRTAccessFields extends ScalaRTBenchmark with RTAccessFields {
 
   def state(recSyntax: RecordSyntax): String = {
     val tpe = types(0)
-    val fields = (1 to inputs.max).map { idx => (s"f$idx", s"$idx") }
+    val args = (1 to inputs.max).map { idx => (s"f$idx", s"$idx") }
 
     // let the accessed record be a mutable var in benchmarking state to prevent constant folding
-    s"var r = ${recSyntax.create(tpe, fields)}"
+    s"""|${recSyntax.tpeCarrier(tpe)}
+        |var r: ${recSyntax.tpe(tpe)} = ${recSyntax.create(tpe, args)}
+        |""".stripMargin
   }
 
   def method(input: Int, recSyntax: RecordSyntax): String = {
     // return accessed value to prevent dead code elimination
     s"""|@Benchmark
-        |def access_f$input = ${recSyntax.access("r", s"f$input")}
+        |def access_f$input = ${recSyntax.access("r", s"f$input", "Int")}
         |""".stripMargin
   }
 }
@@ -42,17 +44,17 @@ case object JavaRTAccessFields extends JavaRTBenchmark with RTAccessFields {
 
   def state(recSyntax: RecordSyntax): String = {
     val tpe = types(0)
-    val fields = (1 to inputs.max).map { idx => (s"f$idx", s"$idx") }
+    val args = (1 to inputs.max).map { idx => (s"f$idx", s"$idx") }
 
     // let the accessed record be a mutable var in benchmarking state to prevent constant folding
-    s"${recSyntax.tpe(tpe)} r = ${recSyntax.create(tpe, fields)};"
+    s"${recSyntax.tpe(tpe)} r = ${recSyntax.create(tpe, args)};"
   }
 
   def method(input: Int, recSyntax: RecordSyntax): String = {
     // return accessed value to prevent dead code elimination
     s"""|@Benchmark
         |public int access_f$input() throws Exception {
-        |  return ${recSyntax.access("r", s"f$input")};
+        |  return ${recSyntax.access("r", s"f$input", "Int")};
         |}""".stripMargin
   }
 }
