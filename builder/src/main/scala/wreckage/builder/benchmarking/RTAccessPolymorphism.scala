@@ -1,32 +1,34 @@
 package wreckage.builder
 package benchmarking
 
-// Scala / Dotty version
-
-case object ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
+trait RTAccessPolymorphism {
   val name = "RTAccessPolymorphism"
-
-  val inputs: Seq[Int] = List(1,2,4,8,16,32)
+  val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
 
   def types = (1 to inputs.max) map { index => subType(index) }
-
   def baseType = RecordType(s"RTAccessPolymorphism_Base", None, List(("g", "Int")))
+
   def subType(index: Int): RecordType = {
-    val fields: Seq[(String, String)] =
-      ((1 until index).map( idx => (s"f$idx", "Int") )) ++
-      List( ("g", "Int") ) ++
-      ((index+1 to inputs.max).map( idx => (s"f$idx", "Int") ))
+    val gpref = (1 until index) map { idx => (s"f$idx", "Int") }
+    val field = List( ("g", "Int") )
+    val gpost = (index+1 to inputs.max) map { idx => (s"f$idx", "Int") }
+    val fields: Seq[(String, String)] = gpref ++ field ++ gpost
     RecordType(s"RTAccessPolymorphism_SubType$index", Some(baseType), fields)
   }
+}
+
+// Scala / Dotty version
+
+case object ScalaRTAccessPolymorphism extends ScalaRTBenchmark with RTAccessPolymorphism {
 
   def state(recSyntax: RecordSyntax): String = {
     // Create an Array containing records of various subtypes of the base type with field "f: Int"
     val rs = (1 to inputs.max).map { index =>
+      val gpref = (1 until index) map { idx => (s"f$idx", s"$idx") }
+      val field = List( ("g", s"$index") )
+      val gpost = (index+1 to inputs.max) map { idx => (s"f$idx", s"$idx") }
       val tpe = subType(index)
-      val args: Seq[(String, String)] =
-        ((1 until index) map { idx => (s"f$idx", s"$idx") }) ++
-        List( ("g", s"$index") ) ++
-        ((index+1 to inputs.max) map { idx => (s"f$idx", s"$idx") })
+      val args: Seq[(String, String)] = gpref ++ field ++ gpost
       recSyntax.create(tpe, args)
     }.mkString(s"Array[${recSyntax.tpe(baseType)}](\n  ", ",\n  ",")")
 
@@ -48,24 +50,10 @@ case object ScalaRTAccessPolymorphism extends ScalaRTBenchmark {
 
 // Java version
 
-case object JavaRTAccessPolymorphism extends JavaRTBenchmark {
-  val name = "RTAccessPolymorphism"
-
-  val inputs: Seq[Int] = List(1,2,4,8,16,32)
+case object JavaRTAccessPolymorphism extends JavaRTBenchmark with RTAccessPolymorphism {
 
   override def imports(recSyntax: RecordSyntax)
     = super.imports(recSyntax) + "\n" + "import java.util.ArrayList;"
-
-  def types = (1 to inputs.max) map { index => subType(index) }
-
-  def baseType = RecordType(s"RTAccessPolymorphism_Base", None, List(("g", "Int")))
-  def subType(index: Int): RecordType = {
-    val gpref = (1 until index) map { idx => (s"f$idx", "Int") }
-    val field = List( ("g", "Int") )
-    val gpost = (index+1 to inputs.max) map { idx => (s"f$idx", "Int") }
-    val fields: Seq[(String, String)] = gpref ++ field ++ gpost
-    RecordType(s"RTAccessPolymorphism_SubType$index", Some(baseType), fields)
-  }
 
   def state(recSyntax: RecordSyntax): String = {
     // Create an Array containing records of various subtypes of the base type with field "f: Int"

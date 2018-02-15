@@ -6,6 +6,8 @@ scalaVersion := "2.12.4"
 
 lazy val builder = (project in file("builder"))
 
+lazy val scala211_fieldtraitgeneric = (project in file("generators/scala211_fieldtraitgeneric")).dependsOn(builder)
+
 lazy val scala212_caseclass = (project in file("generators/scala212_caseclass")).dependsOn(builder)
 
 lazy val scala212_anonref = (project in file("generators/scala212_anonref")).dependsOn(builder)
@@ -17,5 +19,9 @@ lazy val scala212_shapeless233 = (project in file("generators/scala212_shapeless
 lazy val dotty06_records = (project in file("generators/dotty06_records")).dependsOn(builder)
 
 lazy val dotty06_caseclass = (project in file("generators/dotty06_caseclass")).dependsOn(builder)
+
+lazy val dotty06_fieldtrait = (project in file("generators/dotty06_fieldtrait")).dependsOn(builder)
+
+lazy val dotty06_fieldtraitgeneric = (project in file("generators/dotty06_fieldtraitgeneric")).dependsOn(builder)
 
 lazy val java18_fieldinterface = (project in file("generators/java18_fieldinterface")).dependsOn(builder)

@@ -1,13 +1,10 @@
 package wreckage.builder
 package benchmarking
 
-
-// Scala Version
-
-case object ScalaRTAccessFields extends ScalaRTBenchmark {
+trait RTAccessFields {
   val name = "RTAccessFields"
 
-  val inputs: Seq[Int] = List(1,2,4,8,16,32)
+  val inputs: Seq[Int] = List(1,10,20,30)
 
   def types = {
     val numFields = inputs.max
@@ -16,6 +13,11 @@ case object ScalaRTAccessFields extends ScalaRTBenchmark {
       RecordType(s"RTAccessFields_Rec$numFields", None, fields)
     )
   }
+}
+
+// Scala Version
+
+case object ScalaRTAccessFields extends ScalaRTBenchmark with RTAccessFields {
 
   def state(recSyntax: RecordSyntax): String = {
     val tpe = types(0)
@@ -26,11 +28,31 @@ case object ScalaRTAccessFields extends ScalaRTBenchmark {
   }
 
   def method(input: Int, recSyntax: RecordSyntax): String = {
-
-    def body(input: Int): String = recSyntax.access("r", s"f$input")
     // return accessed value to prevent dead code elimination
     s"""|@Benchmark
-        |def access_f$input = ${body(input)}
+        |def access_f$input = ${recSyntax.access("r", s"f$input")}
         |""".stripMargin
+  }
+}
+
+
+// Java Version
+
+case object JavaRTAccessFields extends JavaRTBenchmark with RTAccessFields {
+
+  def state(recSyntax: RecordSyntax): String = {
+    val tpe = types(0)
+    val fields = (1 to inputs.max).map { idx => (s"f$idx", s"$idx") }
+
+    // let the accessed record be a mutable var in benchmarking state to prevent constant folding
+    s"${recSyntax.tpe(tpe)} r = ${recSyntax.create(tpe, fields)};"
+  }
+
+  def method(input: Int, recSyntax: RecordSyntax): String = {
+    // return accessed value to prevent dead code elimination
+    s"""|@Benchmark
+        |public int access_f$input() throws Exception {
+        |  return ${recSyntax.access("r", s"f$input")};
+        |}""".stripMargin
   }
 }

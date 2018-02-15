@@ -27,8 +27,8 @@ function run_steadystate {
     BENCH=$1
     DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
 
-    # 0 warmups, 5 iterations in 1 thread in 5 consequtive forks of a jvm
-    CMD="java -jar target/benchmarks.jar -wi 0 -i 5 -t 1 -f 5 $FEATURE -rf json -rff $DATAFILE"
+    # 0 warmups, 20 iterations in 1 thread in 10 consequtive forks of a jvm
+    CMD="java -jar target/benchmarks.jar -wi 0 -i 20 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
     echo "$CMD"
 
     mkdir -p $DATADIR/$BENCH
@@ -36,9 +36,12 @@ function run_steadystate {
 }
 
 run_steadystate "java18_fieldinterface"
-#run_steadystate "dotty06_caseclass"
-#run_steadystate "dotty06_records"
-#run_steadystate "scala212_caseclass"
-#run_steadystate "scala212_anonref"
-#run_steadystate "scala212_compossible"
-#run_steadystate "scala212_shapeless233"
+#run_steadystate "scala211_fieldtraitgeneric"
+#run_steadystate "dotty06_fieldtraitgeneric"
+#run_steadystate "dotty06_fieldtrait"
+run_steadystate "dotty06_records"
+run_steadystate "dotty06_caseclass"
+run_steadystate "scala212_anonref"
+run_steadystate "scala212_compossible"
+run_steadystate "scala212_caseclass"
+run_steadystate "scala212_shapeless233"

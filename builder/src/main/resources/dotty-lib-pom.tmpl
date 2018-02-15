@@ -84,6 +84,7 @@
                         <configuration>
                             <executable>java</executable>
                             <arguments>
+                              <argument>-Xss4m</argument> <!-- Compiling big records needs lots of stack space -->
                               <argument>-classpath</argument>
                               <classpath/>
                               <argument>-Dscala.usejavacp=true</argument>

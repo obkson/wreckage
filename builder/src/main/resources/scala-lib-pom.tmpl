@@ -37,6 +37,9 @@
                 </executions>
                 <configuration>
                     <sourceDir>src/main/scala</sourceDir>
+                    <jvmArgs>
+                        <jvmArg>-Xss4m</jvmArg> <!-- Shapeless needs lots of stack space -->
+                    </jvmArgs>
                 </configuration>
             </plugin>
         </plugins>

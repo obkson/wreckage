@@ -45,6 +45,9 @@ trait ScalaLanguage extends Language {
   }
 }
 
+trait Scala211Language extends ScalaLanguage {
+  override val scalaVersion = "2.11.8"
+}
 
 trait DottyLanguage extends Language {
 

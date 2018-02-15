@@ -33,6 +33,22 @@ se/obkson/wreckage/java18_fieldinterface_lib/0.1/java18_fieldinterface_lib-0.1.j
 # package to jar
 (cd $GENDIR/java18_fieldinterface && mvn clean package)
 
+#
+## --------- Dotty 0.6 FIELD TRAIT GENERIC ---------
+#
+## generate library src
+#sbt "project dotty06_fieldtraitgeneric" "run library $GENDIR $DOTTY_DEPS"
+#
+## package to jar
+#(cd $GENDIR/dotty06_fieldtraitgeneric_lib && mvn clean package)
+#
+## generate benchmarks
+#sbt "project dotty06_fieldtraitgeneric" "run benchmarks $GENDIR $DOTTY_DEPS \
+#se/obkson/wreckage/dotty06_fieldtraitgeneric_lib_0.6/0.1/dotty06_fieldtraitgeneric_lib_0.6-0.1.jar=$GENDIR/dotty06_fieldtraitgeneric_lib/target/dotty06_fieldtraitgeneric_lib_0.6-0.1.jar"
+#
+## package to jar
+#(cd $GENDIR/dotty06_fieldtraitgeneric && mvn clean package)
+
 
 # --------- Dotty 0.6 CASE CLASS ---------
 
