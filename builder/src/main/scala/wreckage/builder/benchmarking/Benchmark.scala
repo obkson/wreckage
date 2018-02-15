@@ -7,5 +7,6 @@ trait Benchmark extends {
   def name: String
   def source(pkg: Seq[String], recSyntax: RecordSyntax): String
   def types: Seq[RecordType]
+  def dependencies: Seq[Dependency] = Nil
 
 }

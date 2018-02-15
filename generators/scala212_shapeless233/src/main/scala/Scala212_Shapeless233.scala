@@ -14,6 +14,11 @@ object Scala212_Shapeless233 extends BenchmarkGenerator with ScalaLanguage {
 
     val imports = List("shapeless._", "syntax.singleton._", "record._")
 
+    override def tpeCarrier(tpe: RecordType): String = {
+      // e.g. type User = Record{ val name: String }
+      s"type ${tpe.alias} = ${this.tpe(tpe)}"
+    }
+
     // Shapeless' path-dependent type syntax trick
     def tpe(tpe: RecordType): String = {
       // e.g. Record.`'f1->Int, 'f2->Int`.T
@@ -39,6 +44,7 @@ object Scala212_Shapeless233 extends BenchmarkGenerator with ScalaLanguage {
   }
 
   lazy val benchmarks = List[Benchmark](
+    ScalaRTCaseStudyComplete,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

@@ -17,22 +17,24 @@ ch/epfl/lamp/dotty-interfaces/0.6.0-bin-SNAPSHOT/dotty-interfaces-0.6.0-bin-SNAP
 # purge the local maven dep cache
 rm -r ~/.m2/repository/se/obkson/wreckage
 
+sbt "project parsing" "package"
 
-# --------- Java 1.8 FIELD INTERFACE -----------
 
-# generate library src
-sbt "project java18_fieldinterface" "run library $GENDIR"
-
-# package to jar
-(cd $GENDIR/java18_fieldinterface_lib && mvn clean package)
-
-# generate benchmarks
-sbt "project java18_fieldinterface" "run benchmarks $GENDIR \
-se/obkson/wreckage/java18_fieldinterface_lib/0.1/java18_fieldinterface_lib-0.1.jar=$GENDIR/java18_fieldinterface_lib/target/java18_fieldinterface_lib-0.1.jar"
-
-# package to jar
-(cd $GENDIR/java18_fieldinterface && mvn clean package)
-
+## --------- Java 1.8 FIELD INTERFACE -----------
+#
+## generate library src
+#sbt "project java18_fieldinterface" "run library $GENDIR"
+#
+## package to jar
+#(cd $GENDIR/java18_fieldinterface_lib && mvn clean package)
+#
+## generate benchmarks
+#sbt "project java18_fieldinterface" "run benchmarks $GENDIR \
+#se/obkson/wreckage/java18_fieldinterface_lib/0.1/java18_fieldinterface_lib-0.1.jar=$GENDIR/java18_fieldinterface_lib/target/java18_fieldinterface_lib-0.1.jar"
+#
+## package to jar
+#(cd $GENDIR/java18_fieldinterface && mvn clean package)
+#
 #
 ## --------- Dotty 0.6 FIELD TRAIT GENERIC ---------
 #
@@ -50,6 +52,17 @@ se/obkson/wreckage/java18_fieldinterface_lib/0.1/java18_fieldinterface_lib-0.1.j
 #(cd $GENDIR/dotty06_fieldtraitgeneric && mvn clean package)
 
 
+
+# --------- Dotty 0.6 RECORDS -----------
+
+# generate benchmarks
+sbt "project dotty06_records" "run $GENDIR $DOTTY_DEPS \
+se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
+
+# package to jar
+(cd $GENDIR/dotty06_records && mvn clean package)
+
+
 # --------- Dotty 0.6 CASE CLASS ---------
 
 # generate library src
@@ -60,63 +73,58 @@ sbt "project dotty06_caseclass" "run library $GENDIR $DOTTY_DEPS"
 
 # generate benchmarks
 sbt "project dotty06_caseclass" "run benchmarks $GENDIR $DOTTY_DEPS \
-se/obkson/wreckage/dotty06_caseclass_lib_0.6/0.1/dotty06_caseclass_lib_0.6-0.1.jar=$GENDIR/dotty06_caseclass_lib/target/dotty06_caseclass_lib_0.6-0.1.jar"
+se/obkson/wreckage/dotty06_caseclass_lib_0.6/0.1/dotty06_caseclass_lib_0.6-0.1.jar=$GENDIR/dotty06_caseclass_lib/target/dotty06_caseclass_lib_0.6-0.1.jar \
+se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
 
 # package to jar
 (cd $GENDIR/dotty06_caseclass && mvn clean package)
 
 
-# --------- Dotty 0.6 RECORDS -----------
 
-# generate benchmarks
-sbt "project dotty06_records" "run $GENDIR $DOTTY_DEPS"
-
-# package to jar
-(cd $GENDIR/dotty06_records && mvn clean package)
-
-
-# --------- Scala 2.12 CASE CLASS -----------
-
-# generate library src
-sbt "project scala212_caseclass" "run library $GENDIR"
-
-# package to jar
-(cd $GENDIR/scala212_caseclass_lib && mvn clean package)
-
-# generate benchmarks
-sbt "project scala212_caseclass" "run benchmarks $GENDIR \
-se/obkson/wreckage/scala212_caseclass_lib_2.12/0.1/scala212_caseclass_lib_2.12-0.1.jar=$GENDIR/scala212_caseclass_lib/target/scala212_caseclass_lib_2.12-0.1.jar"
-
-# package to jar
-(cd $GENDIR/scala212_caseclass && mvn clean package)
-
-
-# --------- Scala 2.12 ANON REFINEMENTS ----------
-
-# generate benchmarks
-sbt "project scala212_anonref" "run $GENDIR"
-
-# package to jar
-(cd $GENDIR/scala212_anonref && mvn clean package)
-
-
+## --------- Scala 2.12 CASE CLASS -----------
+#
+## generate library src
+#sbt "project scala212_caseclass" "run library $GENDIR"
+#
+## package to jar
+#(cd $GENDIR/scala212_caseclass_lib && mvn clean package)
+#
+## generate benchmarks
+#sbt "project scala212_caseclass" "run benchmarks $GENDIR \
+#se/obkson/wreckage/scala212_caseclass_lib_2.12/0.1/scala212_caseclass_lib_2.12-0.1.jar=$GENDIR/scala212_caseclass_lib/target/scala212_caseclass_lib_2.12-0.1.jar"
+#
+## package to jar
+#(cd $GENDIR/scala212_caseclass && mvn clean package)
+#
+#
+## --------- Scala 2.12 ANON REFINEMENTS ----------
+#
+## generate benchmarks
+#sbt "project scala212_anonref" "run $GENDIR"
+#
+## package to jar
+#(cd $GENDIR/scala212_anonref && mvn clean package)
+#
+#
 # --------- Scala 2.12 COMPOSSIBLE ----------
-
-# package forked compossible into jar
-(cd records/compossible && sbt clean package)
-
-# generate benchmarks
-sbt "project scala212_compossible" "run $GENDIR \
-org/cvogt/compossible_2.12/0.2-SNAPSHOT/compossible_2.12-0.2-SNAPSHOT.jar=./records/compossible/target/scala-2.12/compossible_2.12-0.2-SNAPSHOT.jar"
-
-# package to jar
-(cd $GENDIR/scala212_compossible && mvn clean package)
-
-
-# --------- Scala 2.12 SHAPELESS 2.3.3 ----------
-
-# generate benchmarks
-sbt "project scala212_shapeless233" "run $GENDIR"
-
-# package to jar
-(cd $GENDIR/scala212_shapeless233 && mvn clean package)
+#
+## package forked compossible into jar
+#(cd records/compossible && sbt clean package)
+#
+## generate benchmarks
+#sbt "project scala212_compossible" "run $GENDIR \
+#org/cvogt/compossible_2.12/0.2-SNAPSHOT/compossible_2.12-0.2-SNAPSHOT.jar=./records/compossible/target/scala-2.12/compossible_2.12-0.2-SNAPSHOT.jar \
+#se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
+#
+## package to jar
+#(cd $GENDIR/scala212_compossible && mvn clean package)
+#
+#
+## --------- Scala 2.12 SHAPELESS 2.3.3 ----------
+#
+## generate benchmarks
+#sbt "project scala212_shapeless233" "run $GENDIR \
+#se/obkson/wreckage/parsing_2.12/0.1/parsing_2.12-0.1.jar=./parsing/target/scala-2.12/parsing_2.12-0.1.jar"
+#
+## package to jar
+#(cd $GENDIR/scala212_shapeless233 && mvn clean package)

@@ -29,13 +29,29 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
         else
           s"$l: $t"
       }.mkString(", ")
+
+      val imports = tpe.fields.flatMap(fld => fld match {
+        case (_, "Instant") => Some("import java.time.Instant")
+        case _ => None
+      }).mkString("\n")
+
       // e.g. case class CC2(override val f1: Int, f2: Int) extends BaseClass(f1)
-      s"""case class ${tpe.alias}($fieldDecls) $inheritance"""
+      s"""|$imports
+          |case class ${tpe.alias}($fieldDecls) $inheritance
+          |""".stripMargin
     }
 
-    def baseDecl(tpe: RecordType) = Some(
-      s"""class ${tpe.alias}(${tpe.fields.map{ case (l, t) => s"val $l: $t" }.mkString(", ")})"""
-    )
+    def baseDecl(tpe: RecordType) = {
+      val imports = tpe.fields.flatMap(fld => fld match {
+        case (_, "Instant") => Some("import java.time.Instant")
+        case _ => None
+      }).mkString("\n")
+      Some(
+        s"""|$imports
+            |class ${tpe.alias}(${tpe.fields.map{ case (l, t) => s"val $l: $t" }.mkString(", ")})
+            |""".stripMargin
+      )
+    }
 
     def fieldDecl(label: String, tpe: String) = None
   }
@@ -67,6 +83,7 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
   }
 
   lazy val benchmarks = List[Benchmark](
+    ScalaRTCaseStudyCompleteSubtyped,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

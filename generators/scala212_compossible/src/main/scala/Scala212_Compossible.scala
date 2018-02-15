@@ -16,14 +16,14 @@ object Scala212_Compossible extends BenchmarkGenerator with ScalaLanguage {
 
     override def tpeCarrier(tpe: RecordType): String = {
       // e.g. (RecordType f1[Int] & f2[Int] &)
-      val carrier = tpe.fields.map{ case (k, v) => s"$k[Int]" }.mkString("(RecordType ", " & "," &)")
-      s"val carrier_${tpe.alias} = $carrier"
+      val carrier = tpe.fields.map{ case (k, v) => s"$k[$v]" }.mkString("(RecordType ", " & "," &)")
+      s"""|val carrier_${tpe.alias} = $carrier
+          |type ${tpe.alias} = carrier_${tpe.alias}.Type
+          |""".stripMargin
     }
 
-    def tpe(tpe: RecordType): String = {
-      // use type carrier
-      s"carrier_${tpe.alias}.Type"
-    }
+    // rely on type carrier having defined the type alias
+    def tpe(tpe: RecordType): String = tpe.alias
 
     // But no need for type alias to construct
     def create(tpe: RecordType, fields: Seq[(String, String)]): String = {
@@ -44,6 +44,7 @@ object Scala212_Compossible extends BenchmarkGenerator with ScalaLanguage {
   }
 
   lazy val benchmarks = List[Benchmark](
+    ScalaRTCaseStudyComplete,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

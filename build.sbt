@@ -6,6 +6,8 @@ scalaVersion := "2.12.4"
 
 lazy val builder = (project in file("builder"))
 
+lazy val parsing = (project in file("parsing"))
+
 lazy val scala211_fieldtraitgeneric = (project in file("generators/scala211_fieldtraitgeneric")).dependsOn(builder)
 
 lazy val scala212_caseclass = (project in file("generators/scala212_caseclass")).dependsOn(builder)

@@ -12,6 +12,11 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
 
     val imports = List("dotty.records._")
 
+    override def tpeCarrier(tpe: RecordType): String = {
+      // e.g. type User = Record{ val name: String }
+      s"type ${tpe.alias} = ${this.tpe(tpe)}"
+    }
+
     // Structural typing
     def tpe(tpe: RecordType): String = {
       // e.g. Record { val f1: Int; val f2: Int }
@@ -37,6 +42,7 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
   }
 
   lazy val benchmarks = List[Benchmark](
+    ScalaRTCaseStudyCompleteSubtyped,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

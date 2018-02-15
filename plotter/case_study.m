@@ -1,13 +1,11 @@
 clc; close all; clear;
 
 pigs = [
-   cellstr('compossible_0_2__scala_2_12_3'), cellstr('Scala2 Compossible');
-   cellstr('records__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records');
-   cellstr('recordsdirect__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records Direct');
-   cellstr('recordsunsafe__dotty_0_6_snapshot'), cellstr('Dotty0.6 Records Unsafe');
-   cellstr('caseclass__dotty_0_4_snapshot'), cellstr('Dotty Case classes');
-   cellstr('caseclass__scala_2_12_3'), cellstr('Scala2 Case classes');
-   cellstr('shapeless_2_3_2__scala_2_12_3'), cellstr('Scala2 Shapeless')
+    
+    %cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible 0.2');
+    %cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
+    cellstr('dotty06_caseclass'), cellstr('Dotty 0.6 Case class');
+    cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
 ];
 scaling=1;
 
@@ -21,7 +19,7 @@ es = [];
 for pigindex = 1:length(pigs)
     pig = pigs{pigindex};
     disp(pig);
-    filename = ['../../../data/',pig,'/','RTCaseStudy','.json'];
+    filename = ['../../../data/',pig,'/','RTCaseStudyComplete','.json'];
     text = fileread(filename);
     
     benchmarks = jsondecode(text);

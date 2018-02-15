@@ -28,7 +28,7 @@ trait BenchmarkGenerator extends Generator {
       SourceFile(pkg, name, content)
     }
 
-    val dependencies = syntax.dependencies
+    val dependencies = syntax.dependencies ++ benchmarks.flatMap(_.dependencies)
     val artifactId = name
     val pomContent = this.benchmarkPomContent(name, groupId, artifactId, version, dependencies, sourceFiles)
     val project = MavenProject(name, sourceFiles, jarMap, pomContent, this.srcFolder)
