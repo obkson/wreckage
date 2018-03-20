@@ -44,22 +44,17 @@ implicit object JsonFormatInstant extends JsonFormat[Instant] {
 
 {{formats}}
 
-  /************* SETUP *************************/
+/************* SETUP *************************/
 
-  // list of json-encoded objects
-  var lines = List[String]()
+  // Contains pre-parsed commits from json when the benchmark begins
+  var commits = List[CommitEvent]()
 
   @Setup(Level.Trial)
   def prepare = {
-    val path = sys.env("COMMITS")
-    val source = Source.fromFile(path)
-    try
-      lines = source.getLines().toList // force read BufferedSource to memory
-    finally
-      source.close()
+    commits = parse(sys.env("COMMITS"))
   }
 
-  def parse(lines: Seq[String]): List[CommitEvent] = {
+  def parse(path: String): List[CommitEvent] = {
     // parsed and typed CommitEvents
     var commits: List[CommitEvent] = Nil
     // var counter = 0
@@ -69,7 +64,7 @@ implicit object JsonFormatInstant extends JsonFormat[Instant] {
     // JValue -> CommitEvent (put on commits stack as side-effect)
     def sink(j: JValue): Unit = fromJson[CommitEvent](j) match {
       case Success(p: CommitEvent) =>
-        //println(p.id)
+        // println(p.id)
         commits = p :: commits
         // counter = counter + 1
         // if ((counter % 100) == 0)
@@ -82,17 +77,28 @@ implicit object JsonFormatInstant extends JsonFormat[Instant] {
       case Left(e) => throw new Exception(s"Parsing error, $e")
     }
 
-    lines.foreach(absorb)
-    p.finish().right.map(_.foreach(sink))
+    def finish() = {
+      p.finish().right.map(_.foreach(sink))
+    }
+
+    // lazy iterator of values
+    val source = Source.fromFile(path)
+    try
+      source.getLines().foreach(absorb)
+    finally
+      source.close()
 
     return commits
   }
 
   /******************** BENCHMARK *************************/
 
+  case class UserStats(email: String, var monday: Int, var tuesday: Int, var wednesday: Int, var thursday: Int, var friday: Int, var saturday: Int, var sunday: Int)
+
   @Benchmark
   def calc_stats: (Int, HashMap[String, UserStats]) = {
     var table = HashMap.empty[String, UserStats]
+    // Given commits and an empty table, fill it with stats
 
     {{method_body}}
 

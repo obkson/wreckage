@@ -4,7 +4,7 @@ package benchmarking
 trait RTAccessFields {
   val name = "RTAccessFields"
 
-  val inputs: Seq[Int] = List(1,10,20,30)
+  val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
 
   def types = {
     val numFields = inputs.max

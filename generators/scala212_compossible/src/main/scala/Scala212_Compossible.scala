@@ -45,6 +45,9 @@ object Scala212_Compossible extends BenchmarkGenerator with ScalaLanguage {
 
   lazy val benchmarks = List[Benchmark](
     ScalaRTCaseStudyComplete,
+    ScalaRTCaseStudyReadUpdate,
+    ScalaRTCaseStudyRead,
+    ScalaRTCaseStudyUpdate,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

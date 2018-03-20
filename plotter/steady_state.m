@@ -7,27 +7,27 @@ clc; close all; clear;
 %scaling = 0.001;
 %ymax = 10;
 
-%feature = 'RTAccessFields';
-%prefix = 'access_f';
-%xlbl = 'Field index';
-%ylbl = 'Access time [ns]';
-%scaling = 1;
-%ymax = 50;
-
-feature = 'RTAccessSize';
+feature = 'RTAccessFields';
 prefix = 'access_f';
-xlbl = 'Record Size';
+xlbl = 'Field index';
 ylbl = 'Access time [ns]';
 scaling = 1;
-ymax = 2000;
 ymax = 50;
+
+%feature = 'RTAccessSize';
+%prefix = 'access_f';
+%xlbl = 'Record Size';
+%ylbl = 'Access time [ns]';
+%scaling = 1;
+%ymax = 2000;
+%ymax = 50;
 
 %feature = 'RTAccessPolymorphism';
 %prefix = 'poly_deg';
 %xlbl = 'Degree of Polymorphism';
 %ylbl = 'Access time [ns]';
 %scaling = 1;
-%ymax = 55;
+%ymax = 45;
 
 %feature = 'RTUpdateSize';
 %prefix = 'update_f';
@@ -38,24 +38,24 @@ ymax = 50;
 
 
 pigs = [
-   cellstr('java18_fieldinterface'), cellstr('Java 1.8 Field Interface');
+   %cellstr('java18_fieldinterface'), cellstr('Java 1.8 Field Interface');
    cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
    cellstr('dotty06_caseclass'), cellstr('Dotty 0.6 Case class');
-   %cellstr('interfacerecord__scala_2_11_8'), cellstr('SWITCH TO DOTTY: Scala 2.11 Field Trait Generic'); %% TODO FIX!!
+   cellstr('dotty06_fieldtraitgeneric'), cellstr('Dotty 0.6 Field Trait Generic');
    cellstr('scala212_caseclass'), cellstr('Scala 2.12 Case class');
    cellstr('scala212_anonref'), cellstr('Scala 2.12 Anon. Refinements');
    cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible 0.2');
    cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
    
    %cellstr('dotty06_fieldtrait'), cellstr('Dotty 0.6 Field Trait');
-   %cellstr('dotty06_fieldtraitgeneric'), cellstr('Dotty 0.6 Field Trait Generic');
+   
 ];
 
 colors = [ 
-    0 0 0;      %black
+    %0 0 0;      %black
     0 0 1;      %blue
     0.1 0.8 1;      %cyan
-    %0.5 0.3 0.1;  % brown
+    0.5 0.3 0.1;  % brown
     1 0 0;      %red
     1 0 1;      %magenta
     1 0.7 0.1   %orange

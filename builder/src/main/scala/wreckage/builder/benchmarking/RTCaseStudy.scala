@@ -163,6 +163,75 @@ case object ScalaRTCaseStudyComplete extends ScalaRTCaseStudy {
 
 }
 
+case object ScalaRTCaseStudyReadUpdate extends ScalaRTCaseStudy {
+
+  def name = "RTCaseStudyReadUpdate"
+  def template = "/JMHScalaRTCaseStudyTemplate_ReadUpdate.scala"
+
+  def source(pkg: Seq[String], recSyntax: RecordSyntax): String = {
+
+    def imports = recSyntax.imports.map(imp => s"import $imp").mkString("\n")
+
+    def typeCarriers = types.map(tpe => recSyntax.tpeCarrier(tpe)).mkString("\n")
+
+    val formats = {
+      def jsonFormat(tpe: RecordType) = {
+        val fieldExtractors = tpe.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
+        s"""implicit object ${tpe.alias}Format extends JsonFormat[${tpe.alias}] {
+           |  def read(ast: JValue): ${tpe.alias} = ast match {
+           |    case JObject(map) => {
+           |      ${fieldExtractors.mkString("\n      ")}
+           |      ${recSyntax.create(tpe, tpe.fields.map{ case (name, _) => (name, name) })}
+           |    }
+           |    case x => deserializationError("Expected ${tpe.alias} as JObject, but got " + x)
+           |  }
+           |}""".stripMargin
+      }
+      List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
+        .map(jsonFormat)
+        .mkString("\n")
+    }
+
+    val methodBody = {
+      val emptyUserStats = recSyntax.create(userStats, ("email", "email") :: ("monday", "0") ::
+        ("tuesday", "0") :: ("wednesday", "0") :: ("thursday", "0") :: ("friday", "0") ::
+        ("saturday", "0") :: ("sunday", "0") :: Nil)
+
+      s"""|commits.foreach(obj => {
+          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "Commit"), "author", "CommitIdentity"), "email", "String")}
+          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "Commit"), "author", "CommitIdentity"), "date", "Instant")}
+          |    .atZone(ZoneId.systemDefault())
+          |    .getDayOfWeek().getValue()
+          |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats
+          |  val newStats = dow match {
+          |    case 1 => ${recSyntax.increment("oldStats", "monday")}
+          |    case 2 => ${recSyntax.increment("oldStats", "tuesday")}
+          |    case 3 => ${recSyntax.increment("oldStats", "wednesday")}
+          |    case 4 => ${recSyntax.increment("oldStats", "thursday")}
+          |    case 5 => ${recSyntax.increment("oldStats", "friday")}
+          |    case 6 => ${recSyntax.increment("oldStats", "saturday")}
+          |    case 7 => ${recSyntax.increment("oldStats", "sunday")}
+          |  }
+          |  table = table + (email->newStats)
+          |})""".stripMargin
+    }
+
+    val tmplStr = FileHelper.getResourceForClassAsString(template, getClass)
+    val src = FileHelper.replace(tmplStr,
+      Map("{{pkg}}"           -> pkg.mkString("."),
+          "{{name}}"          -> name,
+          "{{typeCarriers}}"  -> typeCarriers,
+          "{{imports}}"       -> imports,
+          "{{formats}}"       -> formats,
+          "{{method_body}}"   -> methodBody
+      )
+    )
+    src
+  }
+
+}
+
+
 case object ScalaRTCaseStudyCompleteSubtyped extends ScalaRTCaseStudy {
 
   def name = "RTCaseStudyCompleteSubtyped"
@@ -256,6 +325,154 @@ case object ScalaRTCaseStudyCompleteSubtyped extends ScalaRTCaseStudy {
           "{{name}}"          -> name,
           "{{typeCarriers}}"  -> typeCarriers,
           "{{imports}}"       -> imports,
+          "{{formats}}"       -> formats,
+          "{{method_body}}"   -> methodBody
+      )
+    )
+    src
+  }
+}
+
+case object ScalaRTCaseStudyRead extends ScalaRTCaseStudy {
+
+  def name = "RTCaseStudyRead"
+  def template = "/JMHScalaRTCaseStudyTemplate_Read.scala"
+
+  // remove record UserStats
+  override def types = List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
+
+  def source(pkg: Seq[String], recSyntax: RecordSyntax): String = {
+
+    def imports = recSyntax.imports.map(imp => s"import $imp").mkString("\n")
+
+    def typeCarriers = types.map(tpe => recSyntax.tpeCarrier(tpe)).mkString("\n")
+
+    val formats = {
+      def jsonFormat(tpe: RecordType) = {
+        val fieldExtractors = tpe.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
+        s"""implicit object ${tpe.alias}Format extends JsonFormat[${tpe.alias}] {
+           |  def read(ast: JValue): ${tpe.alias} = ast match {
+           |    case JObject(map) => {
+           |      ${fieldExtractors.mkString("\n      ")}
+           |      ${recSyntax.create(tpe, tpe.fields.map{ case (name, _) => (name, name) })}
+           |    }
+           |    case x => deserializationError("Expected ${tpe.alias} as JObject, but got " + x)
+           |  }
+           |}""".stripMargin
+      }
+      List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent)
+        .map(jsonFormat)
+        .mkString("\n")
+    }
+
+    val methodBody = {
+
+      s"""|commits.foreach(obj => {
+          |  val email = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "Commit"), "author", "CommitIdentity"), "email", "String")}
+          |  val dow = ${recSyntax.access(recSyntax.access(recSyntax.access("obj", "commit", "Commit"), "author", "CommitIdentity"), "date", "Instant")}
+          |    .atZone(ZoneId.systemDefault())
+          |    .getDayOfWeek().getValue()
+          |  val userStats = table.get(email) match {
+          |    case Some(us) => us
+          |    case None =>
+          |      val us = UserStats(email,0,0,0,0,0,0,0)
+          |      table = table + (email->us)
+          |      us
+          |  }
+          |  dow match {
+          |    case 1 => userStats.monday += 1
+          |    case 2 => userStats.tuesday += 1
+          |    case 3 => userStats.wednesday += 1
+          |    case 4 => userStats.thursday += 1
+          |    case 5 => userStats.friday += 1
+          |    case 6 => userStats.saturday += 1
+          |    case 7 => userStats.sunday += 1
+          |  }
+          |})""".stripMargin
+    }
+
+    val tmplStr = FileHelper.getResourceForClassAsString(template, getClass)
+    val src = FileHelper.replace(tmplStr,
+      Map("{{pkg}}"           -> pkg.mkString("."),
+          "{{name}}"          -> name,
+          "{{typeCarriers}}"  -> typeCarriers,
+          "{{imports}}"       -> imports,
+          "{{formats}}"       -> formats,
+          "{{method_body}}"   -> methodBody
+      )
+    )
+    src
+  }
+
+}
+
+case object ScalaRTCaseStudyUpdate extends ScalaRTCaseStudy {
+
+  def name = "RTCaseStudyUpdate"
+  def template = "/JMHScalaRTCaseStudyTemplate_Update.scala"
+
+  // UserStats in only record type in this benchmark
+  override def types = List(userStats)
+
+  def source(pkg: Seq[String], recSyntax: RecordSyntax): String = {
+
+    def imports = recSyntax.imports.map(imp => s"import $imp").mkString("\n")
+
+    def typeCarriers = types.map(tpe => recSyntax.tpeCarrier(tpe)).mkString("\n")
+
+    def models = List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent).map { tpe =>
+      val fieldDecls = tpe.fields.map{ case (l, t) => s"$l: $t"}.mkString(",")
+      s"""case class ${tpe.alias}($fieldDecls)"""
+    }.mkString("\n")
+
+    val formats = {
+      def jsonFormat(tpe: RecordType) = {
+        val fieldExtractors = tpe.fields map { case (name, tpe) => s"""val Success($name) = fromJson[$tpe](map("$name"))""" }
+        s"""implicit object ${tpe.alias}Format extends JsonFormat[${tpe.alias}] {
+           |  def read(ast: JValue): ${tpe.alias} = ast match {
+           |    case JObject(map) => {
+           |      ${fieldExtractors.mkString("\n      ")}
+           |      ${tpe.alias}(${tpe.fields.map{ case (name, _) => s"$name=$name"}.mkString(",")})
+           |    }
+           |    case x => deserializationError("Expected ${tpe.alias} as JObject, but got " + x)
+           |  }
+           |}""".stripMargin
+      }
+      List(shortCommit, user, verification, tree, commitIdentity, commit, commitEvent).map(jsonFormat).mkString("\n")
+    }
+
+    val methodBody = {
+
+      val emptyUserStats = recSyntax.create(userStats, ("email", "email") :: ("monday", "0") ::
+        ("tuesday", "0") :: ("wednesday", "0") :: ("thursday", "0") :: ("friday", "0") ::
+        ("saturday", "0") :: ("sunday", "0") :: Nil)
+
+      s"""|commits.foreach(obj => {
+          |  val email = obj.commit.author.email
+          |  val dow = obj.commit.author.date
+          |    .atZone(ZoneId.systemDefault())
+          |    .getDayOfWeek().getValue()
+          |  val oldStats = table.getOrElse(email, $emptyUserStats): UserStats
+          |  val newStats = dow match {
+          |    case 1 => ${recSyntax.increment("oldStats", "monday")}
+          |    case 2 => ${recSyntax.increment("oldStats", "tuesday")}
+          |    case 3 => ${recSyntax.increment("oldStats", "wednesday")}
+          |    case 4 => ${recSyntax.increment("oldStats", "thursday")}
+          |    case 5 => ${recSyntax.increment("oldStats", "friday")}
+          |    case 6 => ${recSyntax.increment("oldStats", "saturday")}
+          |    case 7 => ${recSyntax.increment("oldStats", "sunday")}
+          |  }
+          |  table = table + (email->newStats)
+          |})""".stripMargin
+    }
+
+    val tmplStr = FileHelper.getResourceForClassAsString(template, getClass)
+    val src = FileHelper.replace(tmplStr,
+      Map("{{pkg}}"           -> pkg.mkString("."),
+          "{{name}}"          -> name,
+          "{{imports}}"       -> imports,
+          "{{typeCarriers}}"  -> typeCarriers,
+          "{{models}}"        -> models,
           "{{formats}}"       -> formats,
           "{{method_body}}"   -> methodBody
       )

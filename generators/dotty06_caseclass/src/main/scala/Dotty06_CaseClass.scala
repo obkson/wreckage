@@ -83,7 +83,10 @@ object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage
   }
 
   lazy val benchmarks = List[Benchmark](
-    ScalaRTCaseStudyCompleteSubtyped,
+    ScalaRTCaseStudyComplete,
+    ScalaRTCaseStudyReadUpdate,
+    ScalaRTCaseStudyRead,
+    ScalaRTCaseStudyUpdate,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

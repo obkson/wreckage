@@ -29,14 +29,26 @@ function run_steadystate {
     (cd "$GENDIR/$BENCH" && $CMD)
 }
 
-run_steadystate "dotty06_fieldtraitgeneric" "RTAccessPolymorphism"
-run_steadystate "scala212_compossible" "RTAccessPolymorphism"
-run_steadystate "scala212_anonref" "RTAccessPolymorphism"
+#run_steadystate "dotty06_caseclass" "RTAccessFields"
+#run_steadystate "dotty06_records" "RTAccessFields"
+#run_steadystate "dotty06_fieldtraitgeneric" "RTAccessFields"
+#run_steadystate "scala212_caseclass" "RTAccessFields"
+#run_steadystate "scala212_anonref" "RTAccessFields"
+#run_steadystate "scala212_compossible" "RTAccessFields"
+run_steadystate "scala212_shapeless233" "RTAccessFields"
+
+#run_steadystate "dotty06_records" "RTCaseStudyReadUpdate"
+#run_steadystate "dotty06_caseclass" "RTCaseStudyReadUpdate"
+#run_steadystate "scala212_compossible" "RTCaseStudyReadUpdate"
+#run_steadystate "scala212_shapeless233" "RTCaseStudyReadUpdate"
+
+#run_steadystate "dotty06_records" "RTCaseStudyRead"
+#run_steadystate "dotty06_caseclass" "RTCaseStudyRead"
+#run_steadystate "scala212_compossible" "RTCaseStudyRead"
+#run_steadystate "scala212_shapeless233" "RTCaseStudyRead"
 
 
-run_steadystate "dotty06_caseclass" "RTUpdateSize"
-run_steadystate "dotty06_records" "RTUpdateSize"
-run_steadystate "scala212_compossible" "RTUpdateSize"
-run_steadystate "scala212_shapeless233" "RTUpdateSize"
-
-run_steadystate "dotty06_caseclass" "RTAccessPolymorphism"
+#run_steadystate "dotty06_records" "RTCaseStudyUpdate"
+#run_steadystate "dotty06_caseclass" "RTCaseStudyUpdate"
+#run_steadystate "scala212_compossible" "RTCaseStudyUpdate"
+#run_steadystate "scala212_shapeless233" "RTCaseStudyUpdate"

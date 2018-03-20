@@ -42,7 +42,10 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
   }
 
   lazy val benchmarks = List[Benchmark](
-    ScalaRTCaseStudyCompleteSubtyped,
+    ScalaRTCaseStudyComplete,
+    ScalaRTCaseStudyReadUpdate,
+    ScalaRTCaseStudyRead,
+    ScalaRTCaseStudyUpdate,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

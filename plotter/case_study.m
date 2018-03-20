@@ -1,12 +1,11 @@
 clc; close all; clear;
 
 pigs = [
-    
-    %cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible 0.2');
-    %cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
-    %cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
-    %cellstr('dotty06_caseclass'), cellstr('Dotty 0.6 Case class');
-    cellstr('dotty06_fieldtraitgeneric'), cellstr('Dotty 0.6 Field Trait Generic');
+    cellstr('dotty06_records'), cellstr('Dotty 0.6 Records');
+    cellstr('dotty06_caseclass'), cellstr('Dotty 0.6 Case class');
+    %cellstr('dotty06_fieldtraitgeneric'), cellstr('Dotty 0.6 Field Trait Generic');
+    cellstr('scala212_compossible'), cellstr('Scala 2.12 Compossible 0.2');
+    cellstr('scala212_shapeless233'), cellstr('Scala 2.12 Shapeless 2.3.3');
 ];
 scaling=1;
 
@@ -20,7 +19,7 @@ es = [];
 for pigindex = 1:length(pigs)
     pig = pigs{pigindex};
     disp(pig);
-    filename = ['../../../data/',pig,'/','RTCaseStudyCompleteSubtyped','.json'];
+    filename = ['../../../data/',pig,'/','RTCaseStudyUpdate','.json'];
     text = fileread(filename);
     
     benchmarks = jsondecode(text);
@@ -81,3 +80,4 @@ hold on;
 bar(1:length(pigs),ms);
 errorbar(1:length(pigs), ms, es, '.', 'LineWidth', 1, 'Color', [0,0,0]);
 set(gca,'xTick', 1:length(pigs), 'xticklabel', pigs(:,2));
+ylabel('Running time [ms]')
