@@ -1,4 +1,4 @@
-name := "dotty06_records"
+name := "dotty08_records"
 
 version := "0.1"
 

@@ -29,22 +29,33 @@ function run_steadystate {
     (cd "$GENDIR/$BENCH" && $CMD)
 }
 
-#run_steadystate "dotty06_caseclass" "RTAccessFields"
-#run_steadystate "dotty06_records" "RTAccessFields"
+run_steadystate "dotty08_records" "RTUpdateSize"
+run_steadystate "dotty08_caseclass" "RTUpdateSize"
+run_steadystate "scala212_shapeless233" "RTUpdateSize"
+run_steadystate "scala212_compossible" "RTUpdateSize"
+#run_steadystate "dotty08_records" "RTAccessPolymorphism"
+#run_steadystate "dotty08_records" "RTAccessSize"
+#run_steadystate "dotty08_records" "RTAccessFields"
+#run_steadystate "dotty08_records" "RTCreationSize"
+#run_steadystate "dotty08_records" "RTCaseStudyComplete"
+#run_steadystate "dotty08_records" "RTCaseStudyReadUpdate"
+#run_steadystate "dotty08_records" "RTCaseStudyRead"
+#run_steadystate "dotty08_records" "RTCaseStudyUpdate"
+
+#run_steadystate "dotty08_records" "RTAccessFields"
 #run_steadystate "dotty06_fieldtraitgeneric" "RTAccessFields"
 #run_steadystate "scala212_caseclass" "RTAccessFields"
 #run_steadystate "scala212_anonref" "RTAccessFields"
 #run_steadystate "scala212_compossible" "RTAccessFields"
-run_steadystate "scala212_shapeless233" "RTAccessFields"
+#run_steadystate "scala212_shapeless233" "RTAccessFields"
 
 #run_steadystate "dotty06_records" "RTCaseStudyReadUpdate"
 #run_steadystate "dotty06_caseclass" "RTCaseStudyReadUpdate"
 #run_steadystate "scala212_compossible" "RTCaseStudyReadUpdate"
 #run_steadystate "scala212_shapeless233" "RTCaseStudyReadUpdate"
 
-#run_steadystate "dotty06_records" "RTCaseStudyRead"
-#run_steadystate "dotty06_caseclass" "RTCaseStudyRead"
-#run_steadystate "scala212_compossible" "RTCaseStudyRead"
+
+#run_steadystate "dotty06_caseclass" "RTCaseStudyReComplete#run_steadystate "scala212_compossible" "RTCaseStudyRead"
 #run_steadystate "scala212_shapeless233" "RTCaseStudyRead"
 
 

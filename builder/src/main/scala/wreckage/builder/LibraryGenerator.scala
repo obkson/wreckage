@@ -1,7 +1,7 @@
 package wreckage.builder
 import benchmarking._
 
-import scala.collection.immutable.{HashMap, Set}
+import scala.collection.immutable.{Set}
 import java.nio.file.{Path, Paths}
 
 trait LibraryGenerator extends Generator {
@@ -14,7 +14,7 @@ trait LibraryGenerator extends Generator {
   def library: RecordLibrary
 
   // This is the mixed in behaviour a LibraryGenerator provides:
-  def generateLibrary(odAbsPath: Path): Boolean = {
+  def generateLibrary(odAbsPath: Path, jarMap: Map[String, Path] = Map.empty): Boolean = {
 
     val sources: List[SourceFile] = {
       val pkg = library.pkg
@@ -56,7 +56,7 @@ trait LibraryGenerator extends Generator {
     val version = library.output.version
 
     val pomContent = this.libraryPomContent(name, groupId, artifactId, version, List(), sources)
-    val project = MavenProject(name, sources, jarMap=HashMap.empty, pomContent, this.srcFolder)
+    val project = MavenProject(name, sources, jarMap, pomContent, this.srcFolder)
     project.generate(odAbsPath)
   }
 
@@ -67,6 +67,7 @@ trait LibraryGenerator extends Generator {
     }
     val outputdir = args(0)
     val odAbsPath = Paths.get(outputdir).toAbsolutePath().normalize()
-    generateLibrary(odAbsPath)
+    val jarMap = getJarMap(args.slice(1, args.length))
+    generateLibrary(odAbsPath, jarMap)
   }
 }

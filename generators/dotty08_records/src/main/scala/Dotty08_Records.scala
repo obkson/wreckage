@@ -3,9 +3,9 @@ import java.nio.file.Paths
 
 import wreckage.builder._, benchmarking._
 
-object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
+object Dotty08_Records extends BenchmarkGenerator with DottyLanguage {
 
-  val name = "dotty06_records"
+  val name = "dotty08_records"
 
   lazy val syntax = new RecordSyntax {
     def dependencies = List()
@@ -24,8 +24,8 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
     }
 
     def create(tpe: RecordType, fields: Seq[(String, String)]): String = {
-      // e.g. Record(f1=1, f2=2)
-      fields.map{ case (k, v) => s"$k=$v" }.mkString(s"Record(", ", ",")")
+      // e.g. Record("f1", 1) + ("f2", 2)
+      fields.map{ case (k, v) => s"""("$k", $v)""" }.mkString(s"Record", " + ","")
     }
 
     // Dot notation
@@ -36,16 +36,14 @@ object Dotty06_Records extends BenchmarkGenerator with DottyLanguage {
 
     // *Safe*: Extend with already existing field
     def increment(prefix: String, field: String): String = {
-      // e.g. rec ++ Record(f1=rec.f1+1)
-      s"""$prefix ++ Record($field=$prefix.$field+1)"""
+      // e.g. rec + ("f1", (rec.f1+1))
+      s"""$prefix + ("$field", ($prefix.$field+1))"""
     }
   }
 
   lazy val benchmarks = List[Benchmark](
-    ScalaRTCaseStudyComplete,
-    ScalaRTCaseStudyReadUpdate,
-    ScalaRTCaseStudyRead,
-    ScalaRTCaseStudyUpdate,
+    //ScalaRTCaseStudyComplete,
+    //ScalaRTCaseStudyReadUpdate,
     ScalaRTCreationSize,
     ScalaRTAccessFields,
     ScalaRTAccessSize,

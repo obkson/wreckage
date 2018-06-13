@@ -7,10 +7,9 @@ package benchmarking
 case object ScalaRTUpdateSize extends ScalaRTBenchmark {
   val name = "RTUpdateSize"
 
-  val inputs: Seq[Int] = List(1,10,20,30,40,50,60,70)
+  val inputs: Seq[Int] = List(1,20,40,60,80,100,120,140,160,180,200,220,240)
 
-  // one record type for each input size
-  def types = inputs map typeForInput
+  val types = inputs map typeForInput
 
   def typeForInput(input: Int): RecordType = {
     val fields = (1 to input) map { idx => (s"f$idx", "Int") }
@@ -19,10 +18,11 @@ case object ScalaRTUpdateSize extends ScalaRTBenchmark {
 
   def state(recSyntax: RecordSyntax): String = {
     inputs.map{input =>
+      val tpe = typeForInput(input)
       val args = (1 to input).map { idx => (s"f$idx", s"$idx") }
       // let the accessed records be mutable vars in benchmarking state to prevent constant folding
       s"""|
-          |var r_$input = ${recSyntax.create(typeForInput(input), args)}
+          |var r_$input = ${recSyntax.create(tpe, args)}
           |""".stripMargin
     }.mkString("\n")
   }

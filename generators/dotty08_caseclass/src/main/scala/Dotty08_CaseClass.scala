@@ -3,16 +3,16 @@ import java.nio.file.Paths
 
 import wreckage.builder._, benchmarking._
 
-object Dotty06_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage {
+object Dotty08_CaseClass extends BenchmarkAndLibraryGenerator with DottyLanguage {
 
-  val name = "dotty06_caseclass"
+  val name = "dotty08_caseclass"
 
   lazy val library = new RecordLibrary {
-    val name = s"dotty06_caseclass_lib"
+    val name = s"dotty08_caseclass_lib"
 
     val pkg = List("se", "obkson", "wreckage", name)
 
-    val output = Dependency(List("se", "obkson", "wreckage"), s"${name}_0.6", "0.1")
+    val output = Dependency(List("se", "obkson", "wreckage"), s"${name}_0.8", "0.1")
 
     def decl(tpe: RecordType): String = {
       val inheritance = tpe.parent match {

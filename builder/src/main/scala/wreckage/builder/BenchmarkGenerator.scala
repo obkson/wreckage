@@ -35,14 +35,6 @@ trait BenchmarkGenerator extends Generator {
     project.generate(odAbsPath)
   }
 
-  def getJarMap(jarArgs: Seq[String]): Map[String, Path] = {
-      val jarTpls = jarArgs.map { jarMapping =>
-        val Array(target, source) = jarMapping.split("=")
-        Tuple2(target, Paths.get(source).toAbsolutePath().normalize())
-      }
-      HashMap[String, Path](jarTpls: _*)
-  }
-
   def main(args: Array[String]){
     if (args.length < 1) {
       Logger.error("Usage: ./generator outdir [jars...]")

@@ -1,40 +1,55 @@
 #!/usr/bin/env bash
 
 GENDIR=$1
-FEATURE=$2
-DATADIR=$3
+DATADIR=$2
 
 if [ -z "$GENDIR" ]; then
   echo "$0: no base directory given" >&2
   echo "" >&2
-  echo "usage: $0 basedir feature datadir" >&2
-  exit 1
-fi
-if [ -z "$FEATURE" ]; then
-  echo "$0: no feature given" >&2
-  echo "" >&2
-  echo "usage: $0 basedir feature datadir" >&2
+  echo "usage: $0 basedir datadir" >&2
   exit 1
 fi
 if [ -z "$DATADIR" ]; then
   echo "$0: no data output directory given" >&2
   echo "" >&2
-  echo "usage: $0 basedir feature datadir" >&2
+  echo "usage: $0 basedir datadir" >&2
   exit 1
 fi
 
 function run_singleshot {
-    LANG=$1
-    BENCH=$2
+    BENCH=$1
+    FEATURE=$2
     DATAFILE="$(pwd)/$DATADIR/$BENCH/$FEATURE.json"
 
-    CMD="java -Xss8m -jar target/benchmarks.jar -wi 0 -i 1 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
+    CMD="java -Xms4g -Xmx8g -jar target/benchmarks.jar -wi 0 -i 1 -t 1 -f 10 $FEATURE -rf json -rff $DATAFILE"
     echo "$CMD"
 
     mkdir -p $DATADIR/$BENCH
-    (cd "$GENDIR/$LANG/$BENCH" && $CMD)
+    (cd "$GENDIR/$BENCH" && $CMD)
 }
 
+#run_singleshot "dotty08_records" "RTCaseStudyComplete"
+#run_singleshot "dotty08_records" "RTCaseStudyReadUpdate"
+#run_singleshot "dotty08_records" "RTCaseStudyUpdate"
+#run_singleshot "dotty08_records" "RTCaseStudyRead"
+#run_singleshot "dotty08_caseclass" "RTCaseStudyComplete"
+#run_singleshot "dotty08_caseclass" "RTCaseStudyReadUpdate"
+#run_singleshot "dotty08_caseclass" "RTCaseStudyUpdate"
+#run_singleshot "dotty08_caseclass" "RTCaseStudyRead"
+#run_singleshot "scala212_compossible" "RTCaseStudyComplete"
+#run_singleshot "scala212_compossible" "RTCaseStudyReadUpdate"
+#run_singleshot "scala212_compossible" "RTCaseStudyUpdate"
+#run_singleshot "scala212_compossible" "RTCaseStudyRead"
+#run_singleshot "scala212_shapeless233" "RTCaseStudyComplete"
+#run_singleshot "scala212_shapeless233" "RTCaseStudyReadUpdate"
+#run_singleshot "scala212_shapeless233" "RTCaseStudyUpdate"
+run_singleshot "scala212_shapeless233" "RTCaseStudyRead"
+#run_singleshot "scala212_compossible" "RTCaseStudyReadUpdate"
+#run_singleshot "dotty08_caseclass" "RTCaseStudyReadUpdate"
+#run_singleshot "scala212_shapeless233" "RTCaseStudyReadUpdate"
+#run_singleshot "scala212_compossible" "RTCaseStudyComplete"
+#run_singleshot "dotty08_caseclass" "RTCaseStudyComplete"
+#run_singleshot "scala212_shapeless233" "RTCaseStudyComplete"
 
 # Java
 #run_steadystate "java"     "javamethodreflection__java_1_8"

@@ -7,8 +7,7 @@ trait RTAccessSize {
 
   val inputs: Seq[Int] = List(1,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32)
 
-  // one record type for each input size
-  def types = inputs map typeForInput
+  val types = inputs map typeForInput
 
   def typeForInput(input: Int): RecordType = {
     val fields = (1 to input) map { idx => (s"f$idx", "Int") }
@@ -25,8 +24,8 @@ case object ScalaRTAccessSize extends ScalaRTBenchmark with RTAccessSize {
       val tpe = typeForInput(input)
       val args = (1 to input).map { idx => (s"f$idx", s"$idx") }
       // let the accessed records be mutable vars in benchmarking state to prevent constant folding
-      s"""|${recSyntax.tpeCarrier(tpe)}
-          |var r_$input: ${recSyntax.tpe(tpe)} = ${recSyntax.create(tpe, args)}
+      s"""|
+          |var r_$input = ${recSyntax.create(tpe, args)}
           |""".stripMargin
     }.mkString("\n")
   }

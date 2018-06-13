@@ -24,8 +24,8 @@ case object ScalaRTAccessFields extends ScalaRTBenchmark with RTAccessFields {
     val args = (1 to inputs.max).map { idx => (s"f$idx", s"$idx") }
 
     // let the accessed record be a mutable var in benchmarking state to prevent constant folding
-    s"""|${recSyntax.tpeCarrier(tpe)}
-        |var r: ${recSyntax.tpe(tpe)} = ${recSyntax.create(tpe, args)}
+    s"""|
+        |var r = ${recSyntax.create(tpe, args)}
         |""".stripMargin
   }
 

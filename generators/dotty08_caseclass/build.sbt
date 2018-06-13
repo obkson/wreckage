@@ -1,4 +1,4 @@
-name := "dotty06_caseclass"
+name := "dotty08_caseclass"
 
 version := "0.1"
 
