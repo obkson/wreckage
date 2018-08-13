@@ -194,8 +194,8 @@ val rs = Array[Base](
 var i = -1
 
 // Benchmarked functions (iterated):
-def poly_deg1 = { i = (i + 1) % 1; rs(i).g 
-def poly_deg2 = { i = (i + 1) % 2; rs(i).g 
+def poly_deg1 = { i = (i + 1) % 1; rs(i).g }
+def poly_deg2 = { i = (i + 1) % 2; rs(i).g }
 ...
-def poly_deg32 = { i = (i + 1) % 32; rs(i).g 
+def poly_deg32 = { i = (i + 1) % 32; rs(i).g }
 ```
